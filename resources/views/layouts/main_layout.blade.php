@@ -26,6 +26,12 @@
 </head>
 <body style="background-image: url('{{ asset("assets/images/fundo.png") }}'); background-size: cover; background-repeat: no-repeat; background-position: center center;" class="fst-italic">
     @yield("content");
+
+    <div class="text-center mx-1 mt-5 mb-3">
+        <img style="width: 35px; height: 35px;" class="border border-black shadow me-1" src="{{ asset("assets/images/foto_proprietario.png") }}">
+
+        <label class="text-white align-middle fs-5">Todos os Direitos Reservados: Luciano Eduardo Stefanello da Silva - 2025</label>
+    </div>
     
     <script>
         function mostrarOcultarSenha() {
