@@ -3,10 +3,10 @@
 @section("content")
     <nav class="navbar bg-primary bg-gradient border-5 border-bottom border-black shadow">
         <div class="container-fluid">
-            <label class="navbar-brand fs-5 fw-bold ms-5"><svg class="me-2" id="logo_efeito" xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="50" height="50" fill="currentColor" class="bi bi-card-image" viewBox="0 0 16 16"><path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/><path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54L1 12.5v-9a.5.5 0 0 1 .5-.5z"/></svg>Página de Login</label>
+            <label class="navbar-brand fs-3 fw-bold ms-5"><svg class="me-2" id="logo_efeito" xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="75" height="75" fill="currentColor" class="bi bi-card-image" viewBox="0 0 16 16"><path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/><path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54L1 12.5v-9a.5.5 0 0 1 .5-.5z"/></svg>Página de <span class="text-white">Login</span></label>
 
             <div class="me-5">
-                <a href="#" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" id="cadastrar" class="btn btn-info border icon-link icon-link-hover focus-ring focus-ring-light" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M14.854 4.854a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 4H3.5A2.5 2.5 0 0 0 1 6.5v8a.5.5 0 0 0 1 0v-8A1.5 1.5 0 0 1 3.5 5h9.793l-3.147 3.146a.5.5 0 0 0 .708.708z"/></svg>Cadastrar Usuário</a>
+                <a href="#" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" id="cadastrar" class="btn btn-lg btn-info border icon-link icon-link-hover focus-ring focus-ring-light" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M14.854 4.854a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 4H3.5A2.5 2.5 0 0 0 1 6.5v8a.5.5 0 0 0 1 0v-8A1.5 1.5 0 0 1 3.5 5h9.793l-3.147 3.146a.5.5 0 0 0 .708.708z"/></svg>Cadastrar Usuário</a>
             </div>
         </div>
     </nav>
@@ -16,48 +16,56 @@
             @csrf
 
             <div class="card-header d-flex align-items-center justify-content-center">
-                <svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="32" height="32" fill="currentColor" class="bi bi-door-open me-1" viewBox="0 0 16 16"><path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1"/><path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117M11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5M4 1.934V15h6V1.077z"/></svg>
+                <svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="36" height="36" fill="currentColor" class="bi bi-door-open me-1" viewBox="0 0 16 16"><path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1"/><path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117M11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5M4 1.934V15h6V1.077z"/></svg>
 
-                <label class="fs-5 fw-bold">LOGIN</label>
+                <label class="fs-4 fw-bold">LOGIN</label>
             </div>
 
             <div class="card-body">
                 <div class="mb-2">
-                    <label>Usuário:</label>
+                    <label class="fs-5">Usuário:</label>
 
-                    <div class="input-group">
-                        <span class="input-group-text"><svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/></svg></span>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text"><svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="26" height="26" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/></svg></span>
                         
                         <input id="usuario" class="form-control" type="text" name="usuario" placeholder="..." value="{{ old("usuario") }}" required>                        
                     </div>
 
                     @error("usuario")
-                        <div class="mt-1">
-                            <div class="alert alert-danger" role="alert">
-                                {{ $message }}
-                            </div>
+                        <div class="alert alert-danger mt-1" role="alert">
+                            {{ $message }}
                         </div>
                     @enderror
+
+                    @if(session("usuarioError"))
+                        <div class="alert alert-danger mt-1" role="alert">
+                            {{ session("usuarioError") }}
+                        </div>
+                    @endif
                 </div>
 
                 <div>
-                    <label>Senha:</label>
+                    <label class="fs-5">Senha:</label>
                     
-                    <div class="input-group">
-                        <span class="input-group-text"><svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="16" height="16" fill="currentColor" class="bi bi-key" viewBox="0 0 16 16"><path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8m4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5"/><path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/></svg></span>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text"><svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="26" height="26" fill="currentColor" class="bi bi-key" viewBox="0 0 16 16"><path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8m4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5"/><path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/></svg></span>
 
                         <input id="senha" class="form-control" type="password" name="senha" placeholder="..." value="{{ old("senha") }}" required>
 
-                        <button id="mostrar_senha" class="input-group-text" type="button" name="mostrar_senha" onclick="mostrarOcultarSenha()">Mostrar/Ocultar</button>                        
+                        <button id="mostrar_ocultar_senha" class="input-group-text focus-ring focus-ring-secondary" type="button" name="mostrar_ocultar_senha" onclick="mostrarOcultarSenha()">Mostrar</button>                        
                     </div>
 
                     @error("senha")
-                        <div class="mt-1">
-                            <div class="alert alert-danger" role="alert">
-                                {{ $message }}
-                            </div>
+                        <div class="alert alert-danger mt-1 mb-0" role="alert">
+                            {{ $message }}
                         </div>
                     @enderror
+
+                    @if(session("senhaError"))
+                        <div class="alert alert-danger mt-1 mb-0" role="alert">
+                            {{ session("senhaError") }}
+                        </div>
+                    @endif
                 </div>                
             </div>
 

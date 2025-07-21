@@ -10,7 +10,3 @@ Route::middleware([VerificarEstaLogado::class])->group(function () {
 
     Route::post("/loginSubmit", [LoginLogout::class, "loginSubmit"])->name("loginSubmit");
 });
-
-Route::middleware([VerificarNaoEstaLogado::class])->group(function () {
-    
-});
