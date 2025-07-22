@@ -1,7 +1,7 @@
 @extends("layouts.main_layout")
 
 @section("content")
-    <nav class="navbar bg-primary bg-gradient border-5 border-bottom border-black shadow">
+    <nav class="navbar bg-primary bg-gradient border-5 border-bottom border-black shadow mb-5">
         <div class="container-fluid">
             <div class="navbar-brand fs-3 fw-bold ms-5">
                 <a href="{{ route("login") }}" class="link-offset-2 link-underline link-underline-opacity-0">
@@ -17,7 +17,7 @@
         </div>
     </nav>
 
-    <div class="container d-flex justify-content-center align-items-center vh-100 text-center">
+    <div class="container d-flex justify-content-center align-items-center text-center mb-5">
         <form style="width: 750px;" action="{{ route("loginSubmit") }}" id="formulario" class="card border-black shadow" method="post" novalidate>
             @csrf
 
