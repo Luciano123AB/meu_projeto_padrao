@@ -5,76 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Meu Projeto Padrão</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-    
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js"></script>
-    
-    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    
-    <script>
-        function ImagePreview(input) {
-            if (input.files && input.files[0]) {
-
-                var r = new FileReader();
-
-                r.onload = function(e) {
-                    $("#img_preview").show();
-                    $("#img_preview").attr("src", e.target.result);
-                }
-
-                r.readAsDataURL(input.files[0]);
-            }
-        }
-
-        $().ready(function() {
-
-            hide_empty_image = false;
-            set_blank_to_empty_image = false;
-            set_image_border = true;
-
-            if (hide_empty_image)
-                $("#img_preview").hide();
-            if (set_blank_to_empty_image)
-                $("#img_preview").attr("src","data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=");
-            if (set_image_border)
-                $("#img_preview").css("border", "1px solid black");
-                $("#img_preview").css("width", "100px");
-                $("#img_preview").css("height", "100px");
-
-            $("#img_input").change(function(){
-                ImagePreview(this);
-            });
-        });
-
-        function checa(e){
-
-            const mi = +e.min;
-            const ma = +e.max;
-            const va = e.value;
-
-            if(va < mi){
-
-                e.value = mi;
-
-            }else if(va > ma){
-
-                e.value = ma;
-
-            }
-        }
-    </script>
+    <link href="{{ asset("https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css") }}" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 
     <style>
         *{
@@ -101,21 +32,8 @@
 
         <label class="text-white align-middle fs-5">Todos os Direitos Reservados: Luciano Eduardo Stefanello da Silva - 2025</label>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     
     <script>
-        $("#data").mask("00/00/0000");
-
-        $(document).ready(function () {
-            $("#data").datepicker({
-                format: "dd/mm/yyyy",
-                language: "pt-BR",
-                autoclose: true,
-                todayHighlight: true
-            });
-        });
-
         function mostrarOcultarSenha() {
 
             const senha = document.getElementById("senha");
