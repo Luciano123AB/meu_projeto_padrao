@@ -39,9 +39,9 @@
                         </div>
                     @enderror
 
-                    @if(session("usuarioError"))
+                    @if(session("usuarioErro"))
                         <div class="alert alert-danger mt-1" role="alert">
-                            {{ session("usuarioError") }}
+                            {{ session("usuarioErro") }}
                         </div>
                     @endif
                 </div>
@@ -63,9 +63,9 @@
                         </div>
                     @enderror
 
-                    @if(session("senhaError"))
+                    @if(session("senhaErro"))
                         <div class="alert alert-danger mt-1 mb-0" role="alert">
-                            {{ session("senhaError") }}
+                            {{ session("senhaErro") }}
                         </div>
                     @endif
                 </div>                

@@ -33,11 +33,11 @@ class LoginLogout extends Controller
                     ->where("deleted_at", NULL)->first();
 
         if (!$usuario) {
-            return redirect()->back()->withInput()->with("usuarioError", "Usuário não encontrado!");
+            return redirect()->back()->withInput()->with("usuarioErro", "Usuário não encontrado!");
         }
 
         if (!password_verify($senha, $usuario->senha)) {
-            return redirect()->back()->withInput()->with("senhaError", "Senha incorreta!");
+            return redirect()->back()->withInput()->with("senhaErro", "Senha incorreta!");
         }
 
         echo "<h1>$usuarioInserido, você está logado com sucesso!</h1>";
