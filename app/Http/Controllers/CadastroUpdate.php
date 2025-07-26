@@ -6,13 +6,11 @@ use Illuminate\Http\Request;
 
 class CadastroUpdate extends Controller
 {
-    public function cadastro()
-    {
-        return view('cadastro');
+    public function cadastro() {
+        return view("cadastro");
     }
 
-    public function cadastroSubmit(Request $request)
-    {
+    public function cadastroSubmit(Request $request) {
         $request->validate([
             "nome" => "required|min:1|max:80",
             "usuario" => "required|min:6|max:30",
@@ -46,5 +44,31 @@ class CadastroUpdate extends Controller
             "genero.required" => "O campo gênero é obrigatório!",
             "foto.max" => "O campo foto deve ter no máximo 4GB!",
         ]);
+
+        $nome = $request->input("nome");
+        $usuario = $request->input("usuario");
+        $email = $request->input("email");
+        $senha = $request->input("senha");
+        $confirmarSenha = $request->input("confirmar_senha");
+        $cpf = $request->input("cpf");
+        $dataNascimento = $request->input("data");
+        $celular = $request->input("celular");
+        $genero = $request->input("genero");
+        $foto = $request->file("foto");
+
+        if ($senha !== $confirmarSenha) {
+            return redirect()->back()->withInput()->with("senhaErro", "As senhas não coincidem!");
+        }
+
+        echo "<h1>Cadastro realizado com sucesso!</h1>";
+        echo "<h2>Nome: $nome</h2>";
+        echo "<h2>Usuário: $usuario</h2>";
+        echo "<h2>Email: $email</h2>";
+        echo "<h2>Senha: $senha</h2>";
+        echo "<h2>Confirmar Senha: $confirmarSenha</h2>";
+        echo "<h2>CPF: $cpf</h2>";
+        echo "<h2>Data de Nascimento: $dataNascimento</h2>";
+        echo "<h2>Celular: $celular</h2>";
+        echo "<h2>Gênero: $genero</h2>";
     }
 }

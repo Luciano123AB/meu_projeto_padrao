@@ -7,13 +7,11 @@ use Illuminate\Http\Request;
 
 class LoginLogout extends Controller
 {
-    public function login()
-    {
+    public function login() {
         return view("login");
     }
 
-    public function loginSubmit(Request $request)
-    {
+    public function loginSubmit(Request $request) {
         $request->validate([
             "usuario" => "required|min:6|max:30",
             "senha" => "required|min:8|max:64"
@@ -35,11 +33,11 @@ class LoginLogout extends Controller
                     ->where("deleted_at", NULL)->first();
 
         if (!$usuario) {
-            return redirect()->back()->withInput()->with("usuarioError", "Usuário não encontrado!");
+            return redirect()->back()->withInput()->with("usuarioErro", "Usuário não encontrado!");
         }
 
         if (!password_verify($senha, $usuario->senha)) {
-            return redirect()->back()->withInput()->with("senhaError", "Senha incorreta!");
+            return redirect()->back()->withInput()->with("senhaErro", "Senha incorreta!");
         }
 
         echo "<h1>$usuarioInserido, você está logado com sucesso!</h1>";

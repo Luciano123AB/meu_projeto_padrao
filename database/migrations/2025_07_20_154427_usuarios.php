@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date("data_nascimento", 10)->nullable();
             $table->string("celular", 15)->nullable();
             $table->string("genero", 9)->nullable();
-            $table->string("foto", 4294967295);
+            $table->longText("foto", 4294967295);
             $table->integer("permissao")->default(1)->comment("1 = Administrador, 0 = Usuário Comum");
             $table->dateTime("ultimo_acesso")->nullable();
             $table->timestamps();

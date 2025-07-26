@@ -79,7 +79,7 @@
         }
     </style>
 </head>
-<body style="background-image: url('{{ asset("assets/images/fundo.png") }}'); background-size: cover; background-repeat: no-repeat; background-position: center center;" class="fst-italic">
+<body style="background-image: url('{{ asset("assets/images/fundo.png") }}'); background-repeat: no-repeat; background-size: cover; background-position: center center;" class="fst-italic">
     @yield("content");
 
     <div class="text-center mx-1 mt-5 mb-3">

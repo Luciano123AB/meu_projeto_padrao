@@ -8,7 +8,7 @@
                     <svg class="me-1 text-dark" id="logo_efeito" xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="75" height="75" fill="currentColor" class="bi bi-card-image" viewBox="0 0 16 16"><path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/><path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54L1 12.5v-9a.5.5 0 0 1 .5-.5z"/></svg>
                 </a>
 
-                Página de <span class="text-white">Cadastro</span>
+                Meu Projeto <span class="text-white">Padrão</span>
             </div>
 
             <div class="me-5">
@@ -32,7 +32,7 @@
                     <div class="input-group input-group-lg">
                         <label class="input-group-text">Nome Completo:</label>
 
-                        <input id="nome" class="form-control" type="text" name="nome" placeholder="..." required>
+                        <input id="nome" class="form-control" type="text" name="nome" placeholder="..." required value="{{ old("nome") }}">
                     </div>
 
                     @error("nome")
@@ -46,7 +46,7 @@
                     <div class="input-group input-group-lg">
                         <label class="input-group-text">Usuario:</label>
 
-                        <input id="usuario" class="form-control" type="text" name="usuario" placeholder="Ex: Usuário123ABC" required>
+                        <input id="usuario" class="form-control" type="text" name="usuario" placeholder="Ex: Usuário123ABC" required value="{{ old("usuario") }}">
                     </div>
 
                     @error("usuario")
@@ -60,7 +60,7 @@
                     <div class="input-group input-group-lg">
                         <label class="input-group-text">Email:</label>
 
-                        <input id="email" class="form-control" type="text" name="email" placeholder="usuario@gmail.com" required>
+                        <input id="email" class="form-control" type="text" name="email" placeholder="usuario@gmail.com" required value="{{ old("email") }}">
                     </div>
 
                     @error("email")
@@ -74,7 +74,7 @@
                     <div class="input-group input-group-lg">
                         <label class="input-group-text">CPF:</label>
 
-                        <input id="cpf" class="form-control" type="text" name="cpf" placeholder="000.000.000-00" required>
+                        <input id="cpf" class="form-control" type="text" name="cpf" placeholder="000.000.000-00" required value="{{ old("cpf") }}">
                     </div>
 
                     @error("cpf")
@@ -88,7 +88,7 @@
                     <div class="input-group input-group-lg">
                         <label class="input-group-text">Senha:</label>
 
-                        <input id="senha" class="form-control" type="password" name="senha" placeholder="Ex: @ABde12" required>
+                        <input id="senha" class="form-control" type="password" name="senha" placeholder="Ex: @ABde12" required value="{{ old("senha") }}">
 
                         <button id="mostrar_ocultar_senha" class="input-group-text focus-ring focus-ring-secondary" type="button" name="mostrar_ocultar_senha" onclick="mostrarOcultarSenha()">Mostrar</button>
                     </div>
@@ -98,13 +98,19 @@
                             {{ $message }}
                         </div>
                     @enderror
+
+                    @if(session("senhaErro"))
+                        <div class="alert alert-danger mt-1 mb-0" role="alert">
+                            {{ session("senhaErro") }}
+                        </div>
+                    @endif
                 </div>
 
                 <div class="col mb-3">
                     <div class="input-group input-group-lg">
                         <label class="input-group-text">Confirmar Senha:</label>
 
-                        <input id="confirmar_senha" class="form-control" type="password" name="confirmar_senha" placeholder="..." required>
+                        <input id="confirmar_senha" class="form-control" type="password" name="confirmar_senha" placeholder="..." required value="{{ old("confirmar_senha") }}">
 
                         <button id="mostrar_ocultar_confirmar_senha" class="input-group-text focus-ring focus-ring-secondary" type="button" name="mostrar_ocultar_confirmar_senha" onclick="mostrarOcultarConfirmarSenha()">Mostrar</button>
                     </div>
@@ -114,13 +120,19 @@
                             {{ $message }}
                         </div>
                     @enderror
+
+                    @if(session("senhaErro"))
+                        <div class="alert alert-danger mt-1 mb-0" role="alert">
+                            {{ session("senhaErro") }}
+                        </div>
+                    @endif
                 </div>                
 
                 <div class="col mb-3">
                     <div class="input-group input-group-lg">
                         <label class="input-group-text">Data de Nascimento:</label>
 
-                        <input id="data" class="form-control" type="text" name="data" placeholder="DIA/MÊS/ANO" required>
+                        <input id="data" class="form-control" type="text" name="data" placeholder="DIA/MÊS/ANO" required value="{{ old("data") }}">
                     </div>
 
                     @error("data")
@@ -134,7 +146,7 @@
                     <div class="input-group input-group-lg">
                         <label class="input-group-text">Celular:</label>
 
-                        <input id="celular" class="form-control" type="text" name="celular" placeholder="(99)99999-9999" required>
+                        <input id="celular" class="form-control" type="text" name="celular" placeholder="(99)99999-9999" required value="{{ old("celular") }}">
                     </div>
 
                     @error("celular")
@@ -154,6 +166,12 @@
                             <option value="Feminino">Feminino</option>
                             <option value="Outro">Outro</option>
                         </select>
+
+                        @if(old("genero"))
+                            <script>
+                                document.getElementById("genero").value = "{{ old("genero") }}";
+                            </script>
+                        @endif
                     </div>
 
                     @error("genero")
