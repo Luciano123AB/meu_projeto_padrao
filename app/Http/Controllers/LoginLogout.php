@@ -7,13 +7,11 @@ use Illuminate\Http\Request;
 
 class LoginLogout extends Controller
 {
-    public function login()
-    {
+    public function login() {
         return view("login");
     }
 
-    public function loginSubmit(Request $request)
-    {
+    public function loginSubmit(Request $request) {
         $request->validate([
             "usuario" => "required|min:6|max:30",
             "senha" => "required|min:8|max:64"
