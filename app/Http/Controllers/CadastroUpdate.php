@@ -19,7 +19,7 @@ class CadastroUpdate extends Controller
             "confirmar_senha" => "required",
             "cpf" => "required",
             "data" => "required",
-            "celular" => "required|min:15",
+            "celular" => "required|min:14",
             "genero" => "required",
             "foto" => "max:4294967295",
         ],
@@ -40,7 +40,7 @@ class CadastroUpdate extends Controller
             "cpf.required" => "O campo CPF é obrigatório!",
             "data.required" => "O campo data de nascimento é obrigatório!",
             "celular.required" => "O campo celular é obrigatório!",
-            "celular.min" => "O campo celular deve ter pelo menos 15 caracteres!",
+            "celular.min" => "O campo celular deve ter pelo menos 14 caracteres!",
             "genero.required" => "O campo gênero é obrigatório!",
             "foto.max" => "O campo foto deve ter no máximo 4GB!",
         ]);

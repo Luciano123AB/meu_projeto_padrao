@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string("senha", 60)->nullable();
             $table->string("cpf", 14)->nullable();
             $table->date("data_nascimento", 10)->nullable();
-            $table->string("celular", 15)->nullable();
+            $table->string("celular", 14)->nullable();
             $table->string("genero", 9)->nullable();
             $table->longText("foto", 4294967295);
             $table->integer("permissao")->default(1)->comment("1 = Administrador, 0 = Usuário Comum");
