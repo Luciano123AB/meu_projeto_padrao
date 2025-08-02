@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CadastroUpdate;
+use App\Http\Controllers\HomeOpcoes;
 use App\Http\Controllers\LoginLogout;
 use App\Http\Middleware\VerificarEstaLogado;
 use App\Http\Middleware\VerificarNaoEstaLogado;
@@ -14,4 +15,10 @@ Route::middleware([VerificarEstaLogado::class])->group(function () {
     Route::get("/cadastro", [CadastroUpdate::class, "cadastro"])->name("cadastro");
 
     Route::post("/cadastroSubmit", [CadastroUpdate::class, "cadastroSubmit"])->name("cadastroSubmit");
+});
+
+Route::middleware([VerificarNaoEstaLogado::class])->group(function () {
+    Route::get("/home", [HomeOpcoes::class, "home"])->name("home");
+
+    Route::get("/logout", [LoginLogout::class, "logout"])->name("logout");
 });

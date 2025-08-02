@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id()->autoIncrement();
             $table->string("nome_completo", 80)->nullable();
             $table->string("usuario", 30)->nullable();
-            $table->string("email", 30)->nullable();
+            $table->string("email", 50)->nullable();
             $table->string("senha", 60)->nullable();
             $table->string("cpf", 14)->nullable();
             $table->date("data_nascimento", 10)->nullable();

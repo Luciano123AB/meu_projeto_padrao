@@ -40,7 +40,17 @@ class LoginLogout extends Controller
             return redirect()->back()->withInput()->with("senhaErro", "Senha incorreta!");
         }
 
-        echo "<h1>$usuarioInserido, você está logado com sucesso!</h1>";
-        echo "<h2>Senha: $senha</h2>";
+        session([
+            "usuario" => $usuario->usuario,
+            "permissao" => $usuario->permissao
+        ]);
+
+        return redirect()->route("home")->with("loginSucesso", "Usuário logado com sucesso!");
+    }
+
+    public function logout() {
+        session()->forget("usuario");
+
+        return redirect()->route("login")->with("logoutSucesso", "Usuário deslogado com sucesso!");
     }
 }
