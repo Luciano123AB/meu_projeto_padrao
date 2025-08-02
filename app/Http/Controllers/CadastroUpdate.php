@@ -99,7 +99,9 @@ class CadastroUpdate extends Controller
         ]);
 
         if ($usuario) {
-            return redirect()->route("login")->with("cadastroSucesso", "Usuário cadastrado com sucesso!");
+            session(["cadastroSucesso" => "Usuário cadastrado com sucesso! Faça login para continuar."]);
+
+            return redirect()->route("login");
         } else {
             return redirect()->back()->withInput()->with("cadastroErro", "Erro ao cadastrar usuário! Tente novamente.");
         }
