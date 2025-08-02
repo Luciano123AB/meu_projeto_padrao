@@ -21,7 +21,7 @@ class UsuariosTableSeeder extends Seeder
                 "senha" => bcrypt("24032004ABCD123"),
                 "cpf" => "121.098.019-30",
                 "data_nascimento" => "2004-03-24",
-                "celular" => "(55) 98127-7036",
+                "celular" => "(55)98127-7036",
                 "genero" => "Masculino",
                 "foto" => "https://drive.google.com/file/d/1uIFVxSBB8XNN3OuxvbaAZMIwuXEcxttV/view?usp=drive_link",
                 "permissao" => 1,
