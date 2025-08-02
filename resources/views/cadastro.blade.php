@@ -82,6 +82,12 @@
                             {{ $message }}
                         </div>
                     @enderror
+
+                    @if(session("cpfErro"))
+                        <div class="alert alert-danger mt-1 mb-0" role="alert">
+                            {{ session("cpfErro") }}
+                        </div>
+                    @endif
                 </div>
 
                 <div class="col mb-3">

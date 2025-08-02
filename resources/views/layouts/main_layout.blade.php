@@ -132,8 +132,6 @@
                 `
             });
         </script>
-
-        {{ session()->forget("cadastroSucesso"); }}
     @endif
     
     @yield("content");

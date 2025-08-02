@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usuario;
+use App\Services\Operacoes;
 use Illuminate\Http\Request;
 
 class CadastroUpdate extends Controller
@@ -57,6 +58,10 @@ class CadastroUpdate extends Controller
         $genero = $request->input("genero");
         $foto = $request->file("foto");
 
+        if (!Operacoes::validarCPF($cpf)) {
+            return redirect()->back()->withInput()->with("cpfErro", "CPF inválido! Tente novamente.");
+        }
+
         if ($senha !== $confirmarSenha) {
             return redirect()->back()->withInput()->with("senhaErro", "As senhas não coincidem!");
         }
@@ -99,9 +104,7 @@ class CadastroUpdate extends Controller
         ]);
 
         if ($usuario) {
-            session(["cadastroSucesso" => "Usuário cadastrado com sucesso! Faça login para continuar."]);
-
-            return redirect()->route("login");
+            return redirect()->route("login")->with("cadastroSucesso", "Usuário cadastrado com sucesso! Faça login para continuar.");
         } else {
             return redirect()->back()->withInput()->with("cadastroErro", "Erro ao cadastrar usuário! Tente novamente.");
         }
