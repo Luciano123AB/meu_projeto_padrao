@@ -42,6 +42,7 @@ class LoginLogout extends Controller
 
         session([
             "usuario" => $usuario->usuario,
+            "foto" => $usuario->foto,
             "permissao" => $usuario->permissao
         ]);
 

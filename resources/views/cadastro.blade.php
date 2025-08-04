@@ -18,7 +18,7 @@
     </nav>
 
     <div class="container d-flex justify-content-center align-items-center text-center mb-5">
-        <form style="width: 1000px;" action="{{ route("cadastroSubmit") }}" id="formulario" class="card border-black shadow" method="post" novalidate>
+        <form style="width: 1000px;" action="{{ route("cadastroSubmit") }}" id="formulario" class="card border-black shadow" method="post" enctype="multipart/form-data" novalidate>
             @csrf
 
             <div class="card-header d-flex align-items-center justify-content-center">
