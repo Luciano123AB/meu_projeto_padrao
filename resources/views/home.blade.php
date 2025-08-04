@@ -16,7 +16,7 @@
                         
                 <ul class="dropdown-menu dropdown-menu-lg-end">
                     @if(session("usuario") != "Administrador")
-                        <li><a href="{{ "" }}" id="editar" class="dropdown-item border-secondary-subtle border-top">Editar</a></li>
+                        <li><a href="{{ route("update") }}" id="editar" class="dropdown-item border-secondary-subtle border-top">Editar</a></li>
                     @endif
 
                     <li><a href="{{ route("logout") }}" id="sair" class="dropdown-item border-top border-bottom">Sair</a></li>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\CadastroUpdate;
 use App\Http\Controllers\HomeOpcoes;
 use App\Http\Controllers\LoginLogout;
+use App\Http\Controllers\UpdateDelete;
 use App\Http\Middleware\VerificarEstaLogado;
 use App\Http\Middleware\VerificarNaoEstaLogado;
 use Illuminate\Support\Facades\Route;
@@ -21,4 +22,8 @@ Route::middleware([VerificarNaoEstaLogado::class])->group(function () {
     Route::get("/home", [HomeOpcoes::class, "home"])->name("home");
 
     Route::get("/logout", [LoginLogout::class, "logout"])->name("logout");
+
+    Route::get("/update", [UpdateDelete::class, "update"])->name("update");
+
+    Route::get("/updateSubmit", [UpdateDelete::class, "updateSubmit"])->name("updateSubmit");
 });
