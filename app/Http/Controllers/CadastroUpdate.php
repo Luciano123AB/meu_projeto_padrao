@@ -54,7 +54,7 @@ class CadastroUpdate extends Controller
         $dataNascimento = $request->input("data");
         $celular = $request->input("celular");
         $genero = $request->input("genero");
-        $foto = $request->file("foto");
+        $foto_escolhida = $request->file("foto");
 
         if ($senha !== $confirmarSenha) {
             return redirect()->back()->withInput()->with("senhaErro", "As senhas não coincidem!");
@@ -70,5 +70,11 @@ class CadastroUpdate extends Controller
         echo "<h2>Data de Nascimento: $dataNascimento</h2>";
         echo "<h2>Celular: $celular</h2>";
         echo "<h2>Gênero: $genero</h2>";
+
+        if ($foto_escolhida && $foto_escolhida->isValid()) {
+            echo "<h2>Foto: Foto Escolhida</h2>";
+        } else {
+            echo "<h2>Foto: Foto não Escolhida</h2>";
+        }
     }
 }
