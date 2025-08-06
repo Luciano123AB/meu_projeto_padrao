@@ -12,17 +12,17 @@
             </div>
 
             <div class="btn-group my-1 me-5">
-                <button id="usuario" class="btn btn-info dropdown-toggle border focus-ring focus-ring-light" type="button" name="usuario" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false"><img style="width: 45px;" class="rounded-pill border border-black me-2" src="data:image/png;base64,{{ session("foto") }}">{{ session("usuario") }}</button>
+                <button id="usuario" class="btn btn-info dropdown-toggle border focus-ring focus-ring-light" type="button" name="usuario" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false"><img style="width: 45px;" class="rounded-pill border border-black me-2" src="data:image/png;base64,{{ session("usuario.foto") }}">{{ session("usuario.usuario") }}</button>
                         
                 <ul class="dropdown-menu dropdown-menu-lg-end">
                     @if(session("usuario") != "Administrador")
-                        <li><a href="{{ "" }}" id="editar" class="dropdown-item border-secondary-subtle border-top">Editar</a></li>
+                        <li><a href="#" id="editar" class="dropdown-item border-secondary-subtle border-top">Editar</a></li>
                     @endif
 
                     <li><a href="{{ route("logout") }}" id="sair" class="dropdown-item border-top border-bottom">Sair</a></li>
                     
                     @if(session("usuario") != "Administrador")
-                        <li><a href="{{ "" }}" id="excluir" class="dropdown-item border-secondary-subtle border-bottom">Excluir Conta</a></li>
+                        <li><a href="#" id="excluir" class="dropdown-item border-secondary-subtle border-bottom">Excluir Conta</a></li>
                     @endif
                 </ul>
             </div>
