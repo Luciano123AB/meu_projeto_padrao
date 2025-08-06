@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 
-class LoginLogout extends Controller
+class LoginLogout
 {
     public function login() {
         return view("login");
