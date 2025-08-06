@@ -28,7 +28,7 @@
             </div>
 
             <div class="card-body">
-                <input id="id" type="hidden" name="id" value="{{ Crypt::encrypt($usuario->id) }}" disabled>
+                <input id="id" type="hidden" name="id" value="{{ Crypt::encrypt($usuario->id) }}">
 
                 <div class="mb-3">
                     <div class="input-group input-group-lg">

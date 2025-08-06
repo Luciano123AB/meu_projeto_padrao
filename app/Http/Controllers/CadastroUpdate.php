@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Usuario;
 use App\Services\Operacoes;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
 
 class CadastroUpdate extends Controller
 {
@@ -24,7 +23,7 @@ class CadastroUpdate extends Controller
             "data" => "required",
             "celular" => "required|min:14",
             "genero" => "required",
-            "foto" => "max:4294967295",
+            "foto" => "max:10240"
         ],
         
         [
@@ -45,7 +44,7 @@ class CadastroUpdate extends Controller
             "celular.required" => "O campo celular é obrigatório",
             "celular.min" => "O campo celular deve ter pelo menos 14 caracteres",
             "genero.required" => "O campo gênero é obrigatório",
-            "foto.max" => "O campo foto deve ter no máximo 10MB",
+            "foto.max" => "O campo foto deve ter no máximo 10MB"
         ]);
 
         $nome = $request->input("nome");
@@ -74,13 +73,13 @@ class CadastroUpdate extends Controller
                           ->where("deleted_at", NULL)->first();
 
         if ($usuario) {
-            return redirect()->back()->withInput()->with("usuarioErro", "Esse usuário já está cadastrado! Tente novamente.");
+            return redirect()->back()->withInput()->with("usuarioExiste", "Esse usuário já está cadastrado! Tente novamente.");
         }
 
         if ($foto_escolhida && $foto_escolhida->isValid()) {
 
             $foto_tamanho = $foto_escolhida->getSize();
-            $tamanho_maximo = 4294967295;
+            $tamanho_maximo = 10240;
 
             if ($foto_tamanho > $tamanho_maximo) {
                 return redirect()->back()->withInput()->with("fotoTamanho", "Essa foto é muito grande! Escolha outra.");
@@ -112,7 +111,7 @@ class CadastroUpdate extends Controller
             "foto" => $foto,
             "permissao" => 0,
             "ultimo_acesso" => null,
-            "created_at" => date("Y-m-d H:i:s"),
+            "created_at" => date("Y-m-d H:i:s")
         ]);
 
         if ($usuario) {
@@ -138,7 +137,7 @@ class CadastroUpdate extends Controller
             "senha" => "required|min:8|max:64",
             "confirmar_senha" => "required",
             "celular" => "required|min:14",
-            "foto" => "max:4294967295",
+            "foto" => "max:10240"
         ],
         
         [
@@ -156,14 +155,14 @@ class CadastroUpdate extends Controller
             "confirmar_senha.required" => "O campo confirmar senha é obrigatório",
             "celular.required" => "O campo celular é obrigatório",
             "celular.min" => "O campo celular deve ter pelo menos 14 caracteres",
-            "foto.max" => "O campo foto deve ter no máximo 10MB",
+            "foto.max" => "O campo foto deve ter no máximo 10MB"
         ]);
 
         $id = Operacoes::decryptId($request->input("id"));
         $nome = $request->input("nome");
         $nome_usuario = $request->input("usuario");
         $email = $request->input("email");
-        $senha = Crypt::encrypt($request->input("senha"));
+        $senha = $request->input("senha");
         $confirmarSenha = $request->input("confirmar_senha");
         $celular = $request->input("celular");
         $foto_escolhida = $request->file("foto");
