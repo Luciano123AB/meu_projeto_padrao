@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\Operacoes;
 use Illuminate\Http\Request;
 
-class CadastroUpdate extends Controller
+class CadastroUpdate
 {
     public function cadastro() {
         return view("cadastro");
