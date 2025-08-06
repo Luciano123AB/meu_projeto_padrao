@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Operacoes;
 use Illuminate\Http\Request;
 
 class CadastroUpdate extends Controller
@@ -21,7 +22,7 @@ class CadastroUpdate extends Controller
             "data" => "required",
             "celular" => "required|min:14",
             "genero" => "required",
-            "foto" => "max:10240",
+            "foto" => "max:10240"
         ],
         
         [
@@ -42,7 +43,7 @@ class CadastroUpdate extends Controller
             "celular.required" => "O campo celular é obrigatório",
             "celular.min" => "O campo celular deve ter pelo menos 14 caracteres",
             "genero.required" => "O campo gênero é obrigatório",
-            "foto.max" => "O campo foto deve ter no máximo 10MB",
+            "foto.max" => "O campo foto deve ter no máximo 10MB"
         ]);
 
         $nome = $request->input("nome");
@@ -55,6 +56,10 @@ class CadastroUpdate extends Controller
         $celular = $request->input("celular");
         $genero = $request->input("genero");
         $foto_escolhida = $request->file("foto");
+
+        if (!Operacoes::validarCPF($cpf)) {
+            return redirect()->back()->withInput()->with("cpfErro", "CPF inválido! Tente novamente.");
+        }
 
         if ($senha !== $confirmarSenha) {
             return redirect()->back()->withInput()->with("senhaErro", "As senhas não coincidem!");
