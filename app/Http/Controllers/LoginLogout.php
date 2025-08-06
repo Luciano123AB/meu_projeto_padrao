@@ -40,11 +40,15 @@ class LoginLogout extends Controller
             return redirect()->back()->withInput()->with("senhaErro", "Senha incorreta!");
         }
 
-        session([
+        $usuario->ultimo_acesso = date("Y-m-d H:i:s");
+        $usuario->save();
+
+        session(["usuario" => [
+            "id" => $usuario->id,
             "usuario" => $usuario->usuario,
             "foto" => $usuario->foto,
             "permissao" => $usuario->permissao
-        ]);
+        ]]);
 
         return redirect()->route("home")->with("loginSucesso", "Usuário logado com sucesso!");
     }

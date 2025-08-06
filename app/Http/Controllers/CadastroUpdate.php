@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Usuario;
 use App\Services\Operacoes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class CadastroUpdate extends Controller
 {
@@ -111,12 +112,78 @@ class CadastroUpdate extends Controller
             "foto" => $foto,
             "permissao" => 0,
             "ultimo_acesso" => null,
+            "created_at" => date("Y-m-d H:i:s"),
         ]);
 
         if ($usuario) {
             return redirect()->route("login")->with("cadastroSucesso", "Usuário cadastrado com sucesso! Faça login para continuar.");
         } else {
             return redirect()->back()->withInput()->with("cadastroErro", "Erro ao cadastrar usuário! Tente novamente.");
+        }
+    }
+
+    public function update($id) {
+
+        $id = Operacoes::decryptId($id);
+        $usuario = Usuario::find($id);
+
+        return view("update", ["usuario" => $usuario]);
+    }
+
+    public function updateSubmit(Request $request) {
+        $request->validate([
+            "nome" => "required|min:1|max:80",
+            "usuario" => "required|min:6|max:30",
+            "email" => "required|email",
+            "senha" => "required|min:8|max:64",
+            "confirmar_senha" => "required",
+            "celular" => "required|min:14",
+            "foto" => "max:4294967295",
+        ],
+        
+        [
+            "nome.required" => "O campo nome é obrigatório!",
+            "nome.min" => "O campo nome deve ter pelo menos 1 caractere!",
+            "nome.max" => "O campo nome deve ter no máximo 80 caracteres!",
+            "usuario.required" => "O campo usuário é obrigatório!",
+            "usuario.min" => "O campo usuário deve ter pelo menos 6 caracteres!",
+            "usuario.max" => "O campo usuário deve ter no máximo 30 caracteres!",
+            "email.required" => "O campo email é obrigatório!",
+            "email.email" => "O campo email deve ser um endereço de email válido!",
+            "senha.required" => "O campo senha é obrigatório!",
+            "senha.min" => "O campo senha deve ter pelo menos 8 caracteres!",
+            "senha.max" => "O campo senha deve ter no máximo 64 caracteres!",
+            "confirmar_senha.required" => "O campo confirmar senha é obrigatório!",
+            "celular.required" => "O campo celular é obrigatório!",
+            "celular.min" => "O campo celular deve ter pelo menos 14 caracteres!",
+            "foto.max" => "O campo foto deve ter no máximo 4GB!",
+        ]);
+
+        $id = Operacoes::decryptId($request->input("id"));
+        $nome = $request->input("nome");
+        $nome_usuario = $request->input("usuario");
+        $email = $request->input("email");
+        $senha = Crypt::encrypt($request->input("senha"));
+        $confirmarSenha = $request->input("confirmar_senha");
+        $celular = $request->input("celular");
+        $foto_escolhida = $request->file("foto");
+
+        if ($senha !== $confirmarSenha) {
+            return redirect()->back()->withInput()->with("senhaErro", "As senhas não coincidem!");
+        }
+
+        echo "<h1>Usuário Atualizado com Sucesso!</h1>";
+        echo "<h2>ID: $id</h2>";
+        echo "<h2>Novo Nome: $nome</h2>";
+        echo "<h2>Novo Usuário: $nome_usuario</h2>";
+        echo "<h2>Novo Email: $email</h2>";
+        echo "<h2>Nova Senha: $senha</h2>";
+        echo "<h2>Novo Celular: $celular</h2>";
+
+        if ($foto_escolhida && $foto_escolhida->isValid()) {
+            echo "<h2>Nova Foto: Foto Escolhida!</h2>";
+        } else {
+            echo "<h2>Nova Foto: Foto não Escolhida!</h2>";
         }
     }
 }
