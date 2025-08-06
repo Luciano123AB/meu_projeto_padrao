@@ -21,7 +21,7 @@ class CadastroUpdate extends Controller
             "data" => "required",
             "celular" => "required|min:14",
             "genero" => "required",
-            "foto" => "max:4294967295",
+            "foto" => "max:10240",
         ],
         
         [
@@ -42,7 +42,7 @@ class CadastroUpdate extends Controller
             "celular.required" => "O campo celular é obrigatório!",
             "celular.min" => "O campo celular deve ter pelo menos 14 caracteres!",
             "genero.required" => "O campo gênero é obrigatório!",
-            "foto.max" => "O campo foto deve ter no máximo 4GB!",
+            "foto.max" => "O campo foto deve ter no máximo 10MB!",
         ]);
 
         $nome = $request->input("nome");
