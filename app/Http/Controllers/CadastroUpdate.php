@@ -23,7 +23,7 @@ class CadastroUpdate extends Controller
             "data" => "required",
             "celular" => "required|min:14",
             "genero" => "required",
-            "foto" => "max:10240",
+            "foto" => "max:10240"
         ],
         
         [
@@ -44,7 +44,7 @@ class CadastroUpdate extends Controller
             "celular.required" => "O campo celular é obrigatório",
             "celular.min" => "O campo celular deve ter pelo menos 14 caracteres",
             "genero.required" => "O campo gênero é obrigatório",
-            "foto.max" => "O campo foto deve ter no máximo 10MB",
+            "foto.max" => "O campo foto deve ter no máximo 10MB"
         ]);
 
         $nome = $request->input("nome");
@@ -73,7 +73,7 @@ class CadastroUpdate extends Controller
                           ->where("deleted_at", NULL)->first();
 
         if ($usuario) {
-            return redirect()->back()->withInput()->with("usuarioErro", "Esse usuário já está cadastrado! Tente novamente.");
+            return redirect()->back()->withInput()->with("usuarioExiste", "Esse usuário já está cadastrado");
         }
 
         if ($foto_escolhida && $foto_escolhida->isValid()) {
@@ -111,6 +111,7 @@ class CadastroUpdate extends Controller
             "foto" => $foto,
             "permissao" => 0,
             "ultimo_acesso" => null,
+            "created_at" => date("Y-m-d H:i:s")
         ]);
 
         if ($usuario) {
