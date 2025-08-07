@@ -58,11 +58,11 @@ class CadastroUpdate
         $foto_escolhida = $request->file("foto");
 
         if (!Operacoes::validarCPF($cpf)) {
-            return redirect()->back()->withInput()->with("cpfErro", "CPF inválido! Tente novamente.");
+            return redirect()->back()->withInput()->with("cpfErro", "CPF inválido");
         }
 
         if ($senha !== $confirmarSenha) {
-            return redirect()->back()->withInput()->with("senhaErro", "As senhas não coincidem!");
+            return redirect()->back()->withInput()->with("senhaErro", "As senhas não coincidem");
         }
 
         echo "<h1>Cadastro realizado com sucesso!</h1>";
