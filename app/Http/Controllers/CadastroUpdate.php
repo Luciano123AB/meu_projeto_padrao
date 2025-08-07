@@ -23,7 +23,7 @@ class CadastroUpdate
             "data" => "required",
             "celular" => "required|min:14",
             "genero" => "required",
-            "foto" => "max:10240"
+            "foto" => "max:10485760"
         ],
         
         [
@@ -79,7 +79,7 @@ class CadastroUpdate
         if ($foto_escolhida && $foto_escolhida->isValid()) {
 
             $foto_tamanho = $foto_escolhida->getSize();
-            $tamanho_maximo = 4294967295;
+            $tamanho_maximo = 10485760;
 
             if ($foto_tamanho > $tamanho_maximo) {
                 return redirect()->back()->withInput()->with("fotoTamanho", "Essa foto é muito grande");
