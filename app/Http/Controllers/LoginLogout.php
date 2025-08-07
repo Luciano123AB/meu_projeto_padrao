@@ -33,11 +33,11 @@ class LoginLogout
                     ->where("deleted_at", NULL)->first();
 
         if (!$usuario) {
-            return redirect()->back()->withInput()->with("usuarioErro", "Usuário não encontrado!");
+            return redirect()->back()->withInput()->with("usuarioErro", "Usuário não encontrado");
         }
 
         if (!password_verify($senha, $usuario->senha)) {
-            return redirect()->back()->withInput()->with("senhaErro", "Senha incorreta!");
+            return redirect()->back()->withInput()->with("senhaErro", "Senha incorreta");
         }
 
         $usuario->ultimo_acesso = date("Y-m-d H:i:s");
@@ -50,12 +50,12 @@ class LoginLogout
             "permissao" => $usuario->permissao
         ]]);
 
-        return redirect()->route("home")->with("loginSucesso", "Usuário logado com sucesso!");
+        return redirect()->route("home");
     }
 
     public function logout() {
         session()->forget("usuario");
 
-        return redirect()->route("login")->with("logoutSucesso", "Usuário deslogado com sucesso!");
+        return redirect()->route("login");
     }
 }

@@ -59,11 +59,11 @@ class CadastroUpdate
         $foto_escolhida = $request->file("foto");
 
         if (!Operacoes::validarCPF($cpf)) {
-            return redirect()->back()->withInput()->with("cpfErro", "CPF inválido! Tente novamente.");
+            return redirect()->back()->withInput()->with("cpfErro", "CPF inválido");
         }
 
         if ($senha !== $confirmarSenha) {
-            return redirect()->back()->withInput()->with("senhaErro", "As senhas não coincidem!");
+            return redirect()->back()->withInput()->with("senhaErro", "As senhas não coincidem");
         }
 
         $usuario = Usuario::where("usuario", $nome_usuario)
@@ -73,7 +73,7 @@ class CadastroUpdate
                           ->where("deleted_at", NULL)->first();
 
         if ($usuario) {
-            return redirect()->back()->withInput()->with("usuarioExiste", "Esse usuário já está cadastrado! Tente novamente.");
+            return redirect()->back()->withInput()->with("usuarioExiste", "Esse usuário já está cadastrado");
         }
 
         if ($foto_escolhida && $foto_escolhida->isValid()) {
@@ -82,13 +82,13 @@ class CadastroUpdate
             $tamanho_maximo = 10485760;
 
             if ($foto_tamanho > $tamanho_maximo) {
-                return redirect()->back()->withInput()->with("fotoTamanho", "Essa foto é muito grande! Escolha outra.");
+                return redirect()->back()->withInput()->with("fotoTamanho", "Essa foto é muito grande");
             }
 
             $foto_conteudo = file_get_contents($foto_escolhida->getRealPath());
 
             if (!$foto_conteudo) {
-                return redirect()->back()->withInput()->with("fotoErro", "Não foi possível carregar esta foto! Tente novamente.");
+                return redirect()->back()->withInput()->with("fotoErro", "Não foi possível carregar esta foto");
             }
 
             $foto = base64_encode($foto_conteudo);
@@ -168,7 +168,7 @@ class CadastroUpdate
         $foto_escolhida = $request->file("foto");
 
         if ($senha !== $confirmarSenha) {
-            return redirect()->back()->withInput()->with("senhaErro", "As senhas não coincidem!");
+            return redirect()->back()->withInput()->with("senhaErro", "As senhas não coincidem");
         }
 
         echo "<h1>Update realizado com sucesso!</h1>";
