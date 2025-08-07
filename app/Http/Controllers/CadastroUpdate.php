@@ -22,7 +22,7 @@ class CadastroUpdate
             "data" => "required",
             "celular" => "required|min:14",
             "genero" => "required",
-            "foto" => "max:10240"
+            "foto" => "max:10485760"
         ],
         
         [
