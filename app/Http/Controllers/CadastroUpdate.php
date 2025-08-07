@@ -171,6 +171,14 @@ class CadastroUpdate
             return redirect()->back()->withInput()->with("senhaErro", "As senhas não coincidem");
         }
 
+        $usuario_existe = Usuario::where("usuario", $nome_usuario)
+                          ->where("email", $email)
+                          ->where("celular", $celular)->first();
+
+        if ($usuario_existe) {
+            return redirect()->back()->withInput()->with("usuarioExiste", "Esse usuário já está cadastrado");
+        }
+
         echo "<h1>Update realizado com sucesso!</h1>";
         echo "<h2>ID: $id</h2>";
         echo "<h2>Novo Nome Completo: $nome</h2>";
