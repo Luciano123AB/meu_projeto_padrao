@@ -22,7 +22,7 @@
                     <li><a href="{{ route("logout") }}" id="sair" class="dropdown-item border-top border-bottom">Sair</a></li>
                     
                     @if(session("usuario.usuario") != "Administrador")
-                        <li><a href="{{ "" }}" id="excluir" class="dropdown-item border-secondary-subtle border-bottom">Excluir Conta</a></li>
+                        <li><a href="{{ route("deletar", ["id" => Crypt::encrypt(session("usuario.id"))]) }}" id="excluir" class="dropdown-item border-secondary-subtle border-bottom">Excluir Conta</a></li>
                     @endif
                 </ul>
             </div>
