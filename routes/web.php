@@ -4,6 +4,7 @@ use App\Http\Controllers\CadastroUpdate;
 use App\Http\Controllers\Deletar;
 use App\Http\Controllers\HomeOpcoes;
 use App\Http\Controllers\LoginLogout;
+use App\Http\Controllers\TabelaCards;
 use App\Http\Middleware\VerificarEstaLogado;
 use App\Http\Middleware\VerificarNaoEstaLogado;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,8 @@ Route::middleware([VerificarNaoEstaLogado::class])->group(function () {
     Route::get("/home", [HomeOpcoes::class, "home"])->name("home");
 
     Route::get("/logout", [LoginLogout::class, "logout"])->name("logout");
+
+    Route::get("/tabela", [TabelaCards::class, "tabela"])->name("tabela");
 
     Route::get("/update/{id}", [CadastroUpdate::class, "update"])->name("update");
 
