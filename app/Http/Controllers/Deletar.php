@@ -30,7 +30,7 @@ class Deletar
 
             return redirect()->route("login");
         } else {
-            return redirect()->route("home");
-        }        
+            return redirect()->back()->with("deleteSucesso", "Usuário deletado com êxito!");
+        }
     }
 }
