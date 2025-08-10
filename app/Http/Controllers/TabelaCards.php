@@ -9,8 +9,9 @@ class TabelaCards
 {
     public function tabela() {
 
-        $usuario = Usuario::all()->whereNull("deleted_at");
+        $usuarios = Usuario::all()->whereNull("deleted_at")
+                                  ->whereNotInStrict("usuario", "Administrador");
 
-        return view("tabela", ["usuario" => $usuario]);
+        return view("tabela", ["usuarios" => $usuarios]);
     }
 }
