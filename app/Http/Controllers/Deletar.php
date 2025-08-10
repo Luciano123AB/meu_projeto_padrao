@@ -15,7 +15,7 @@ class Deletar
 
         session(["id" => $usuario->id]);
 
-        return redirect()->route("home")->with("confirmarDelete", "Tem certeza que deseja deletar este usuário?");
+        return redirect()->back()->with("confirmarDelete", "Tem certeza que deseja deletar este usuário?");
     }
 
     public function deletarConfirmar($id) {
