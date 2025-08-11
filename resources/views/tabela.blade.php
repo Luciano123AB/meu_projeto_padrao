@@ -73,7 +73,7 @@
                             <td class="col border-end">{{ $usuario->usuario }}</td>
                             <td class="col border-end">{{ $usuario->email }}</td>
                             <td class="col text-center border-end">{{ "*****" }}</td>
-                            <td class="col text-center border-end">{{ "***.***.***.**" }}</td>
+                            <td class="col text-center border-end">{{ "***.***.***-**" }}</td>
                             <td class="col text-center border-end">{{ date("d/m/Y", strtotime($usuario->data_nascimento)) }}</td>
                             <td class="col text-center border-end">{{ $usuario->celular }}</td>
                             <td class="col text-center border-end">{{ $usuario->genero }}</td>
