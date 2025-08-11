@@ -54,9 +54,9 @@
                             <td class="col text-center border-end">{{ $usuario->celular }}</td>
                             <td class="col text-center border-end">{{ $usuario->genero }}</td>
                             @if($usuario->permissao == 1)
-                                <td class="col text-center border-end"><a href="#" id="permissao" class="btn btn-success btn-sm focus-ring focus-ring-success" type="button">SIM</a></td>
+                                <td class="col text-center border-end"><a href="{{ route("permissao", ["id" => Crypt::encrypt($usuario->id)]) }}" id="permissao" class="btn btn-success btn-sm focus-ring focus-ring-success" type="button">SIM</a></td>
                             @else
-                                <td class="col text-center border-end"><a href="#" id="permissao" class="btn btn-danger btn-sm focus-ring focus-ring-danger" type="button">NÃO</a></td>
+                                <td class="col text-center border-end"><a href="{{ route("permissao", ["id" => Crypt::encrypt($usuario->id)]) }}" id="permissao" class="btn btn-danger btn-sm focus-ring focus-ring-danger" type="button">NÃO</a></td>
                             @endif
                         </tr>
                     @empty
