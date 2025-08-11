@@ -61,7 +61,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="8" class="text-center fw-bold border">NENHUM USUÁRIO ENCONTRADO!</td>
+                            <td colspan="11" class="text-center fw-bold border">NENHUM USUÁRIO ENCONTRADO!</td>
                         </tr>
                     @endforelse
                 @else
@@ -85,7 +85,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="8" class="text-center fw-bold border">NENHUM USUÁRIO ENCONTRADO!</td>
+                            <td colspan="11" class="text-center fw-bold border">NENHUM USUÁRIO ENCONTRADO!</td>
                         </tr>
                     @endforelse
                 @endif
