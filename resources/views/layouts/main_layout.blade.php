@@ -97,6 +97,16 @@
         #opcoes:hover{
             background-color: darkgrey;
         }
+
+        #cards_efeito{
+            transition: transform .1s;
+        }
+
+        #cards_efeito:hover{
+            -ms-transform: scale(1.05);
+            -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body style="background-image: url('{{ asset("assets/images/fundo.png") }}'); background-repeat: no-repeat; background-size: cover; background-position: center center;" class="fst-italic">

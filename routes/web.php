@@ -38,4 +38,6 @@ Route::middleware([VerificarNaoEstaLogado::class])->group(function () {
     Route::get("/permissao/{id}", [Permissao::class, "permissao"])->name("permissao");
 
     Route::get("/permissaoConfirmar/{id}", [Permissao::class, "permissaoConfirmar"])->name("permissaoConfirmar");
+
+    Route::get("/cards", [TabelaCards::class, "cards"])->name("cards");
 });

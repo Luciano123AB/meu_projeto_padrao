@@ -14,4 +14,12 @@ class TabelaCards
 
         return view("tabela", ["usuarios" => $usuarios]);
     }
+
+    public function cards() {
+
+        $usuarios = Usuario::all()->whereNull("deleted_at")
+                                  ->whereNotInStrict("usuario", "Administrador");
+
+        return view("cards", ["usuarios" => $usuarios]);
+    }
 }
