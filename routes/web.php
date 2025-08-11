@@ -22,9 +22,7 @@ Route::middleware([VerificarEstaLogado::class])->group(function () {
 Route::middleware([VerificarNaoEstaLogado::class])->group(function () {
     Route::get("/home", [HomeOpcoes::class, "home"])->name("home");
 
-    Route::get("/logout", [LoginLogout::class, "logout"])->name("logout");
-
-    Route::get("/tabela", [TabelaCards::class, "tabela"])->name("tabela");
+    Route::get("/logout", [LoginLogout::class, "logout"])->name("logout");    
 
     Route::get("/update/{id}", [CadastroUpdate::class, "update"])->name("update");
 
@@ -33,4 +31,6 @@ Route::middleware([VerificarNaoEstaLogado::class])->group(function () {
     Route::get("/deletar/{id}", [Deletar::class, "deletar"])->name("deletar");
 
     Route::get("/deletarConfirmar/{id}", [Deletar::class, "deletarConfirmar"])->name("deletarConfirmar");
+
+    Route::get("/tabela", [TabelaCards::class, "tabela"])->name("tabela");
 });
