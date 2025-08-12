@@ -39,7 +39,7 @@
                                         <li class="list-group-item">Email: {{ $usuario->email }}</li>
                                         <li class="list-group-item">Senha: {{ "*****" }}</li>
                                         <li class="list-group-item">CPF: {{ "***.***.***-**" }}</li>
-                                        <li class="list-group-item">Data de Nascimento: {{ $usuario->data_nascimento }}</li>
+                                        <li class="list-group-item">Data de Nascimento: {{ date("d/m/Y", strtotime($usuario->data_nascimento)) }}</li>
                                         <li class="list-group-item">Celular: {{ $usuario->celular }}</li>
                                         <li class="list-group-item">Gênero: {{ $usuario->genero }}</li>
                                         @if($usuario->permissao == 1)
