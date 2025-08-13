@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CadastroUpdate;
+use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Deletar;
 use App\Http\Controllers\HomeOpcoes;
 use App\Http\Controllers\LoginLogout;
@@ -40,4 +41,6 @@ Route::middleware([VerificarNaoEstaLogado::class])->group(function () {
     Route::get("/permissaoConfirmar/{id}", [Permissao::class, "permissaoConfirmar"])->name("permissaoConfirmar");
 
     Route::get("/cards", [TabelaCards::class, "cards"])->name("cards");
+
+    Route::get("/dashboard", [Dashboard::class, "dashboard"])->name("dashboard");
 });
