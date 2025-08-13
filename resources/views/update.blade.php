@@ -76,7 +76,7 @@
                     <div class="input-group input-group-lg">
                         <label class="input-group-text">Nova Senha:</label>
 
-                        <input id="senha" class="form-control" type="password" name="senha" placeholder="Ex: @ABde12" required value="{{ old("senha", session("senha")) }}">
+                        <input id="senha" class="form-control" type="password" name="senha" placeholder="Ex: @ABde12" required value="{{ old("senha") }}">
                         
                         <button id="mostrar_ocultar_senha" class="input-group-text focus-ring focus-ring-secondary" type="button" name="mostrar_ocultar_senha" onclick="mostrarOcultarSenha()">Mostrar</button>
                     </div>
@@ -98,7 +98,7 @@
                     <div class="input-group input-group-lg">
                         <label class="input-group-text">Confirmar Senha:</label>
                         
-                        <input id="confirmar_senha" class="form-control" type="password" name="confirmar_senha" placeholder="..." required value="{{ old("confirmar_senha", session("senha")) }}">
+                        <input id="confirmar_senha" class="form-control" type="password" name="confirmar_senha" placeholder="..." required value="{{ old("confirmar_senha") }}">
                         
                         <button id="mostrar_ocultar_confirmar_senha" class="input-group-text focus-ring focus-ring-secondary" type="button" name="mostrar_ocultar_confirmar_senha" onclick="mostrarOcultarConfirmarSenha()">Mostrar</button>
                     </div>
