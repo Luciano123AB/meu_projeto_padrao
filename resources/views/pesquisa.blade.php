@@ -1,0 +1,160 @@
+@extends("layouts.main_layout")
+
+@section("content")
+    <nav class="navbar bg-primary bg-gradient border-5 border-bottom border-black shadow mb-5">
+        <div class="container-fluid">
+            <div class="navbar-brand fs-3 fw-bold ms-5">
+                <a href="{{ route("home") }}" class="link-offset-2 link-underline link-underline-opacity-0">
+                    <svg class="me-1 text-dark" id="logo_efeito" xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="75" height="75" fill="currentColor" class="bi bi-card-image" viewBox="0 0 16 16"><path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/><path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54L1 12.5v-9a.5.5 0 0 1 .5-.5z"/></svg>
+                </a>
+
+                Meu Projeto <span class="text-white">Padrão</span>
+            </div>
+
+            <div class="me-5">
+                <a href="{{ route("home") }}" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" id="cadastrar" class="btn btn-lg btn-info border icon-link icon-link-hover focus-ring focus-ring-light my-1" type="button"><svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-left" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708z"/></svg>Voltar ao Home</a>
+            </div>
+        </div>
+    </nav>
+            
+    <div class="card border-black shadow mx-3 mt-5 mb-3">
+        <div class="card-body row row-cols-2">
+            <div class="col">
+                <form class="mb-2" action="{{ route("pesquisaNome") }}" method="post">
+                    @csrf
+
+                    <div class="input-group">
+                        <label class="input-group-text">Digite um nome de usuário:</label>
+
+                        <input id="nome" class="form-control" type="text" name="nome" placeholder="...">
+
+                        <button style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" id="pesquisar" class="input-group-text icon-link icon-link-hover link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" type="submit" name="pesquisar"><svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/></svg>Pesquisar</button>
+                    </div>
+
+                    @error("nome")
+                        <div class="alert alert-danger mt-1 mb-0" role="alert">
+                            {{ $message }}<svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill mb-1" viewBox="0 0 16 16"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/></svg>
+                        </div>
+                    @enderror
+                </form>
+
+                <form action="{{ route("pesquisaStatus") }}" method="post">
+                    @csrf
+
+                    <div class="input-group">
+                        <label class="input-group-text">Escolha um status:</label>
+                    
+                        <div class="d-flex align-items-center border-top border-bottom px-2">
+                            <div class="form-check me-2">
+                                <input id="permissao01" class="form-check-input" type="radio" name="permissao" value="permitidos">
+                        
+                                <label class="form-check-label" for="permissao01">Permitidos</label>
+                            </div>
+                    
+                            <div class="form-check">
+                                <input id="permissao02" class="form-check-input" type="radio" name="permissao" value="negados">
+                        
+                                <label class="form-check-label" for="permissao02">Negados</label>
+                            </div>
+                        </div>
+
+                        <button style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" id="pesquisar" class="input-group-text icon-link icon-link-hover link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" type="submit" name="pesquisar"><svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/></svg>Pesquisar</button>
+                    </div>
+
+                    @error("permissao")
+                        <div class="alert alert-danger mt-1 mb-0" role="alert">
+                            {{ $message }}<svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill mb-1" viewBox="0 0 16 16"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/></svg>
+                        </div>
+                    @enderror
+                </form>
+            </div>
+
+            <div class="col">
+                <form class="mb-2" action="{{ route("pesquisaDataNascimento") }}" method="post">
+                    @csrf
+
+                    <div class="input-group">
+                        <label class="input-group-text">Digite uma data de nascimento:</label>
+
+                        <input id="data_nascimento" class="form-control" type="text" name="data_nascimento" placeholder="DIA/MÊS/ANO">
+
+                        <button style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" id="pesquisar" class="input-group-text icon-link icon-link-hover link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" type="submit" name="pesquisar"><svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/></svg>Pesquisar</button>
+                    </div>
+
+                    @error("data_nascimento")
+                        <div class="alert alert-danger mt-1 mb-0" role="alert">
+                            {{ $message }}<svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill mb-1" viewBox="0 0 16 16"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/></svg>
+                        </div>
+                    @enderror
+                </form>
+
+                <form action="{{ route("pesquisaDataInicialFinal") }}" method="post">
+                    @csrf
+
+                    <div class="input-group">
+                        <label class="input-group-text">Defina uma data "inicial" e uma "final":</label>
+
+                        <input id="data_inicial" class="form-control" type="text" name="data_inicial" placeholder="DIA/MÊS/ANO">
+
+                        <input id="data_final" class="form-control" type="text" name="data_final" placeholder="DIA/MÊS/ANO">
+
+                        <button style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" id="pesquisar" class="input-group-text icon-link icon-link-hover link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" type="submit" name="pesquisar"><svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/></svg>Pesquisar</button>
+                    </div>
+
+                    <div class="d-flex">
+                        @error("data_inicial")
+                            <div class="alert alert-danger w-50 mt-1 mb-0 me-1" role="alert">
+                                {{ $message }}<svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill mb-1" viewBox="0 0 16 16"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/></svg>
+                            </div>
+                        @enderror
+
+                        @error("data_final")
+                            <div class="alert alert-danger w-50 mt-1 mb-0" role="alert">
+                                {{ $message }}<svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill mb-1" viewBox="0 0 16 16"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/></svg>
+                            </div>
+                        @enderror
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div style="height: 500px;" class="rounded-2 bg-dark border-top border-bottom mx-3 mb-5 overflow-auto">       
+        <table class="table table-hover align-middle shadow">
+            @if($usuarios)
+                @foreach($usuarios as $usuario)
+                    <thead class="text-center">
+                        <tr class="row-cols-6">
+                            <th class="col bg-body-secondary border-end border-top border-black">Nº</th>
+                            <th class="col bg-body-secondary border-end border-top border-black">Nome</th>
+                            <th class="col bg-body-secondary border-end border-top border-black">Usuário</th>
+                            <th class="col bg-body-secondary border-end border-top border-black">Email</th>
+                            <th class="col bg-body-secondary border-end border-top border-black">Data/Nasc</th>
+                            <th class="col bg-body-secondary border-end border-top border-black">Permissão</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>                
+                        <tr class="row-cols-6">
+                            <td class="col text-center fw-bold border-start border-end">{{ $loop->iteration }}</td>
+                            <td class="col border-end">{{ $usuario->nome_completo }}</td>
+                            <td class="col border-end">{{ $usuario->usuario }}</td>
+                            <td class="col border-end">{{ $usuario->email }}</td>
+                            <td class="col border-end">{{ $usuario->data_nascimento }}</td>
+
+                            @if($usuario->permissao == 1)
+                                <td class="col text-center border-end"><button class="btn btn-success btn-sm" disabled>SIM</button></td>
+                            @else
+                                <td class="col text-center border-end"><button class="btn btn-danger btn-sm" disabled>NÃO</button></td>
+                            @endif
+                        </tr>
+                    </tbody>
+                @endforeach
+            @else
+                <tr class="text-center fw-bold border-start border-top border-end border-black">
+                    <td class="bg-body-secondary"><svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle me-1 mb-1" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/><path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/></svg>NENHUM USUÁRIO ENCONTRADO<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle ms-1 mb-1" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/><path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/></svg></td>
+                </tr>
+            @endif
+        </table>
+    </div>
+@endsection

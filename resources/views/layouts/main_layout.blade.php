@@ -368,6 +368,24 @@
             });
         });
 
+        $(document).ready(function () {
+            $("#data_inicial").datepicker({
+                format: "dd/mm/yyyy",
+                language: "pt-BR",
+                autoclose: true,
+                todayHighlight: true
+            });
+        });
+
+        $(document).ready(function () {
+            $("#data_final").datepicker({
+                format: "dd/mm/yyyy",
+                language: "pt-BR",
+                autoclose: true,
+                todayHighlight: true
+            });
+        });
+
         function mostrarOcultarSenha() {
 
             const senha = document.getElementById("senha");
