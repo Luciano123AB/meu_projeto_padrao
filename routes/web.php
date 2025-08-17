@@ -47,7 +47,7 @@ Route::middleware([VerificarNaoEstaLogado::class])->group(function () {
 
     Route::get("/pesquisa", [Pesquisa::class, "pesquisa"])->name("pesquisa");
 
-    Route::post("/pesquisaNome", [Pesquisa::class, "pesquisaNome"])->name("pesquisaNome");
+    Route::post("/pesquisaUsuario", [Pesquisa::class, "pesquisaUsuario"])->name("pesquisaUsuario");
 
     Route::post("/pesquisaStatus", [Pesquisa::class, "pesquisaStatus"])->name("pesquisaStatus");
 
