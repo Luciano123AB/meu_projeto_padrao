@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('logs', function (Blueprint $table) {
             $table->id()->autoIncrement();
+            $table->integer("usuario_id")->nullable();
             $table->string("pagina", 20)->nullable();
             $table->dateTime("data_hora")->nullable();
-            $table->integer("usuario_id");
             $table->timestamps();
             $table->softDeletes();
         });

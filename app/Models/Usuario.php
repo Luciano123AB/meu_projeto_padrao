@@ -10,6 +10,6 @@ class Usuario extends Model
     use SoftDeletes;
 
     public function logs() {
-        return $this->hasMany(Log::class);
+        return $this->hasMany(Logs::class);
     }
 }

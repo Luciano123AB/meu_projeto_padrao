@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Log;
+use App\Models\Logs;
 use App\Models\Usuario;
 use App\Services\Operacoes;
 use Illuminate\Http\Request;
@@ -125,10 +125,10 @@ class CadastroUpdate
     public function update($id) {
 
         $id_logado = session("usuario.id");
-        $log = new Log();
-        $log->pagina = "Update";
-        $log->data_hora = date("Y-m-d H:i:s");
+        $log = new Logs();
         $log->usuario_id = $id_logado;
+        $log->pagina = "Update";
+        $log->data_hora = date("Y-m-d H:i:s");        
 
         $log->save();
 

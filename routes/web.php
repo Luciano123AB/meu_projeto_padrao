@@ -56,5 +56,5 @@ Route::middleware([VerificarNaoEstaLogado::class])->group(function () {
 
     Route::post("/pesquisaDataInicialFinal", [Pesquisa::class, "pesquisaDataInicialFinal"])->name("pesquisaDataInicialFinal");
 
-    Route::get("/logs", [Logs::class, "logs"])->name("logs");
+    Route::get("/logs/{id}", [Logs::class, "logs"])->name("logs");
 });

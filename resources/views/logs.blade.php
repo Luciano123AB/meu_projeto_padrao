@@ -20,25 +20,21 @@
     <div style="height: 750px;" class="bg-dark border mx-3 my-5 overflow-auto">
         <table class="table table-hover align-middle shadow">
             <thead class="text-center">
-                <tr class="row-cols-7">
-                    <th style="width: 1%;" class="col bg-body-secondary border-start border-end border-black">N°</th>
-                    <th class="col bg-body-secondary border-end border-black">Página Acessada</th>
+                <tr class="row-cols-3">
+                    <th style="width: 1%;" class="col bg-body-secondary border-start border-top border-bottom border-black">N°</th>
+                    <th class="col bg-body-secondary border-start border-end border-black">Página Acessada</th>
                     <th class="col bg-body-secondary border-end border-black">Data/Hora</th>
                 </tr>
             </thead>
             
             <tbody>
-                @forelse($logs as $log)
-                    <tr class="row-cols-7">
-                        <td class="col text-center fw-bold border-end">{{ $loop->iteration }}</td>
-                        <td class="col border-end">{{ $log->pagina }}</td>
-                        <td class="col text-center border-end">{{ $log->data_hora }}</td>
+                @foreach($logs as $log)
+                    <tr class="row-cols-3">
+                        <td style="width: 1%;" class="col text-center fw-bold border-start border-end">{{ $loop->iteration }}</td>
+                        <td class="col text-center border-end">{{ $log["pagina"] }}</td>
+                        <td class="col text-center border-end">{{ date("d/m/Y - H:m:s", strtotime($log["data_hora"])) }}</td>
                     </tr>
-                @empty
-                    <tr>
-                        <td colspan="3" class="text-center fw-bold border">NENHUM LOG ENCONTRADO!</td>
-                    </tr>
-                @endforelse
+                @endforeach
             </tbody>
         </table>
     </div>

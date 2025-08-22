@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LoginLogout
 {
@@ -54,6 +55,13 @@ class LoginLogout
     }
 
     public function logout() {
+
+        $id = session("usuario.id");
+        $logs = Usuario::find($id)->logs();
+
+        $logs->delete();
+        DB::statement("ALTER TABLE logs AUTO_INCREMENT = 1");
+
         session()->forget("usuario");
 
         return redirect()->route("login");
