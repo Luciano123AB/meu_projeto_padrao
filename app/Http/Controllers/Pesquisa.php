@@ -21,11 +21,11 @@ class Pesquisa
         ]);
 
         $usuario = $request->input("usuario");
-        $usuarios = Usuario::where("usuario", "like", "%" . $usuario . "%")->get();
 
-        session(["resultado" => $usuarios]);
-
-        return redirect()->back();
+        echo "<h1>Pesquisa Realizada com Sucesso!</h1>";
+        echo "<h2>Usuario Informado: $usuario</h2>";
+        echo "<h1>Lista de Usuários:</h1>";
+        echo "<h2>1- ...</h2>";
     }
 
     public function pesquisaStatus(Request $request){
@@ -38,12 +38,11 @@ class Pesquisa
         ]);
 
         $status = $request->input("permissao");
-        $valor = ($status === "permitidos") ? 1 : 0;
-        $usuarios = Usuario::where("permissao", $valor)->get();
 
-        session(["resultado" => $usuarios]);
-
-        return redirect()->back();
+        echo "<h1>Pesquisa Realizada com Sucesso!</h1>";
+        echo "<h2>Status Escolhido: $status</h2>";
+        echo "<h1>Lista de Usuários:</h1>";
+        echo "<h2>1- ...</h2>";
     }
 
     public function pesquisaDataNascimento(Request $request){
@@ -54,12 +53,11 @@ class Pesquisa
         ]);
 
         $data = $request->input("data");
-        $dataFormatada = \Carbon\Carbon::createFromFormat("d/m/Y", $data)->format("Y-m-d");
-        $usuarios = Usuario::whereDate("data_nascimento", $dataFormatada)->get();
 
-        session(["resultado" => $usuarios]);
-
-        return redirect()->back();
+        echo "<h1>Pesquisa Realizada com Sucesso!</h1>";
+        echo "<h2>Data Informada: $data</h2>";
+        echo "<h1>Lista de Usuários:</h1>";
+        echo "<h2>1- ...</h2>";
     }
 
     public function pesquisaDataInicialFinal(Request $request){
@@ -71,12 +69,13 @@ class Pesquisa
             "data_final.required" => "O campo data final é obrigatória"
         ]);
 
-        $dataInicial = \Carbon\Carbon::createFromFormat("d/m/Y", $request->input("data_inicial"))->format("Y-m-d");
-        $dataFinal = \Carbon\Carbon::createFromFormat("d/m/Y", $request->input("data_final"))->format("Y-m-d");
-        $usuarios = Usuario::whereBetween("data_nascimento", [$dataInicial, $dataFinal])->get();
+        $dataInicial = $request->input("data_inicial");
+        $dataFinal = $request->input("data_final");
 
-        session(["resultado" => $usuarios]);
-
-        return redirect()->back();
+        echo "<h1>Pesquisa realizada com sucesso!</h1>";
+        echo "<h2>Data Inicial Informada: $dataInicial</h2>";
+        echo "<h2>Data Final Informada: $dataFinal</h2>";
+        echo "<h1>Lista de Usuários:</h1>";
+        echo "<h2>1- ...</h2>";
     }
 }
