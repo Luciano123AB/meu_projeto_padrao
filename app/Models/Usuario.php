@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Usuario extends Model
 {
     use SoftDeletes;
+
+    public function logs() {
+        return $this->hasMany(Log::class);
+    }
 }

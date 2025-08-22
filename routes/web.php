@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Deletar;
 use App\Http\Controllers\HomeOpcoes;
 use App\Http\Controllers\LoginLogout;
+use App\Http\Controllers\Logs;
 use App\Http\Controllers\Permissao;
 use App\Http\Controllers\Pesquisa;
 use App\Http\Controllers\TabelaCards;
@@ -54,4 +55,6 @@ Route::middleware([VerificarNaoEstaLogado::class])->group(function () {
     Route::post("/pesquisaDataNascimento", [Pesquisa::class, "pesquisaDataNascimento"])->name("pesquisaDataNascimento");
 
     Route::post("/pesquisaDataInicialFinal", [Pesquisa::class, "pesquisaDataInicialFinal"])->name("pesquisaDataInicialFinal");
+
+    Route::get("/logs", [Logs::class, "logs"])->name("logs");
 });

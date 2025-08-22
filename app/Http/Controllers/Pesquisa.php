@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Log;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 
 class Pesquisa
 {
     public function pesquisa() {
+
+        $id = session("usuario.id");
+        $log = new Log();
+        $log->pagina = "Pesquisa";
+        $log->data_hora = date("Y-m-d H:i:s");
+        $log->usuario_id = $id;
+        
+        $log->save();
+
         return view("pesquisa");
     }
 
