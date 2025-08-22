@@ -23,7 +23,8 @@
                 <tr class="row-cols-3">
                     <th style="width: 1%;" class="col bg-body-secondary border-start border-top border-bottom border-black">N°</th>
                     <th class="col bg-body-secondary border-start border-end border-black">Página Acessada</th>
-                    <th class="col bg-body-secondary border-end border-black">Data/Hora</th>
+                    <th class="col bg-body-secondary border-end border-black">Data</th>
+                    <th class="col bg-body-secondary border-end border-black">Hora</th>
                 </tr>
             </thead>
             
@@ -32,7 +33,8 @@
                     <tr class="row-cols-3">
                         <td style="width: 1%;" class="col text-center fw-bold border-start border-end">{{ $loop->iteration }}</td>
                         <td class="col text-center border-end">{{ $log["pagina"] }}</td>
-                        <td class="col text-center border-end">{{ date("d/m/Y - H:m:s", strtotime($log["data_hora"])) }}</td>
+                        <td class="col text-center border-end">{{ date("d/m/Y", strtotime($log["data_hora"])) }}</td>
+                        <td class="col text-center border-end">{{ date("H:m:s", strtotime($log["data_hora"])) }}</td>
                     </tr>
                 @endforeach
             </tbody>
