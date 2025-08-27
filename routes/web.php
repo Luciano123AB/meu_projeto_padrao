@@ -4,6 +4,7 @@ use App\Http\Controllers\CadastroUpdate;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Deletar;
 use App\Http\Controllers\HomeOpcoes;
+use App\Http\Controllers\ImportarExportar;
 use App\Http\Controllers\LoginLogout;
 use App\Http\Controllers\Logs;
 use App\Http\Controllers\Permissao;
@@ -57,4 +58,10 @@ Route::middleware([VerificarNaoEstaLogado::class])->group(function () {
     Route::post("/pesquisaDataInicialFinal", [Pesquisa::class, "pesquisaDataInicialFinal"])->name("pesquisaDataInicialFinal");
 
     Route::get("/logs/{id}", [Logs::class, "logs"])->name("logs");
+
+    Route::get("/importarExportar", [ImportarExportar::class, "importarExportar"])->name("importarExportar");
+
+    Route::get("/importar", [ImportarExportar::class, "importar"])->name("importar");
+
+    Route::get("/exportar", [ImportarExportar::class, "exportar"])->name("exportar");
 });
