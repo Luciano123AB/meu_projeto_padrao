@@ -18,9 +18,7 @@ class UsuariosImportar implements ToModel
             "data_nascimento" => $row[5],
             "celular" => $row[6],
             "genero" => $row[7],
-            "permissao" => $row[8],
-            "created_at" => $row[9],
-            "updated_at" => $row[10]
+            "permissao" => $row[8]
         ]);
     }
 }
