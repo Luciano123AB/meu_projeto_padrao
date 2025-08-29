@@ -33,14 +33,23 @@ class ImportarExportar
             'arquivo.mimes" => "O arquivo deve estar no formato ".xlsx" ou ".xls"'
         ]);
 
-        Excel::import(new UsuariosImportar, $request->file("arquivo"));
+        $importar = Excel::import(new UsuariosImportar, $request->file("arquivo"));
 
-        return redirect()->back()->with("importarSucesso", "Arquivo importado com sucesso!");
+        if ($importar) {
+            return redirect()->back()->with("importarSucesso", "Arquivo importado com sucesso!");
+        } else {
+            return redirect()->back()->with("importarErro", "Falha ao tentar importar o arquivo! Tente novamente.");
+        }
     }
 
-    public function exportar() {        
-        Excel::download(new UsuariosExportar, "usuarios.xlsx");
+    public function exportar() {
+        
+        $exportar = Excel::store(new UsuariosExportar, "usuarios.xlsx", "public");
 
-        return redirect()->back()->with("exportarSucesso", "Arquivo exportado com sucesso!");
+        if ($exportar) {
+            return redirect()->back()->with("exportarSucesso", "Arquivo exportado com sucesso!");
+        } else {
+            return redirect()->back()->with("exportarErro", "Falha ao tentar exportar o arquivo! Tente novamente.");
+        }
     }
 }

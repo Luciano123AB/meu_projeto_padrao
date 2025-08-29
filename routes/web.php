@@ -61,7 +61,7 @@ Route::middleware([VerificarNaoEstaLogado::class])->group(function () {
 
     Route::get("/importarExportar", [ImportarExportar::class, "importarExportar"])->name("importarExportar");
 
-    Route::get("/importar", [ImportarExportar::class, "importar"])->name("importar");
+    Route::post("/importar", [ImportarExportar::class, "importar"])->name("importar");
 
     Route::get("/exportar", [ImportarExportar::class, "exportar"])->name("exportar");
 });

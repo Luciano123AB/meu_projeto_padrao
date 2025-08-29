@@ -20,12 +20,18 @@
     <div class="container text-center">
         <div class="row row-cols-2">
             <div class="col card">
-                <form action="{{ route("importar") }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route("importar") }}" id="formulario" method="post" enctype="multipart/form-data" novalidate>
                     @csrf
 
                     <input id="arquivo" class="me-2" type="file" name="arquivo" required>
 
-                    <button style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" id="importar" class="btn btn-lg btn-info border icon-link icon-link-hover focus-ring focus-ring-light fs-1 p-4 my-3" type="button" name="importar"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5M8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6"/></svg>IMPORTAR</button>
+                    @error("arquivo")
+                        <div class="alert alert-danger mt-1 mb-0" role="alert">
+                            {{ $message }}<svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill mb-1" viewBox="0 0 16 16"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/></svg>
+                        </div>
+                    @enderror
+
+                    <button style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" id="importar" class="btn btn-lg btn-info border icon-link icon-link-hover focus-ring focus-ring-light fs-1 p-4 my-3" type="submit" name="importar"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5M8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6"/></svg>IMPORTAR</button>
                 </form>
             </div>
 
