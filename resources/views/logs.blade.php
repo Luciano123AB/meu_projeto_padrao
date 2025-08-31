@@ -17,8 +17,8 @@
         </div>
     </nav>
 
-    <div style="height: 750px;" class="bg-dark border mx-3 my-5 overflow-auto">
-        <table class="table table-hover align-middle shadow">
+    <div style="height: 750px;" class="bg-dark border mx-3 my-5 shadow overflow-auto">
+        <table class="table table-hover align-middle">
             <thead class="text-center">
                 <tr class="row-cols-3">
                     <th style="width: 1%;" class="col bg-body-secondary border-start border-top border-bottom border-black">N°</th>

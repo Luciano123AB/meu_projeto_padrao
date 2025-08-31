@@ -17,26 +17,136 @@
         </div>
     </nav>
 
-    <div class="container text-center">
+    <div class="container text-center vh-100">
         <div class="row row-cols-2">
-            <div class="col card">
-                <form action="{{ route("importar") }}" id="formulario" method="post" enctype="multipart/form-data" novalidate>
-                    @csrf
+            <div class="col">
+                <div class="card border border-black p-3 shadow">
+                    <form action="{{ route("importar") }}" id="formulario" method="post" enctype="multipart/form-data" novalidate>
+                        @csrf
 
-                    <input id="arquivo" class="me-2" type="file" name="arquivo" required>
+                        <div class="row row-cols-2 overflow-x-hidden">
+                            <div class="col">
+                                <div class="overflow-auto">
+                                    <label>Apenas arquivos em ".xlsx" são permitidos.</label>
 
-                    @error("arquivo")
-                        <div class="alert alert-danger mt-1 mb-0" role="alert">
-                            {{ $message }}<svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill mb-1" viewBox="0 0 16 16"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/></svg>
+                                    <input id="arquivo" class="mt-2" type="file" name="arquivo" accept=".xlsx" required>
+                                </div>
+
+                                @error("arquivo")
+                                    <div class="alert alert-danger mt-1" role="alert">
+                                        {{ $message }}<svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill mb-1" viewBox="0 0 16 16"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/></svg>
+                                    </div>
+                                @enderror
+                            </div>
+
+                            <div class="col mb-3">
+                                <button style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" id="importar" class="btn btn-lg btn-info border icon-link icon-link-hover focus-ring focus-ring-light fs-1 p-4" type="submit" name="importar"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5M8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6"/></svg>IMPORTAR</button>
+                            </div>
                         </div>
-                    @enderror
 
-                    <button style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" id="importar" class="btn btn-lg btn-info border icon-link icon-link-hover focus-ring focus-ring-light fs-1 p-4 my-3" type="submit" name="importar"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5M8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6"/></svg>IMPORTAR</button>
-                </form>
+                        <div style="height: 500px;" class="rounded-2 bg-dark border overflow-auto">       
+                            <table class="table table-hover align-middle">
+                                @if(session()->has("dadosImportados"))
+                                    <thead class="text-center">
+                                        <tr class="row-cols-6">
+                                            <th style="width: 1%;" class="col bg-body-secondary align-middle border-start border-top border-end border-black">N°</th>
+                                            <th class="col bg-body-secondary align-middle border-end border-black">Nome</th>
+                                            <th class="col bg-body-secondary align-middle border-end border-black">Usuario</th>
+                                            <th class="col bg-body-secondary align-middle border-end border-black">Email</th>
+                                            <th style="width: 4%;" class="col bg-body-secondary border-end border-black">Data Nasc.</th>
+                                            <th style="width: 5%;" class="col bg-body-secondary align-middle border-end border-black">Celular</th>
+                                            <th style="width: 1%;" class="col bg-body-secondary align-middle border-end border-black">Gênero</th>                    
+                                            <th style="width: 4%;" class="col bg-body-secondary align-middle border-end border-black">Permissão</th>
+                                        </tr>
+                                    </thead>
+
+                                    @forelse(session("dadosImportados") as $dados_importados)
+                                        <tbody>
+                                            <tr class="row-cols-6">
+                                                <td style="width: 1%;" class="col text-center fw-bold border-start border-end">{{ $loop->iteration }}</td>
+                                                <td class="col border-end">{{ $dados_importados["nome_completo"] }}</td>
+                                                <td class="col border-end">{{ $dados_importados["usuario"] }}</td>
+                                                <td class="col border-end">{{ $dados_importados["email"] }}</td>
+                                                <td style="width: 4%;" class="col text-center border-end">{{ $dados_importados["data_nascimento"] }}</td>
+                                                <td style="width: 5%;" class="col text-center border-end">{{ $dados_importados["celular"] }}</td>
+                                                <td style="width: 1%;" class="col text-center border-end">{{ $dados_importados["genero"] }}</td>
+
+                                                @if(isset($dados_importados["permissao"]))
+                                                    @if($dados_importados["permissao"] == 1)
+                                                        <td style="width: 4%;" class="col text-center border-end"><button class="btn btn-success btn-sm" disabled>SIM</button></td>
+                                                    @else
+                                                        <td style="width: 4%;" class="col text-center border-end"><button class="btn btn-danger btn-sm" disabled>NÃO</button></td>
+                                                    @endif
+                                                @else
+                                                    <td style="width: 4%;" class="col text-center border-end"><button class="btn btn-danger btn-sm" disabled>NÃO</button></td>
+                                                @endif
+                                            </tr>
+                                        </tbody>
+                                    @empty
+                                        <tr class="text-center fw-bold border-start border-top border-end border-black">
+                                            <td colspan="8" class="bg-body-secondary"><svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle me-1 mb-1" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/><path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/></svg>NENHUM USUÁRIO ENCONTRADO<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle ms-1 mb-1" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/><path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/></svg></td>
+                                        </tr>
+                                    @endforelse
+
+                                    {{ session()->forget("dadosImportados") }}
+                                @endif
+                            </table>
+                        </div>
+                    </form>
+                </div>
             </div>
 
             <div class="col">
-                <a href="{{ route("exportar") }}" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" id="exportar" class="btn btn-lg btn-info border icon-link icon-link-hover focus-ring focus-ring-light fs-1 p-4 my-3" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5m-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5"/></svg>EXPORTAR</a>
+                <div class="card border border-black p-3 shadow">
+                    <div class="mb-3 overflow-x-hidden">
+                        <a href="{{ route("exportar") }}" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" id="exportar" class="btn btn-lg btn-info border icon-link icon-link-hover focus-ring focus-ring-light fs-1 p-4" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5m-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5"/></svg>EXPORTAR</a>
+                    </div>
+
+                    <div style="height: 500px;" class="rounded-2 bg-dark border overflow-auto">       
+                        <table class="table table-hover align-middle">
+                            @if(session()->has("dadosExportados"))
+                                <thead class="text-center">
+                                    <tr class="row-cols-6">
+                                        <th style="width: 1%;" class="col bg-body-secondary align-middle border-start border-top border-end border-black">N°</th>
+                                        <th class="col bg-body-secondary align-middle border-end border-black">Nome</th>
+                                        <th class="col bg-body-secondary align-middle border-end border-black">Usuario</th>
+                                        <th class="col bg-body-secondary align-middle border-end border-black">Email</th>
+                                        <th style="width: 4%;" class="col bg-body-secondary border-end border-black">Data Nasc.</th>
+                                        <th style="width: 5%;" class="col bg-body-secondary align-middle border-end border-black">Celular</th>
+                                        <th style="width: 1%;" class="col bg-body-secondary align-middle border-end border-black">Gênero</th>                    
+                                        <th style="width: 4%;" class="col bg-body-secondary align-middle border-end border-black">Permissão</th>
+                                    </tr>
+                                </thead>
+
+                                @forelse(session("dadosExportados") as $dados_exportados)
+                                    <tbody>                
+                                        <tr class="row-cols-6">
+                                            <td style="width: 1%;" class="col text-center fw-bold border-start border-end">{{ $loop->iteration }}</td>
+                                            <td class="col border-end">{{ $dados_exportados->nome_completo }}</td>
+                                            <td class="col border-end">{{ $dados_exportados->usuario }}</td>
+                                            <td class="col border-end">{{ $dados_exportados->email }}</td>
+                                            <td style="width: 4%;" class="col text-center border-end">{{ $dados_exportados->data_nascimento }}</td>
+                                            <td style="width: 5%;" class="col text-center border-end">{{ $dados_exportados->celular }}</td>
+                                            <td style="width: 1%;" class="col text-center border-end">{{ $dados_exportados->genero }}</td>
+
+                                            @if($dados_exportados->permissao == 1)
+                                                <td style="width: 4%;" class="col text-center border-end"><button class="btn btn-success btn-sm" disabled>SIM</button></td>
+                                            @else
+                                                <td style="width: 4%;" class="col text-center border-end"><button class="btn btn-danger btn-sm" disabled>NÃO</button></td>
+                                            @endif
+                                        </tr>
+                                    </tbody>
+                                @empty
+                                    <tr class="text-center fw-bold border-start border-top border-end border-black">
+                                        <td colspan="8" class="bg-body-secondary"><svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle me-1 mb-1" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/><path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/></svg>NENHUM USUÁRIO ENCONTRADO<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle ms-1 mb-1" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/><path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/></svg></td>
+                                    </tr>
+                                @endforelse
+
+                                {{ session()->forget("dadosExportados") }}
+                            @endif
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

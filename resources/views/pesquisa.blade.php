@@ -119,8 +119,8 @@
         </div>
     </div>
 
-    <div style="height: 500px;" class="rounded-2 bg-dark border mx-3 mb-5 overflow-auto">       
-        <table class="table table-hover align-middle shadow">
+    <div style="height: 500px;" class="rounded-2 bg-dark border mx-3 mb-5 shadow overflow-auto">       
+        <table class="table table-hover align-middle">
             @if(session()->has("resultado"))
                 <thead class="text-center">
                     <tr class="row-cols-6">

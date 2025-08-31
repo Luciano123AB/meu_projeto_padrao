@@ -18,6 +18,7 @@ class Usuario extends Model
         "data_nascimento",
         "celular",
         "genero",
+        "foto",
         "permissao",
         "created_at",
         "updated_at"
