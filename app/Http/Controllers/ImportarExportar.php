@@ -6,6 +6,7 @@ use App\Exports\UsuariosExportar;
 use App\Imports\UsuariosImportar;
 use App\Models\Logs;
 use App\Models\Usuario;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -26,7 +27,7 @@ class ImportarExportar
 
     public function importar(Request $request) {
         $request->validate([
-            "arquivo" => "required|mimes:xlsx,xls"
+            "arquivo" => "required"
         ],
     
         [
@@ -45,9 +46,33 @@ class ImportarExportar
         }
     }
 
-    public function exportar() {
+    public function exportar(Request $request) {
+        $request->validate([
+            "formato" => "required"
+        ],
+    
+        [
+            "formato.required" => "O campo formato é obrigatório",
+        ]);
         
-        $exportar = Excel::store(new UsuariosExportar, "usuarios.xlsx", "public");
+        $formato = $request->input("formato");
+
+        if ($formato == "Excel") {
+            $exportar = Excel::store(new UsuariosExportar, "excels/usuarios.xlsx", "public");
+        } else {
+
+            $usuarios = Usuario::all();
+            $pdf = app("dompdf.wrapper");
+
+            $pdf->loadView("tabela", compact("usuarios"));
+
+            $caminho = storage_path("app/public/pdfs/usuarios.pdf");
+            
+            $pdf->save($caminho);
+            
+            $exportar = response()->download($caminho);
+        }
+
         $dados_exportados = Usuario::select("nome_completo", "usuario", "email", "cpf", "data_nascimento", "celular", "genero", "permissao")->get();
 
         if ($exportar) {
