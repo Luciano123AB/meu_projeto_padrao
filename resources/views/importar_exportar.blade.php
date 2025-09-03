@@ -24,8 +24,8 @@
                     <form action="{{ route("importar") }}" id="formulario" method="post" enctype="multipart/form-data" novalidate>
                         @csrf
 
-                        <div class="row row-cols-2 overflow-x-hidden">
-                            <div class="col">
+                        <div class="row row-cols-2">
+                            <div class="col mb-3">
                                 <div class="overflow-auto">
                                     <label>Apenas arquivos em ".xlsx" são permitidos.</label>
 
@@ -40,7 +40,7 @@
                             </div>
 
                             <div class="col mb-3">
-                                <button style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" id="importar" class="btn btn-lg btn-info border icon-link icon-link-hover focus-ring focus-ring-light fs-1 p-4" type="submit" name="importar"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5M8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6"/></svg>IMPORTAR</button>
+                                <button style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" id="importar" class="btn btn-lg btn-info w-100 border icon-link icon-link-hover focus-ring focus-ring-light fs-1 p-4" type="submit" name="importar"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5M8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6"/></svg>IMPORTAR</button>
                             </div>
                         </div>
 
@@ -98,12 +98,12 @@
 
             <div class="col">
                 <div class="card border border-black p-3 shadow">
-                    <div class="mb-3 overflow-x-hidden">
+                    <div class="mb-3">
                         <form action="{{ route("exportar") }}" id="formulario" class="row row-cols-2" method="get" novalidate>
                             @csrf
 
                             <div class="col">
-                                <button style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" id="exportar" class="btn btn-lg btn-info border icon-link icon-link-hover focus-ring focus-ring-light fs-1 p-4" type="submit" name="exportar"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5m-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5"/></svg>EXPORTAR</button>
+                                <button style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" id="exportar" class="btn btn-lg btn-info w-100 border icon-link icon-link-hover focus-ring focus-ring-light fs-1 p-4" type="submit" name="exportar"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5m-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5"/></svg>EXPORTAR</button>
                             </div>
                         
                             <div class="col">
