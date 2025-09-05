@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Meu Projeto Padrão</title>
-    <link href="{{ asset("https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css") }}" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
     <script src="{{ asset("https://code.jquery.com/jquery-3.6.0.min.js") }}"></script>
 
@@ -111,7 +111,7 @@
         }
     </style>
 </head>
-<body style="background-image: url('{{ asset("assets/images/fundo.png") }}'); background-repeat: no-repeat; background-size: cover; background-position: center center;" class="fst-italic">
+<body style="background-image: url('{{ asset("assets/images/fundo.png") }}'); background-repeat: no-repeat; background-size: cover; background-position: center center;" class="fst-italic vh-100">
     @if(session("cadastroSucesso"))
         <script>
             Swal.fire({
