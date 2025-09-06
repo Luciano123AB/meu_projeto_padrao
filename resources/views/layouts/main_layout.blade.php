@@ -111,7 +111,7 @@
         }
     </style>
 </head>
-<body style="background-image: url('{{ asset("assets/images/fundo.png") }}'); background-repeat: no-repeat; background-size: cover; background-position: center center;" class="fst-italic vh-100">
+<body style="background-image: url('{{ asset("assets/images/fundo.png") }}'); background-repeat: no-repeat; background-size: cover; background-position: center center;" class="fst-italic">
     @if(session("cadastroSucesso"))
         <script>
             Swal.fire({
@@ -495,6 +495,23 @@
     </div>
     
     <script>
+
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        const toggleBtn = document.getElementById('sidebarToggle');
+        const openSidebar = () => {
+
+            sidebar.style.transform = 'translateX(0)';
+            overlay.style.display = 'block';
+
+        };
+        const closeSidebar = () => {
+
+            sidebar.style.transform = 'translateX(-100%)';
+            overlay.style.display = 'none';
+
+        };
+
         $(document).ready(function () {
             $("#data").datepicker({
                 format: "dd/mm/yyyy",
@@ -520,6 +537,41 @@
                 autoclose: true,
                 todayHighlight: true
             });
+        });
+
+        toggleBtn.addEventListener('click', () => {
+            if(sidebar.style.transform === 'translateX(0)'){
+                closeSidebar();
+            } else {
+                openSidebar();
+            }
+        });
+
+        overlay.addEventListener('click', closeSidebar);
+
+        window.addEventListener('load', () => {
+            if(window.innerWidth < 768){
+
+                sidebar.style.transform = 'translateX(-100%)';
+                sidebar.style.position = 'absolute';
+                sidebar.style.zIndex = '1100';
+
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if(window.innerWidth >= 768){
+
+                sidebar.style.transform = 'translateX(0)';
+                sidebar.style.position = 'relative';
+                overlay.style.display = 'none';
+
+            } else {
+
+                sidebar.style.transform = 'translateX(-100%)';
+                sidebar.style.position = 'absolute';
+
+            }
         });
 
         function mostrarOcultarSenha() {
