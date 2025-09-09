@@ -5,27 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Meu Projeto Padrão</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
-    <script src="{{ asset("https://code.jquery.com/jquery-3.6.0.min.js") }}"></script>
-
-    <script src="{{ asset("https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js") }}"></script>
+    <link href="{{ asset("https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css") }}" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
     <link href="{{ asset("https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css") }}" rel="stylesheet">
-
-    <script src="{{ asset("https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js") }}"></script>
-
-    <script src="{{ asset("https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js") }}"></script>
-
-    <script src="{{ asset("https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js") }}"></script>
     
     <link href="{{ asset("https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.min.css") }}" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css") }}"/>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script src="{{ asset("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js") }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
-    <script src="{{ asset("https://cdn.jsdelivr.net/npm/chart.js") }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <script>
         function ImagePreview(input) {
@@ -118,7 +118,7 @@
                 draggable: true,
                 showCloseButton: true,
                 icon: "success",
-                title: "<label class='border-top border-bottom py-2'>Sucesso!</label>",
+                title: "<label class='py-2'>Sucesso!</label>",
                 text: "{{ session('cadastroSucesso') }}",
                 showConfirmButton: false,
                 footer: "<a href='{{ route('login') }}' style='--bs-icon-link-transform: translate3d(0, -.125rem, 0);' id='ok' class='btn btn-info btn-sm rounded-pill border border-black icon-link icon-link-hover' type='button'><svg xmlns='{{ asset('http://www.w3.org/2000/svg') }}' width='16' height='16' fill='currentColor' class='bi bi-check-circle' viewBox='0 0 16 16'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16'/><path d='m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05'/></svg>OK</a>",
@@ -141,7 +141,8 @@
                     url("/images/nyan-cat.gif")
                     left top
                     no-repeat
-                `
+                `,
+                timer: 3000
             });
         </script>
     @endif
@@ -152,7 +153,7 @@
                 draggable: true,
                 showCloseButton: true,
                 icon: "error",
-                title: "<label class='border-top border-bottom py-2'>Erro!</label>",
+                title: "<label class='py-2'>Erro!</label>",
                 text: "{{ session('cadastroErro') }}",
                 showConfirmButton: false,
                 footer: "<a href='{{ route('cadastro') }}' style='--bs-icon-link-transform: translate3d(0, -.125rem, 0);' id='ok' class='btn btn-danger btn-sm rounded-pill border border-black icon-link icon-link-hover' type='button'><svg xmlns='{{ asset('http://www.w3.org/2000/svg') }}' width='16' height='16' fill='currentColor' class='bi bi-check-circle' viewBox='0 0 16 16'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16'/><path d='m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05'/></svg>OK</a>",
@@ -175,7 +176,8 @@
                     url("/images/nyan-cat.gif")
                     left top
                     no-repeat
-                `
+                `,
+                timer: 3000
             });
         </script>
     @endif
@@ -186,7 +188,7 @@
                 draggable: true,
                 showCloseButton: true,
                 icon: "success",
-                title: "<label class='border-top border-bottom py-2'>Sucesso!</label>",
+                title: "<label class='py-2'>Sucesso!</label>",
                 text: "{{ session('updateSucesso') }}",
                 showConfirmButton: false,
                 footer: "<a href='' style='--bs-icon-link-transform: translate3d(0, -.125rem, 0);' id='ok' class='btn btn-info btn-sm rounded-pill border border-black icon-link icon-link-hover' type='button'><svg xmlns='{{ asset('http://www.w3.org/2000/svg') }}' width='16' height='16' fill='currentColor' class='bi bi-check-circle' viewBox='0 0 16 16'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16'/><path d='m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05'/></svg>OK</a>",
@@ -209,7 +211,8 @@
                     url("/images/nyan-cat.gif")
                     left top
                     no-repeat
-                `
+                `,
+                timer: 3000
             });
         </script>
     @endif
@@ -220,7 +223,7 @@
                 draggable: true,
                 showCloseButton: true,
                 icon: "warning",
-                title: "<label class='border-top border-bottom py-2'>Atenção!</label>",
+                title: "<label class='py-2'>Atenção!</label>",
                 text: "{{ session('confirmarDelete') }}",
                 showConfirmButton: false,
                 footer: "<a href='' style='--bs-icon-link-transform: translate3d(0, -.125rem, 0);' id='cancelar' class='btn btn-danger btn-sm rounded-pill border border-black icon-link icon-link-hover me-1' type='button'><svg xmlns='{{ asset('http://www.w3.org/2000/svg') }}' width='16' height='16' fill='currentColor' class='bi bi-x-circle' viewBox='0 0 16 16'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16'/><path d='M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708'/></svg>CANCELAR</a><a href='{{ route('deletarConfirmar', ["id" => session('id')]) }}' style='--bs-icon-link-transform: translate3d(0, -.125rem, 0);' id='confirmar' class='btn btn-success btn-sm rounded-pill border border-black icon-link icon-link-hover' type='button'><svg xmlns='{{ asset('http://www.w3.org/2000/svg') }}' width='16' height='16' fill='currentColor' class='bi bi-check-circle' viewBox='0 0 16 16'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16'/><path d='m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05'/></svg>CONFIRMAR</a>",
@@ -243,7 +246,8 @@
                     url("/images/nyan-cat.gif")
                     left top
                     no-repeat
-                `
+                `,
+                timer: 3000
             });
         </script>
     @endif
@@ -254,7 +258,7 @@
                 draggable: true,
                 showCloseButton: true,
                 icon: "success",
-                title: "<label class='border-top border-bottom py-2'>Sucesso!</label>",
+                title: "<label class='py-2'>Sucesso!</label>",
                 text: "{{ session('deleteSucesso') }}",
                 showConfirmButton: false,
                 footer: "<a href='' style='--bs-icon-link-transform: translate3d(0, -.125rem, 0);' id='ok' class='btn btn-info btn-sm rounded-pill border border-black icon-link icon-link-hover' type='button'><svg xmlns='{{ asset('http://www.w3.org/2000/svg') }}' width='16' height='16' fill='currentColor' class='bi bi-check-circle' viewBox='0 0 16 16'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16'/><path d='m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05'/></svg>OK</a>",
@@ -277,7 +281,8 @@
                     url("/images/nyan-cat.gif")
                     left top
                     no-repeat
-                `
+                `,
+                timer: 3000
             });
         </script>
     @endif
@@ -288,7 +293,7 @@
                 draggable: true,
                 showCloseButton: true,
                 icon: "warning",
-                title: "<label class='border-top border-bottom py-2'>Atenção!</label>",
+                title: "<label class='py-2'>Atenção!</label>",
                 text: "{{ session('confirmarPermissao') }}",
                 showConfirmButton: false,
                 footer: "<a href='' style='--bs-icon-link-transform: translate3d(0, -.125rem, 0);' id='cancelar' class='btn btn-danger btn-sm rounded-pill border border-black icon-link icon-link-hover me-1' type='button'><svg xmlns='{{ asset('http://www.w3.org/2000/svg') }}' width='16' height='16' fill='currentColor' class='bi bi-x-circle' viewBox='0 0 16 16'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16'/><path d='M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708'/></svg>CANCELAR</a><a href='{{ route('permissaoConfirmar', ["id" => session('id')]) }}' style='--bs-icon-link-transform: translate3d(0, -.125rem, 0);' id='confirmar' class='btn btn-success btn-sm rounded-pill border border-black icon-link icon-link-hover' type='button'><svg xmlns='{{ asset('http://www.w3.org/2000/svg') }}' width='16' height='16' fill='currentColor' class='bi bi-check-circle' viewBox='0 0 16 16'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16'/><path d='m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05'/></svg>CONFIRMAR</a>",
@@ -311,7 +316,8 @@
                     url("/images/nyan-cat.gif")
                     left top
                     no-repeat
-                `
+                `,
+                timer: 3000
             });
         </script>
     @endif
@@ -322,7 +328,7 @@
                 draggable: true,
                 showCloseButton: true,
                 icon: "success",
-                title: "<label class='border-top border-bottom py-2'>Sucesso!</label>",
+                title: "<label class='py-2'>Sucesso!</label>",
                 text: "{{ session('permissaoSucesso') }}",
                 showConfirmButton: false,
                 footer: "<a href='' style='--bs-icon-link-transform: translate3d(0, -.125rem, 0);' id='ok' class='btn btn-info btn-sm rounded-pill border border-black icon-link icon-link-hover' type='button'><svg xmlns='{{ asset('http://www.w3.org/2000/svg') }}' width='16' height='16' fill='currentColor' class='bi bi-check-circle' viewBox='0 0 16 16'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16'/><path d='m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05'/></svg>OK</a>",
@@ -345,7 +351,8 @@
                     url("/images/nyan-cat.gif")
                     left top
                     no-repeat
-                `
+                `,
+                timer: 3000
             });
         </script>
     @endif
@@ -356,7 +363,7 @@
                 draggable: true,
                 showCloseButton: true,
                 icon: "success",
-                title: "<label class='border-top border-bottom py-2'>Sucesso!</label>",
+                title: "<label class='py-2'>Sucesso!</label>",
                 text: "{{ session('importarSucesso') }}",
                 showConfirmButton: false,
                 footer: "<a href='' style='--bs-icon-link-transform: translate3d(0, -.125rem, 0);' id='ok' class='btn btn-info btn-sm rounded-pill border border-black icon-link icon-link-hover' type='button'><svg xmlns='{{ asset('http://www.w3.org/2000/svg') }}' width='16' height='16' fill='currentColor' class='bi bi-check-circle' viewBox='0 0 16 16'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16'/><path d='m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05'/></svg>OK</a>",
@@ -379,7 +386,8 @@
                     url("/images/nyan-cat.gif")
                     left top
                     no-repeat
-                `
+                `,
+                timer: 3000
             });
         </script>
     @endif
@@ -390,7 +398,7 @@
                 draggable: true,
                 showCloseButton: true,
                 icon: "error",
-                title: "<label class='border-top border-bottom py-2'>Erro!</label>",
+                title: "<label class='py-2'>Erro!</label>",
                 text: "{{ session('importarErro') }}",
                 showConfirmButton: false,
                 footer: "<div class'card-footer'></div>",
@@ -413,7 +421,8 @@
                     url("/images/nyan-cat.gif")
                     left top
                     no-repeat
-                `
+                `,
+                timer: 3000
             });
         </script>
     @endif
@@ -424,7 +433,7 @@
                 draggable: true,
                 showCloseButton: true,
                 icon: "success",
-                title: "<label class='border-top border-bottom py-2'>Sucesso!</label>",
+                title: "<label class='py-2'>Sucesso!</label>",
                 text: "{{ session('exportarSucesso') }}",
                 showConfirmButton: false,
                 footer: "<div class'card-footer'></div>",
@@ -447,7 +456,8 @@
                     url("/images/nyan-cat.gif")
                     left top
                     no-repeat
-                `
+                `,
+                timer: 3000
             });
         </script>
     @endif
@@ -458,7 +468,7 @@
                 draggable: true,
                 showCloseButton: true,
                 icon: "error",
-                title: "<label class='border-top border-bottom py-2'>Erro!</label>",
+                title: "<label class='py-2'>Erro!</label>",
                 text: "{{ session('exportarErro') }}",
                 showConfirmButton: false,
                 footer: "<a href='{{ route('importarExportar') }}' style='--bs-icon-link-transform: translate3d(0, -.125rem, 0);' id='ok' class='btn btn-danger btn-sm rounded-pill border border-black icon-link icon-link-hover' type='button'><svg xmlns='{{ asset('http://www.w3.org/2000/svg') }}' width='16' height='16' fill='currentColor' class='bi bi-check-circle' viewBox='0 0 16 16'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16'/><path d='m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05'/></svg>OK</a>",
@@ -481,34 +491,35 @@
                     url("/images/nyan-cat.gif")
                     left top
                     no-repeat
-                `
+                `,
+                timer: 3000
             });
         </script>
     @endif
     
     @yield("content");
 
-    <div class="text-center mx-1 mt-5 mb-3">
+    <footer class="text-center mx-1 mt-5 mb-3">
         <img style="width: 35px; height: 35px;" class="border border-black shadow me-1" src="{{ asset("assets/images/foto_proprietario.png") }}">
 
         <label class="text-white align-middle fs-5">Todos os Direitos Reservados: Luciano Eduardo Stefanello da Silva - 2025</label>
-    </div>
+    </footer>
     
     <script>
 
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('overlay');
-        const toggleBtn = document.getElementById('sidebarToggle');
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("overlay");
+        const toggleBtn = document.getElementById("sidebarToggle");
         const openSidebar = () => {
 
-            sidebar.style.transform = 'translateX(0)';
-            overlay.style.display = 'block';
+            sidebar.style.transform = "translateX(0)";
+            overlay.style.display = "block";
 
         };
         const closeSidebar = () => {
 
-            sidebar.style.transform = 'translateX(-100%)';
-            overlay.style.display = 'none';
+            sidebar.style.transform = "translateX(-100%)";
+            overlay.style.display = "none";
 
         };
 
