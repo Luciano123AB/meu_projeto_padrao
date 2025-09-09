@@ -8,6 +8,7 @@ use App\Models\Logs;
 use App\Models\Usuario;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ImportarExportar
@@ -65,6 +66,8 @@ class ImportarExportar
             $pdf = app("dompdf.wrapper");
 
             $pdf->loadView("tabela", compact("usuarios"));
+
+            Storage::disk("public")->makeDirectory("pdfs");
 
             $caminho = storage_path("app/public/pdfs/usuarios.pdf");
             
