@@ -116,9 +116,19 @@ class CadastroUpdate
         ]);
 
         if ($usuario) {
-            return redirect()->route("login")->with("cadastroSucesso", "Usuário cadastrado com êxito! Faça login para continuar.");
+            return redirect()->route("login")->with("alerta", [
+                "icon" => "success",
+                "title" => "Sucesso!",
+                "text" => "Usuário cadastrado com êxito! Faça login para continuar.",
+                "footer" => "info"
+            ]);
         } else {
-            return redirect()->back()->withInput()->with("cadastroErro", "Erro ao cadastrar usuário! Tente novamente.");
+            return redirect()->back()->withInput()->with("alerta", [
+                "icon" => "error",
+                "title" => "Erro!",
+                "text" => "Erro ao cadastrar o usuário! Tente novamente.",
+                "footer" => "danger"
+            ]);
         }
     }
 
@@ -223,6 +233,20 @@ class CadastroUpdate
         $usuario->updated_at = date("Y-m-d H:i:s");
         $usuario->save();
 
-        return redirect()->route("home")->with("updateSucesso", "Usuário atualizado com êxito!");
+        if ($usuario) {
+            return redirect()->route("home")->with("alerta", [
+                "icon" => "success",
+                "title" => "Sucesso!",
+                "text" => "Usuário atualizado com êxito!",
+                "cor" => "info"
+            ]);
+        } else {
+            return redirect()->back()->withInput()->with("alerta", [
+                "icon" => "error",
+                "title" => "Erro!",
+                "text" => "Falha ao atualizar o usuário! Tente novamente.",
+                "cor" => "danger"
+            ]);
+        }
     }
 }
