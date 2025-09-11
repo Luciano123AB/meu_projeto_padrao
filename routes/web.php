@@ -59,6 +59,8 @@ Route::middleware([VerificarNaoEstaLogado::class])->group(function () {
 
     Route::get("/logs/{id}", [Logs::class, "logs"])->name("logs");
 
+    Route::get("/limparLogs/{id}", [Logs::class, "limparLogs"])->name("limparLogs");
+
     Route::get("/importarExportar", [ImportarExportar::class, "importarExportar"])->name("importarExportar");
 
     Route::post("/importar", [ImportarExportar::class, "importar"])->name("importar");

@@ -15,4 +15,28 @@ class Logs
 
         return view("logs", ["logs" => $logs]);
     }
+
+    public function limparLogs($id) {
+
+        $id = Operacoes::decryptId($id);
+        $usuario = Usuario::find($id);
+
+        $usuario->logs()->delete();
+
+        if ($usuario) {
+            return redirect()->back()->withInput()->with("alerta", [
+                "icon" => "success",
+                "title" => "Sucesso!",
+                "text" => "Logs limpos com êxito!",
+                "cor" => "info"
+            ]);
+        } else {
+            return redirect()->back()->withInput()->with("alerta", [
+                "icon" => "error",
+                "title" => "Erro!",
+                "text" => "Falha ao limpar os logs! Tente novamente.",
+                "cor" => "danger"
+            ]);
+        }
+    }
 }
