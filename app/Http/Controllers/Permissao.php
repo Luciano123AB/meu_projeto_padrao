@@ -15,7 +15,12 @@ class Permissao
 
         session(["id" => $usuario->id]);
 
-        return redirect()->back()->with("confirmarPermissao", "Tem certeza que deseja alterar a permissão deste usuário?");
+        return redirect()->back()->withInput()->with("alertaConfirmacao", [
+            "icon" => "warning",
+            "title" => "Atenção!",
+            "text" => "Tem certeza que deseja alterar a permissão deste usuário?",
+            "rota" => "permissaoConfirmar"
+        ]);
     }
 
     public function permissaoConfirmar($id) {
@@ -36,6 +41,11 @@ class Permissao
         
         session()->forget("id");
 
-        return redirect()->back()->with("permissaoSucesso", "Permissão do usuário alterada com êxito!");
+        return redirect()->back()->withInput()->with("alerta", [
+            "icon" => "success",
+            "title" => "Sucesso!",
+            "text" => "Permissão do usuário alterada com êxito!",
+            "cor" => "info"
+        ]);
     }
 }

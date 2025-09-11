@@ -41,9 +41,19 @@ class ImportarExportar
         if ($importar) {
             session(["dadosImportados" => $dados_importados[0]]);
 
-            return redirect()->back()->with("importarSucesso", "Arquivo importado com sucesso!");
+            return redirect()->back()->withInput()->with("alerta", [
+                "icon" => "success",
+                "title" => "Sucesso!",
+                "text" => "Arquivo importado com sucesso!",
+                "cor" => "info"
+            ]);
         } else {
-            return redirect()->back()->with("importarErro", "Falha ao tentar importar o arquivo! Tente novamente.");
+            return redirect()->back()->withInput()->with("alerta", [
+                "icon" => "error",
+                "title" => "Erro!",
+                "text" => "Falha ao tentar importar o arquivo! Tente novamente.",
+                "cor" => "danger"
+            ]);
         }
     }
 
@@ -81,9 +91,19 @@ class ImportarExportar
         if ($exportar) {
             session(["dadosExportados" => $dados_exportados]);
 
-            return redirect()->back()->with("exportarSucesso", "Arquivo exportado com sucesso!");
+            return redirect()->back()->withInput()->with("alerta", [
+                "icon" => "success",
+                "title" => "Sucesso!",
+                "text" => "Arquivo exportado com sucesso!",
+                "cor" => "info"
+            ]);
         } else {
-            return redirect()->back()->with("exportarErro", "Falha ao tentar exportar o arquivo! Tente novamente.");
+            return redirect()->back()->withInput()->with("alerta", [
+                "icon" => "error",
+                "title" => "Erro!",
+                "text" => "Falha ao tentar exportar o arquivo! Tente novamente.",
+                "cor" => "danger"
+            ]);
         }
     }
 }

@@ -51,7 +51,10 @@ class LoginLogout
             "permissao" => $usuario->permissao
         ]]);
 
-        return redirect()->route("home");
+        return redirect()->route("home")->with("alertaOiTchau", [
+            "title" => "Hello!",
+            "text" => "Seja muito bem vindo!",
+        ]);;
     }
 
     public function logout() {
@@ -64,6 +67,9 @@ class LoginLogout
 
         session()->forget("usuario");
 
-        return redirect()->route("login");
+        return redirect()->route("login")->with("alertaOiTchau", [
+            "title" => "Até Mais!",
+            "text" => "Esperamos seu retorno!",
+        ]);
     }
 }

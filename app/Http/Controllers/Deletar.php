@@ -15,11 +15,11 @@ class Deletar
 
         session(["id" => $usuario->id]);
 
-        return redirect()->back()->withInput()->with("alerta", [
+        return redirect()->back()->withInput()->with("alertaConfirmacao", [
             "icon" => "warning",
             "title" => "Atenção!",
-            "text" => "Tem certeza que deseja deletar este usuário?",
-            "footer" => "warning"
+            "text" => "Tem certeza que deseja deletar esse usuário!",
+            "rota" => "deletarConfirmar"
         ]);
     }
 
