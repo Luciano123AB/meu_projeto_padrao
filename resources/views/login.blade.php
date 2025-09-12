@@ -62,7 +62,7 @@
                         
                         <input id="senha" class="form-control" type="password" name="senha" placeholder="..." value="{{ old("senha") }}" required>
                         
-                        <button id="mostrar_ocultar_senha" class="input-group-text focus-ring focus-ring-secondary" type="button" onclick="mostrarOcultarSenha()">Mostrar</button>
+                        <button id="mostrar_ocultar_senha" class="input-group-text focus-ring focus-ring-secondary" type="button" onclick="mostrarOcultarSenha()"><i style="font-size: 26px" class="bi bi-eye"></i></button>
                     </div>
 
                     @error("senha")
