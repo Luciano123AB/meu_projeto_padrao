@@ -52,7 +52,7 @@ class LoginLogout
         ]]);
 
         return redirect()->route("home")->with("alertaOiTchau", [
-            "title" => "Hello!",
+            "title" => "Hello Sr.(ª) $usuario->usuario!",
             "text" => "Seja muito bem vindo!",
         ]);;
     }
@@ -60,6 +60,7 @@ class LoginLogout
     public function logout() {
 
         $id = session("usuario.id");
+        $usuario = session("usuario.usuario");
         $logs = Usuario::find($id)->logs();
 
         $logs->delete();
@@ -68,8 +69,8 @@ class LoginLogout
         session()->forget("usuario");
 
         return redirect()->route("login")->with("alertaOiTchau", [
-            "title" => "Até Mais!",
-            "text" => "Esperamos seu retorno!",
+            "title" => "Até Mais Sr.(ª) $usuario!",
+            "text" => "Esperamos o seu retorno ansiosamente!",
         ]);
     }
 }

@@ -1,4 +1,4 @@
-<ul id="sidebar" class="col-12 col-md-2 bg-white border border-md-end border-black overflow-auto py-2" style="max-height: calc(100vh - 70px); transition: transform 0.3s ease; z-index: 1100; overflow-y: auto">
+<nav id="sidebar" class="col-12 col-md-2 bg-white border-end border-black overflow-auto py-2" style="max-height: calc(100vh - 70px); transition: transform 0.3s ease; z-index: 1100;">
     <h6 class="fw-bold border-bottom border-black py-1">OPÇÕES:</h6>
 
     <li class="opcao rounded-end icon-link icon-link-hover p-1">
@@ -62,6 +62,6 @@
                         
         <a href="{{ route("importarExportar") }}" class="link-secondary text-decoration-none">Importar / Exportar</a>
     </li>
-</ul>
+</nav>
 
 <div id="overlay" style="position: fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(0,0,0,0.5); display:none; z-index:1050;"></div>

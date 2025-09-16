@@ -41,11 +41,20 @@ class Permissao
         
         session()->forget("id");
 
-        return redirect()->back()->withInput()->with("alerta", [
-            "icon" => "success",
-            "title" => "Sucesso!",
-            "text" => "Permissão do usuário alterada com êxito!",
-            "cor" => "info"
-        ]);
+        if ($usuario) {
+            return redirect()->back()->withInput()->with("alerta", [
+                "icon" => "success",
+                "title" => "Sucesso!",
+                "text" => "Permissão do usuário alterada com êxito!",
+                "cor" => "info"
+            ]);
+        } else {
+            return redirect()->back()->withInput()->with("alerta", [
+                "icon" => "error",
+                "title" => "Erro!",
+                "text" => "Falha ao alterar a permissão do usuário! Tente novamente.",
+                "cor" => "danger"
+            ]);
+        }
     }
 }

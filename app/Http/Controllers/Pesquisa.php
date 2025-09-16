@@ -33,9 +33,18 @@ class Pesquisa
         $usuario = $request->input("usuario");
         $usuarios = Usuario::where("usuario", "like", "%" . $usuario . "%")->get();
 
-        session(["resultado" => $usuarios]);
-
-        return redirect()->back();
+        if ($usuarios) {
+            session(["resultado" => $usuarios]);
+    
+            return redirect()->back();            
+        } else {
+            return redirect()->back()->withInput()->with("alerta", [
+                "icon" => "error",
+                "title" => "Erro!",
+                "text" => "Falha ao realizar a pesquisa! Tente novamente.",
+                "cor" => "danger"
+            ]);
+        }
     }
 
     public function pesquisaStatus(Request $request){
@@ -51,9 +60,18 @@ class Pesquisa
         $valor = ($status === "permitidos") ? 1 : 0;
         $usuarios = Usuario::where("permissao", $valor)->get();
 
-        session(["resultado" => $usuarios]);
-
-        return redirect()->back();
+        if ($usuarios) {
+            session(["resultado" => $usuarios]);
+    
+            return redirect()->back();            
+        } else {
+            return redirect()->back()->withInput()->with("alerta", [
+                "icon" => "error",
+                "title" => "Erro!",
+                "text" => "Falha ao realizar a pesquisa! Tente novamente.",
+                "cor" => "danger"
+            ]);
+        }
     }
 
     public function pesquisaDataNascimento(Request $request){
@@ -67,9 +85,18 @@ class Pesquisa
         $dataFormatada = \Carbon\Carbon::createFromFormat("d/m/Y", $data)->format("Y-m-d");
         $usuarios = Usuario::whereDate("data_nascimento", $dataFormatada)->get();
 
-        session(["resultado" => $usuarios]);
-
-        return redirect()->back();
+        if ($usuarios) {
+            session(["resultado" => $usuarios]);
+    
+            return redirect()->back();            
+        } else {
+            return redirect()->back()->withInput()->with("alerta", [
+                "icon" => "error",
+                "title" => "Erro!",
+                "text" => "Falha ao realizar a pesquisa! Tente novamente.",
+                "cor" => "danger"
+            ]);
+        }
     }
 
     public function pesquisaDataInicialFinal(Request $request){
@@ -85,8 +112,17 @@ class Pesquisa
         $dataFinal = \Carbon\Carbon::createFromFormat("d/m/Y", $request->input("data_final"))->format("Y-m-d");
         $usuarios = Usuario::whereBetween("data_nascimento", [$dataInicial, $dataFinal])->get();
 
-        session(["resultado" => $usuarios]);
-
-        return redirect()->back();
+        if ($usuarios) {
+            session(["resultado" => $usuarios]);
+    
+            return redirect()->back();            
+        } else {
+            return redirect()->back()->withInput()->with("alerta", [
+                "icon" => "error",
+                "title" => "Erro!",
+                "text" => "Falha ao realizar a pesquisa! Tente novamente.",
+                "cor" => "danger"
+            ]);
+        }
     }
 }
