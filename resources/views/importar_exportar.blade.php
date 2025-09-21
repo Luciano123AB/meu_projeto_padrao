@@ -30,33 +30,33 @@
                                             @enderror
                                         </div>
     
-                                        <div class="col mb-3 d-flex justify-content-center align-items-center">
+                                        <div class="col mb-1 d-flex justify-content-center align-items-center">
                                             <button id="importar" class="btn btn-lg btn-info w-100 w-md-auto fs-5 fs-md-1 p-2 p-md-4" type="submit" name="importar">
                                                 IMPORTAR
                                             </button>
                                         </div>
                                     </div>
     
-                                    <div class="table-responsive rounded-2 bg-dark border" style="min-height: 300px;">
-                                        <table class="table table-hover align-middle mb-0">
-                                            @if(session()->has('dadosImportados'))
-                                                <thead class="text-center">
-                                                    <tr>
-                                                        <th>N°</th>
-                                                        <th>Nome</th>
-                                                        <th>Usuario</th>
-                                                        <th>Email</th>
-                                                        <th>Data Nasc.</th>
-                                                        <th>Celular</th>
-                                                        <th>Gênero</th>
-                                                        <th>Permissão</th>
-                                                    </tr>
-                                                </thead>
-    
+                                    <div class="table-responsive rounded-2 bg-dark border overflow-auto" style="min-height: 300px; max-height: 300px;">
+                                        <table class="table table-hover table-dark align-middle mb-0">
+                                            <thead class="text-center">
+                                                <tr>
+                                                    <th>N°</th>
+                                                    <th>Nome</th>
+                                                    <th>Usuario</th>
+                                                    <th>Email</th>
+                                                    <th>Data Nasc.</th>
+                                                    <th>Celular</th>
+                                                    <th>Gênero</th>
+                                                    <th>Permissão</th>
+                                                </tr>
+                                            </thead>
+
+                                            @if(session()->has('dadosImportados'))    
                                                 <tbody>
                                                     @forelse(session('dadosImportados') as $dados)
                                                         <tr class="text-center">
-                                                            <td>{{ $loop->iteration }}</td>
+                                                            <td class="text-center fw-bold">{{ $loop->iteration }}</td>
                                                             <td>{{ $dados['nome_completo'] }}</td>
                                                             <td>{{ $dados['usuario'] }}</td>
                                                             <td>{{ $dados['email'] }}</td>
@@ -65,9 +65,9 @@
                                                             <td>{{ $dados['genero'] }}</td>
                                                             <td>
                                                                 @if(isset($dados['permissao']) && $dados['permissao']==1)
-                                                                    <button class="btn btn-success btn-sm" disabled>SIM</button>
+                                                                    <button class="badge bg-success" disabled>SIM</button>
                                                                 @else
-                                                                    <button class="btn btn-danger btn-sm" disabled>NÃO</button>
+                                                                    <button class="badge bg-danger" disabled>NÃO</button>
                                                                 @endif
                                                             </td>
                                                         </tr>
@@ -79,6 +79,10 @@
                                                 </tbody>
                                                 
                                                 {{ session()->forget('dadosImportados') }}
+                                            @else
+                                                <tr class="text-center">
+                                                    <td colspan="8" class="bg-secondary">IMPORTE SEU ARQUIVO</td>
+                                                </tr>
                                             @endif
                                         </table>
                                     </div>
@@ -89,13 +93,7 @@
                         <div class="col">
                             <div class="card border border-black p-3 shadow">
                                 <form action="{{ route('exportar') }}" id="formulario" class="row row-cols-1 row-cols-md-2 g-3" method="get" novalidate>
-                                    @csrf
-                                    
-                                    <div class="col mb-3 d-flex justify-content-center align-items-center">
-                                        <button id="exportar" class="btn btn-lg btn-info w-100 fs-5 fs-md-1 p-2 p-md-4" type="submit" name="exportar">
-                                            EXPORTAR
-                                        </button>
-                                    </div>
+                                    @csrf                                   
                                     
                                     <div class="col">
                                         <label class="form-label">Formato:</label>
@@ -112,28 +110,34 @@
                                             </div>
                                         @enderror
                                     </div>
+
+                                    <div class="col mb-1 d-flex justify-content-center align-items-center">
+                                        <button id="exportar" class="btn btn-lg btn-info w-100 fs-5 fs-md-1 p-2 p-md-4" type="submit" name="exportar">
+                                            EXPORTAR
+                                        </button>
+                                    </div>
                                 </form>
     
-                                <div class="table-responsive rounded-2 bg-dark border" style="min-height: 300px;">
-                                    <table class="table table-hover align-middle mb-0">
-                                        @if(session()->has('dadosExportados'))
-                                            <thead class="text-center">
-                                                <tr>
-                                                    <th>N°</th>
-                                                    <th>Nome</th>
-                                                    <th>Usuario</th>
-                                                    <th>Email</th>
-                                                    <th>Data Nasc.</th>
-                                                    <th>Celular</th>
-                                                    <th>Gênero</th>
-                                                    <th>Permissão</th>
-                                                </tr>
-                                            </thead>
-    
+                                <div class="table-responsive rounded-2 bg-dark border overflow-auto" style="min-height: 300px; max-height: 300px;">
+                                    <table class="table table-hover table-dark align-middle mb-0">
+                                        <thead class="text-center">
+                                            <tr>
+                                                <th>N°</th>
+                                                <th>Nome</th>
+                                                <th>Usuario</th>
+                                                <th>Email</th>
+                                                <th>Data Nasc.</th>
+                                                <th>Celular</th>
+                                                <th>Gênero</th>
+                                                <th>Permissão</th>
+                                            </tr>
+                                        </thead>
+
+                                        @if(session()->has('dadosExportados'))    
                                             <tbody>
                                                 @forelse(session('dadosExportados') as $dados)
                                                     <tr class="text-center">
-                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td class="text-center fw-bold">{{ $loop->iteration }}</td>
                                                         <td>{{ $dados->nome_completo }}</td>
                                                         <td>{{ $dados->usuario }}</td>
                                                         <td>{{ $dados->email }}</td>
@@ -142,9 +146,9 @@
                                                         <td>{{ $dados->genero }}</td>
                                                         <td>
                                                             @if($dados->permissao==1)
-                                                                <button class="btn btn-success btn-sm" disabled>SIM</button>
+                                                                <button class="badge bg-success" disabled>SIM</button>
                                                             @else
-                                                                <button class="btn btn-danger btn-sm" disabled>NÃO</button>
+                                                                <button class="badge bg-danger" disabled>NÃO</button>
                                                             @endif
                                                         </td>
                                                     </tr>
@@ -156,6 +160,10 @@
                                             </tbody>
                                             
                                             {{ session()->forget('dadosExportados') }}
+                                        @else
+                                            <tr class="text-center">
+                                                <td colspan="8" class="bg-secondary">EXPORTE SEU ARQUIVO</td>
+                                            </tr>
                                         @endif
                                     </table>
                                 </div>

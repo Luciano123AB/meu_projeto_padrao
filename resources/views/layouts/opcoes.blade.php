@@ -1,4 +1,4 @@
-<nav id="sidebar" class="col-12 col-md-2 bg-white border-end border-black overflow-auto py-2" style="max-height: calc(100vh - 70px); transition: transform 0.3s ease; z-index: 1100;">
+<nav id="sidebar" class="col-12 col-md-2 bg-white border-top border-end border-bottom border-black mt-3 py-2 overflow-auto" style="max-height: 280px; transition: transform 0.3s ease; z-index: 1100;">
     <h6 class="fw-bold border-bottom border-black py-1">OPÇÕES:</h6>
 
     <li class="opcao rounded-end icon-link icon-link-hover p-1">

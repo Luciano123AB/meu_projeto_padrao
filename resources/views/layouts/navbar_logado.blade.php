@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center me-5">
+        <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center me-5 mb-1">
             <button id="usuario" class="btn btn-info dropdown-toggle border focus-ring focus-ring-light" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                 <img class="rounded-pill border border-black me-2" width="40" height="40" src="data:image/png;base64,{{ session('usuario.foto') }}">
                     

@@ -4,37 +4,45 @@
     @include("layouts/navbar_logado")
 
     <div class="container-fluid px-2 px-md-3">
-        <div class="row flex-nowrap">
+        <div class="row flex-wrap">
             @include("layouts/opcoes")
 
             <div class="col-12 col-md-10 py-3">
-                <div class="mx-3">
-                    <a href="{{ route('limparLogs', ['id' => Crypt::encrypt(session('usuario.id'))]) }}" id="limparLogs" class="btn btn-lg btn-info w-100 w-md-auto fs-5 fs-md-1 p-2 p-md-4" type="button">
+                <div class="mx-2 mx-md-3">
+                    <a href="{{ route('limparLogs', ['id' => Crypt::encrypt(session('usuario.id'))]) }}" 
+                       id="limparLogs" 
+                       class="btn btn-info w-100 w-md-auto fs-5 px-4 py-2 mb-1">
                         LIMPAR LOGS
                     </a>
     
-                    <div style="height: 750px;" class="bg-dark border mb-5 shadow overflow-auto">
-                        <table class="table table-hover align-middle">
-                            <thead class="text-center">
-                                <tr class="row-cols-3">
-                                    <th style="width: 1%;" class="col bg-body-secondary border-start border-top border-bottom border-black">N°</th>
-                                    <th class="col bg-body-secondary border-start border-end border-black">Página Acessada</th>
-                                    <th class="col bg-body-secondary border-end border-black">Data</th>
-                                    <th class="col bg-body-secondary border-end border-black">Hora</th>
-                                </tr>
-                            </thead>
-                            
-                            <tbody>
-                                @foreach($logs as $log)
-                                    <tr class="row-cols-3">
-                                        <td style="width: 1%;" class="col text-center fw-bold border-start border-end">{{ $loop->iteration }}</td>
-                                        <td class="col text-center border-end">{{ $log["pagina"] }}</td>
-                                        <td class="col text-center border-end">{{ date("d/m/Y", strtotime($log["data_hora"])) }}</td>
-                                        <td class="col text-center border-end">{{ date("H:m:s", strtotime($log["data_hora"])) }}</td>
+                    <div class="bg-dark border shadow rounded-2 overflow-auto" style="min-height: 750px; max-height: 750px;">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-dark align-middle mb-0">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th>N°</th>
+                                        <th>Página Acessada</th>
+                                        <th>Data</th>
+                                        <th>Hora</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                
+                                <tbody>
+                                    @forelse($logs as $log)
+                                        <tr>
+                                            <td class="text-center fw-bold">{{ $loop->iteration }}</td>
+                                            <td class="text-start">{{ $log["pagina"] }}</td>
+                                            <td class="text-center">{{ date("d/m/Y", strtotime($log["data_hora"])) }}</td>
+                                            <td class="text-center">{{ date("H:i:s", strtotime($log["data_hora"])) }}</td>
+                                        </tr>
+                                    @empty
+                                        <tr class="text-center">
+                                            <td colspan="4" class="bg-secondary">NENHUM LOG EXISTENTE</td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

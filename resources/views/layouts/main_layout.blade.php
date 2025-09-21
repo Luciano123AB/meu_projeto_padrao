@@ -12,6 +12,7 @@
 
     @include("layouts.partials.scripts")
 </head>
+
 <body style="background-position: center center;" class="fst-italic">
     @include("layouts.partials.alertas")
     
