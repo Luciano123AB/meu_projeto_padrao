@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usuario;
+use App\Services\Boot;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class LoginLogout
 {
     public function login() {
+        if (!session("boot")) {
+            Boot::comandos();
+        }
+
         return view("login");
     }
 

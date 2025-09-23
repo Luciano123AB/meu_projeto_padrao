@@ -120,14 +120,14 @@ class CadastroUpdate
                 "icon" => "success",
                 "title" => "Sucesso!",
                 "text" => "Usuário cadastrado com êxito! Faça login para continuar.",
-                "footer" => "info"
+                "cor" => "info"
             ]);
         } else {
             return redirect()->back()->withInput()->with("alerta", [
                 "icon" => "error",
                 "title" => "Erro!",
                 "text" => "Erro ao cadastrar o usuário! Tente novamente.",
-                "footer" => "danger"
+                "cor" => "danger"
             ]);
         }
     }
