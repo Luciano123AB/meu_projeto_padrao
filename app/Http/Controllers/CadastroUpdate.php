@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Logs;
 use App\Models\Usuario;
 use App\Services\Operacoes;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CadastroUpdate
@@ -54,7 +55,7 @@ class CadastroUpdate
         $senha = $request->input("senha");
         $confirmarSenha = $request->input("confirmar_senha");
         $cpf = $request->input("cpf");
-        $dataNascimento = date("Y-m-d", strtotime($request->input("data")));
+        $dataNascimento = Carbon::createFromFormat("d/m/Y", $request->input("data"))->format("Y-m-d");
         $celular = $request->input("celular");
         $genero = $request->input("genero");
         $foto_escolhida = $request->file("foto");
@@ -100,20 +101,20 @@ class CadastroUpdate
 
         }
 
-        $usuario = Usuario::insert([
-            "nome_completo" => $nome,
-            "usuario" => $nome_usuario,
-            "email" => $email,
-            "senha" => bcrypt($senha),
-            "cpf" => $cpf,
-            "data_nascimento" => $dataNascimento,
-            "celular" => $celular,
-            "genero" => $genero,
-            "foto" => $foto,
-            "permissao" => 0,
-            "ultimo_acesso" => null,
-            "created_at" => date("Y-m-d H:i:s")
-        ]);
+        $usuario = new Usuario();
+        $usuario->nome_completo = $nome;
+        $usuario->usuario = $nome_usuario;
+        $usuario->email = $email;
+        $usuario->senha = bcrypt($senha);
+        $usuario->cpf = $cpf;
+        $usuario->data_nascimento = $dataNascimento;
+        $usuario->celular = $celular;
+        $usuario->genero = $genero;
+        $usuario->foto = $foto;
+        $usuario->permissao = 0;
+        $usuario->ultimo_acesso = null;
+        $usuario->created_at = date("Y-m-d H:i:s");
+        $usuario->save();
 
         if ($usuario) {
             return redirect()->route("login")->with("alerta", [

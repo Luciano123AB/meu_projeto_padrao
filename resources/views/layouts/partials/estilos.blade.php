@@ -34,4 +34,9 @@
         -webkit-transform: scale(1.05);
         transform: scale(1.05);
     }
+
+    .dropdown-menu {
+        position: absolute;
+        z-index: 2000;
+    }
 </style>

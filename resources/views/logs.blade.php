@@ -20,9 +20,9 @@
                             <table class="table table-hover table-dark align-middle mb-0">
                                 <thead class="text-center">
                                     <tr>
-                                        <th>N°</th>
-                                        <th>Página Acessada</th>
-                                        <th>Data</th>
+                                        <th class="border-end">N°</th>
+                                        <th class="border-end">Página Acessada</th>
+                                        <th class="border-end">Data</th>
                                         <th>Hora</th>
                                     </tr>
                                 </thead>
@@ -30,9 +30,9 @@
                                 <tbody>
                                     @forelse($logs as $log)
                                         <tr>
-                                            <td class="text-center fw-bold">{{ $loop->iteration }}</td>
-                                            <td class="text-start">{{ $log["pagina"] }}</td>
-                                            <td class="text-center">{{ date("d/m/Y", strtotime($log["data_hora"])) }}</td>
+                                            <td class="text-center fw-bold border-end">{{ $loop->iteration }}</td>
+                                            <td class="text-start border-end">{{ $log["pagina"] }}</td>
+                                            <td class="text-center border-end">{{ date("d/m/Y", strtotime($log["data_hora"])) }}</td>
                                             <td class="text-center">{{ date("H:i:s", strtotime($log["data_hora"])) }}</td>
                                         </tr>
                                     @empty

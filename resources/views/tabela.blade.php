@@ -12,16 +12,16 @@
                     <table class="table table-hover table-striped align-middle mb-0">
                         <thead class="text-center sticky-top bg-secondary text-white">
                             <tr>
-                                <th style="width: 10%;">Ações</th>
-                                <th style="width: 1%;">N°</th>
-                                <th>Nome</th>
-                                <th>Usuário</th>
-                                <th>Email</th>
-                                <th>Senha</th>
-                                <th>CPF</th>
-                                <th style="width: 8%;">Nascimento</th>
-                                <th>Celular</th>
-                                <th>Gênero</th>                    
+                                <th style="width: 10%;" class="border-end">Ações</th>
+                                <th style="width: 1%;" class="border-end">N°</th>
+                                <th class="border-end">Nome</th>
+                                <th class="border-end">Usuário</th>
+                                <th class="border-end">Email</th>
+                                <th class="border-end">Senha</th>
+                                <th class="border-end">CPF</th>
+                                <th style="width: 8%;" class="border-end">Nascimento</th>
+                                <th class="border-end">Celular</th>
+                                <th class="border-end">Gênero</th>                    
                                 <th style="width: 6%;">Permissão</th>
                             </tr>
                         </thead>
@@ -44,16 +44,15 @@
                                             </a>
                                         </td>
 
-                                        <td class="text-center fw-bold">{{ $loop->iteration }}</td>
-                                        <td>{{ $usuario->nome_completo }}</td>
-                                        <td>{{ $usuario->usuario }}</td>
-                                        <td>{{ $usuario->email }}</td>
-                                        <td class="text-center">*****</td>
-                                        <td class="text-center">***.***.***-**</td>
-                                        <td class="text-center">{{ date("d/m/Y", strtotime($usuario->data_nascimento)) }}</td>
-                                        <td class="text-center">{{ $usuario->celular }}</td>
-                                        <td class="text-center">{{ $usuario->genero }}</td>
-
+                                        <td class="text-center fw-bold border-end">{{ $loop->iteration }}</td>
+                                        <td class="border-end">{{ $usuario->nome_completo }}</td>
+                                        <td class="border-end">{{ $usuario->usuario }}</td>
+                                        <td class="border-end">{{ $usuario->email }}</td>
+                                        <td class="text-center border-end">*****</td>
+                                        <td class="text-center border-end">***.***.***-**</td>
+                                        <td class="text-center border-end">{{ date("d/m/Y", strtotime($usuario->data_nascimento)) }}</td>
+                                        <td class="text-center border-end">{{ $usuario->celular }}</td>
+                                        <td class="text-center border-end">{{ $usuario->genero }}</td>
                                         <td class="text-center">
                                             <a href="{{ route("permissao", ["id" => Crypt::encrypt($usuario->id)]) }}" 
                                             class="badge {{ $usuario->permissao ? 'bg-success' : 'bg-danger' }} p-2 text-decoration-none">
@@ -69,16 +68,16 @@
                             @else
                                 @forelse($usuarios as $usuario)
                                     <tr>
-                                        <td></td>
-                                        <td class="text-center fw-bold">{{ $loop->iteration }}</td>
-                                        <td>{{ $usuario->nome_completo }}</td>
-                                        <td>{{ $usuario->usuario }}</td>
-                                        <td>{{ $usuario->email }}</td>
-                                        <td class="text-center">*****</td>
-                                        <td class="text-center">***.***.***-**</td>
-                                        <td class="text-center">{{ date("d/m/Y", strtotime($usuario->data_nascimento)) }}</td>
-                                        <td class="text-center">{{ $usuario->celular }}</td>
-                                        <td class="text-center">{{ $usuario->genero }}</td>
+                                        <td class="border-end"></td>
+                                        <td class="text-center fw-bold border-end">{{ $loop->iteration }}</td>
+                                        <td class="border-end">{{ $usuario->nome_completo }}</td>
+                                        <td class="border-end">{{ $usuario->usuario }}</td>
+                                        <td class="border-end">{{ $usuario->email }}</td>
+                                        <td class="text-center border-end">*****</td>
+                                        <td class="text-center border-end">***.***.***-**</td>
+                                        <td class="text-center border-end">{{ date("d/m/Y", strtotime($usuario->data_nascimento)) }}</td>
+                                        <td class="text-center border-end">{{ $usuario->celular }}</td>
+                                        <td class="text-center border-end">{{ $usuario->genero }}</td>
                                         <td class="text-center">
                                             <span class="badge {{ $usuario->permissao ? 'bg-success' : 'bg-danger' }} p-2">
                                                 {{ $usuario->permissao ? 'SIM' : 'NÃO' }}

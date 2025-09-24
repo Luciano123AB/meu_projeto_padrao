@@ -1,7 +1,7 @@
 <nav class="navbar bg-primary bg-gradient border-5 border-bottom border-black shadow mb-5">
     <div class="container-fluid">
         <div class="d-flex align-items-center">
-            <button class="btn btn-info d-md-none me-2" type="button" id="sidebarToggle" aria-controls="sidebar" aria-expanded="false" aria-label="Abrir menu">
+            <button class="btn btn-info  border d-md-none me-2" type="button" id="sidebarToggle" aria-controls="sidebar" aria-expanded="false" aria-label="Abrir menu">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M2.5 12.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm0-5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm0-5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11z"/>
                 </svg>
@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center me-5 mb-1">
+        <div class="dropdown d-flex flex-column flex-md-row align-items-start align-items-md-center me-5 mb-1">
             <button id="usuario" class="btn btn-info dropdown-toggle border focus-ring focus-ring-light" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                 <img class="rounded-pill border border-black me-2" width="40" height="40" src="data:image/png;base64,{{ session('usuario.foto') }}">
                     

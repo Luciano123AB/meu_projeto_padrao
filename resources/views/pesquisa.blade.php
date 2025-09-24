@@ -113,13 +113,13 @@
                         <table class="table table-hover table-dark align-middle mb-0">
                             <thead class="text-center">
                                 <tr>
-                                    <th>N°</th>
-                                    <th>Nome</th>
-                                    <th>Usuario</th>
-                                    <th>Email</th>
-                                    <th>Data Nasc.</th>
-                                    <th>Celular</th>
-                                    <th>Gênero</th>
+                                    <th class="border-end">N°</th>
+                                    <th class="border-end">Nome</th>
+                                    <th class="border-end">Usuario</th>
+                                    <th class="border-end">Email</th>
+                                    <th class="border-end">Data Nasc.</th>
+                                    <th class="border-end">Celular</th>
+                                    <th class="border-end">Gênero</th>
                                     <th>Permissão</th>
                                 </tr>
                             </thead>
@@ -128,13 +128,13 @@
                                 @forelse(session("resultado") as $usuario)
                                     <tbody>
                                         <tr class="text-center">
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td class="text-start">{{ $usuario->nome_completo }}</td>
-                                            <td>{{ $usuario->usuario }}</td>
-                                            <td>{{ $usuario->email }}</td>
-                                            <td>{{ $usuario->data_nascimento }}</td>
-                                            <td>{{ $usuario->celular }}</td>
-                                            <td>{{ $usuario->genero }}</td>
+                                            <td class="border-end">{{ $loop->iteration }}</td>
+                                            <td class="text-start border-end">{{ $usuario->nome_completo }}</td>
+                                            <td class="border-end">{{ $usuario->usuario }}</td>
+                                            <td class="border-end">{{ $usuario->email }}</td>
+                                            <td class="border-end">{{ $usuario->data_nascimento }}</td>
+                                            <td class="border-end">{{ $usuario->celular }}</td>
+                                            <td class="border-end">{{ $usuario->genero }}</td>
                                             <td>
                                                 @if($usuario->permissao == 1)
                                                     <span class="badge bg-success">SIM</span>
