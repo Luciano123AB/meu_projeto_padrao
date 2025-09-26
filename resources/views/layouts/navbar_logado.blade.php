@@ -1,4 +1,4 @@
-<nav class="navbar bg-primary bg-gradient border-5 border-bottom border-black shadow mb-5">
+<nav class="navbar bg-primary bg-gradient border-5 border-bottom border-black shadow mb-1">
     <div class="container-fluid">
         <div class="d-flex align-items-center">
             <button class="btn btn-info  border d-md-none me-2" type="button" id="sidebarToggle" aria-controls="sidebar" aria-expanded="false" aria-label="Abrir menu">

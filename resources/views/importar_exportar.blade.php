@@ -3,6 +3,8 @@
 @section("content")
     @include("layouts/navbar_logado")
 
+    @include("layouts.tema")
+
     <div class="container-fluid px-2 px-md-3">
         <div class="row flex-nowrap">
             @include("layouts/opcoes")

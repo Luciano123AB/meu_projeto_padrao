@@ -1,6 +1,6 @@
 <style>
     body {
-        background: url('{{ asset("assets/images/fundo.png") }}') center/cover no-repeat;
+        background: url('{{ asset("assets/images/" . (session("tema") == "escuro" ? "fundo_escuro.png" : "fundo.png")) }}') center/cover no-repeat;
         margin: 0;
         padding: 0;
     }

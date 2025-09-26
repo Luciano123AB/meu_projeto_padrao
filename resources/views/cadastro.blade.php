@@ -1,7 +1,7 @@
 @extends("layouts.main_layout")
 
 @section("content")
-    <nav class="navbar bg-primary bg-gradient border-5 border-bottom border-black shadow mb-5">
+    <nav class="navbar bg-primary bg-gradient border-5 border-bottom border-black shadow">
         <div class="container-fluid">
             <div class="d-flex align-items-center">
                 <div class="navbar-brand fs-5 fs-lg-3 fw-bold ms-md-5 text-center text-md-start">
@@ -22,6 +22,8 @@
             </div>
         </div>
     </nav>
+
+    @include("layouts.tema")
 
     <div class="container d-flex justify-content-center align-items-center text-center mb-5">
         <form action="{{ route("cadastroSubmit") }}" id="formulario" class="card border-black shadow w-100 w-md-75 w-lg-50" method="post" enctype="multipart/form-data" novalidate>

@@ -10,6 +10,7 @@ use App\Http\Controllers\Logs;
 use App\Http\Controllers\Permissao;
 use App\Http\Controllers\Pesquisa;
 use App\Http\Controllers\TabelaCards;
+use App\Http\Controllers\Tema;
 use App\Http\Middleware\VerificarEstaLogado;
 use App\Http\Middleware\VerificarNaoEstaLogado;
 use Illuminate\Support\Facades\Route;
@@ -66,4 +67,6 @@ Route::middleware([VerificarNaoEstaLogado::class])->group(function () {
     Route::post("/importar", [ImportarExportar::class, "importar"])->name("importar");
 
     Route::get("/exportar", [ImportarExportar::class, "exportar"])->name("exportar");
+
+    Route::get("/trocarTema", [Tema::class, "trocarTema"])->name("trocarTema");
 });
