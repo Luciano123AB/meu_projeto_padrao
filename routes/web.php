@@ -15,6 +15,8 @@ use App\Http\Middleware\VerificarEstaLogado;
 use App\Http\Middleware\VerificarNaoEstaLogado;
 use Illuminate\Support\Facades\Route;
 
+Route::get("/trocarTema", [Tema::class, "trocarTema"])->name("trocarTema");
+
 Route::middleware([VerificarEstaLogado::class])->group(function () {
     Route::get("/", [LoginLogout::class, "login"])->name("login");
 
@@ -66,7 +68,5 @@ Route::middleware([VerificarNaoEstaLogado::class])->group(function () {
 
     Route::post("/importar", [ImportarExportar::class, "importar"])->name("importar");
 
-    Route::get("/exportar", [ImportarExportar::class, "exportar"])->name("exportar");
-
-    Route::get("/trocarTema", [Tema::class, "trocarTema"])->name("trocarTema");
+    Route::get("/exportar", [ImportarExportar::class, "exportar"])->name("exportar");    
 });
