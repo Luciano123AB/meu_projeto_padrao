@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use App\Services\Operacoes;
-use Illuminate\Http\Request;
 
 class Deletar
 {

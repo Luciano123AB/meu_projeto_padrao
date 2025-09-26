@@ -30,9 +30,9 @@
     }
 
     #cards_efeito:hover {
-        -ms-transform: scale(1.05);
-        -webkit-transform: scale(1.05);
-        transform: scale(1.05);
+        -ms-transform: scale(1.04);
+        -webkit-transform: scale(1.04);
+        transform: scale(1.04);
     }
 
     .dropdown-menu {

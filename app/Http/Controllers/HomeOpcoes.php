@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Logs;
-use Illuminate\Http\Request;
 
 class HomeOpcoes
 {

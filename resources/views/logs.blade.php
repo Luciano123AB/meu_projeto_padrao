@@ -13,13 +13,13 @@
                 <div class="mx-2 mx-md-3">
                     <a href="{{ route('limparLogs', ['id' => Crypt::encrypt(session('usuario.id'))]) }}" 
                        id="limparLogs" 
-                       class="btn btn-info w-100 w-md-auto fs-5 px-4 py-2 mb-1">
+                       class="btn {{ session("tema") == "escuro" ? "btn-secondary" : "btn-info" }} border w-100 w-md-auto fs-5 px-4 py-2 mb-1">
                         LIMPAR LOGS
                     </a>
     
-                    <div class="bg-dark border shadow rounded-2 overflow-auto" style="min-height: 750px; max-height: 750px;">
+                    <div class="{{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }} border shadow rounded-2 overflow-auto" style="min-height: 750px; max-height: 750px;">
                         <div class="table-responsive">
-                            <table class="table table-hover table-dark align-middle mb-0">
+                            <table class="table table-hover {{ session("tema") == "escuro" ? "table-dark" : "table-secondary" }} align-middle mb-0">
                                 <thead class="text-center">
                                     <tr>
                                         <th class="border-end">N°</th>
@@ -39,7 +39,7 @@
                                         </tr>
                                     @empty
                                         <tr class="text-center">
-                                            <td colspan="4" class="bg-secondary">NENHUM LOG EXISTENTE</td>
+                                            <td colspan="4" class="{{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }}">NENHUM LOG EXISTENTE</td>
                                         </tr>
                                     @endforelse
                                 </tbody>

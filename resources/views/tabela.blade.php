@@ -10,7 +10,7 @@
             @include("layouts/opcoes")
 
             <div class="col-12 col-md-10 py-3">
-                <div style="height: 750px;" class="bg-dark border mx-3 shadow overflow-auto rounded">
+                <div style="height: 750px;" class="{{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }} border mx-3 shadow overflow-auto rounded">
                     <table class="table table-hover table-striped align-middle mb-0">
                         <thead class="text-center sticky-top bg-secondary text-white">
                             <tr>
@@ -34,13 +34,13 @@
                                     <tr>
                                         <td class="text-center">
                                             <a href="{{ route("update", ["id" => Crypt::encrypt($usuario->id)]) }}" 
-                                            class="btn btn-sm btn-primary m-1" 
+                                            class="btn btn-sm {{ session("tema") == "escuro" ? "btn-secondary" : "btn-primary" }} m-1" 
                                             data-bs-toggle="tooltip" title="Editar usuário">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
                                             
                                             <a href="{{ route("deletar", ["id" => Crypt::encrypt($usuario->id)]) }}" 
-                                            class="btn btn-sm btn-danger" 
+                                            class="btn btn-sm {{ session("tema") == "escuro" ? "btn-dark" : "btn-danger" }}" 
                                             data-bs-toggle="tooltip" title="Excluir usuário">
                                                 <i class="bi bi-trash"></i>
                                             </a>

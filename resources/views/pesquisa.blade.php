@@ -21,7 +21,7 @@
 
                                     <input id="usuario" class="form-control w-50" type="text" name="usuario" placeholder="...">
                                     
-                                    <button class="btn btn-info mt-2 mt-md-0" type="submit" name="pesquisar">
+                                    <button class="btn {{ session("tema") == "escuro" ? "btn-secondary" : "btn-info" }} mt-2 mt-md-0" type="submit" name="pesquisar">
                                         <i class="bi bi-search"></i> Pesquisar
                                     </button>
                                 </div>
@@ -51,7 +51,7 @@
                                         </div>
                                     </div>
 
-                                    <button class="btn btn-info" type="submit" name="pesquisar">
+                                    <button class="btn {{ session("tema") == "escuro" ? "btn-secondary" : "btn-info" }}" type="submit" name="pesquisar">
                                         <i class="bi bi-search"></i> Pesquisar
                                     </button>
                                 </div>
@@ -71,7 +71,7 @@
 
                                     <input id="data" class="form-control w-50" type="text" name="data" placeholder="DIA/MÊS/ANO">
 
-                                    <button class="btn btn-info mt-2 mt-md-0" type="submit">
+                                    <button class="btn {{ session("tema") == "escuro" ? "btn-secondary" : "btn-info" }} mt-2 mt-md-0" type="submit">
                                         <i class="bi bi-search"></i> Pesquisar
                                     </button>
                                 </div>
@@ -91,7 +91,7 @@
 
                                     <input id="data_final" class="form-control" type="text" name="data_final" placeholder="DIA/MÊS/ANO">
 
-                                    <button class="btn btn-info mt-2 mt-md-0" type="submit">
+                                    <button class="btn {{ session("tema") == "escuro" ? "btn-secondary" : "btn-info" }} mt-2 mt-md-0" type="submit">
                                         <i class="bi bi-search"></i> Pesquisar
                                     </button>
                                 </div>
@@ -110,9 +110,9 @@
                     </div>
                 </div>
 
-                <div class="rounded-2 bg-dark border mx-1 mx-md-3 shadow overflow-auto" style="min-height: 500px; max-height: 500px;">
+                <div class="rounded-2 {{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }} border mx-1 mx-md-3 shadow overflow-auto" style="min-height: 500px; max-height: 500px;">
                     <div class="table-responsive">
-                        <table class="table table-hover table-dark align-middle mb-0">
+                        <table class="table table-hover {{ session("tema") == "escuro" ? "table-dark" : "table-secondary" }} align-middle mb-0">
                             <thead class="text-center">
                                 <tr>
                                     <th class="border-end">N°</th>
@@ -148,14 +148,14 @@
                                     </tbody>
                                 @empty
                                     <tr class="text-center">
-                                        <td colspan="8" class="bg-secondary">NENHUM USUÁRIO ENCONTRADO</td>
+                                        <td colspan="8" class="{{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }}">NENHUM USUÁRIO ENCONTRADO</td>
                                     </tr>
                                 @endforelse
 
                                 {{ session()->forget("resultado") }}
                             @else
                                 <tr class="text-center">
-                                    <td colspan="8" class="bg-secondary">REALIZE SUA PESQUISA</td>
+                                    <td colspan="8" class="{{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }}">REALIZE SUA PESQUISA</td>
                                 </tr>
                             @endif
                         </table>

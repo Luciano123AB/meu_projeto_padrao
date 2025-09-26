@@ -16,13 +16,13 @@
                     </div>
 
                     <div class="col-12 col-md-6 text-center">
-                        <h2 class="fs-4 fs-md-3 mb-3 fw-bold">Sobre:</h2>
+                        <h2 class="fs-4 fs-md-3 mb-3 fw-bold {{ session("tema") == "escuro" ? "text-white" : "text-black" }}">Sobre:</h2>
                         
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint, odit quam mollitia architecto dolore minus dolorum incidunt eum reiciendis delectus eius molestiae repellat suscipit id laudantium, nostrum perferendis est quia.</p>
+                        <p class="{{ session("tema") == "escuro" ? "text-white" : "text-black" }}">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint, odit quam mollitia architecto dolore minus dolorum incidunt eum reiciendis delectus eius molestiae repellat suscipit id laudantium, nostrum perferendis est quia.</p>
                         
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi beatae odio labore, corporis in debitis? Tempore tempora necessitatibus, libero, dolorum maiores autem molestias officia natus sunt ab, facilis suscipit accusantium.</p>
+                        <p class="{{ session("tema") == "escuro" ? "text-white" : "text-black" }}">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi beatae odio labore, corporis in debitis? Tempore tempora necessitatibus, libero, dolorum maiores autem molestias officia natus sunt ab, facilis suscipit accusantium.</p>
                         
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus sint quae delectus molestias deleniti, dignissimos qui quam voluptatem laborum sit, recusandae ab fugit mollitia porro. Vitae unde ad magni aspernatur.</p>
+                        <p class="{{ session("tema") == "escuro" ? "text-white" : "text-black" }}">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus sint quae delectus molestias deleniti, dignissimos qui quam voluptatem laborum sit, recusandae ab fugit mollitia porro. Vitae unde ad magni aspernatur.</p>
                     </div>
                 </div>
             </div>

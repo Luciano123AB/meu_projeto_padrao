@@ -6,7 +6,6 @@ use App\Exports\UsuariosExportar;
 use App\Imports\UsuariosImportar;
 use App\Models\Logs;
 use App\Models\Usuario;
-use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;

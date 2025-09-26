@@ -11,7 +11,7 @@
 
             <div class="col-12 col-md-10 py-3">
                 <div class="mx-3">
-                    <div style="height: 750px;" class="card d-flex border border-black shadow overflow-y-scroll">
+                    <div style="height: 750px;" class="card {{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }} d-flex border border-black shadow overflow-y-scroll">
                         <div class="row row-cols-1 row-cols-md-2 g-4 m-3">
                             @forelse($usuarios as $usuario)
                                 <div id="cards_efeito" class="col mt-3 mb-1">

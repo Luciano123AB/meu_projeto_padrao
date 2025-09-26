@@ -39,17 +39,17 @@
                                         </div>
                                     </div>
     
-                                    <div class="table-responsive rounded-2 bg-dark border overflow-auto" style="min-height: 300px; max-height: 300px;">
-                                        <table class="table table-hover table-dark align-middle mb-0">
+                                    <div class="table-responsive rounded-2 {{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }} border overflow-auto" style="min-height: 300px; max-height: 300px;">
+                                        <table class="table table-hover {{ session("tema") == "escuro" ? "table-dark" : "table-secondary" }} align-middle mb-0">
                                             <thead class="text-center">
                                                 <tr>
-                                                    <th>N°</th>
-                                                    <th>Nome</th>
-                                                    <th>Usuario</th>
-                                                    <th>Email</th>
-                                                    <th>Data Nasc.</th>
-                                                    <th>Celular</th>
-                                                    <th>Gênero</th>
+                                                    <th class="border-end">N°</th>
+                                                    <th class="border-end">Nome</th>
+                                                    <th class="border-end">Usuario</th>
+                                                    <th class="border-end">Email</th>
+                                                    <th class="border-end">Data Nasc.</th>
+                                                    <th class="border-end">Celular</th>
+                                                    <th class="border-end">Gênero</th>
                                                     <th>Permissão</th>
                                                 </tr>
                                             </thead>
@@ -75,7 +75,7 @@
                                                         </tr>
                                                     @empty
                                                         <tr class="text-center fw-bold">
-                                                            <td colspan="8">NENHUM USUÁRIO ENCONTRADO</td>
+                                                            <td colspan="8" class="{{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }}">NENHUM USUÁRIO ENCONTRADO</td>
                                                         </tr>
                                                     @endforelse
                                                 </tbody>
@@ -83,7 +83,7 @@
                                                 {{ session()->forget('dadosImportados') }}
                                             @else
                                                 <tr class="text-center">
-                                                    <td colspan="8" class="bg-secondary">IMPORTE SEU ARQUIVO</td>
+                                                    <td colspan="8" class="{{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }}">IMPORTE SEU ARQUIVO</td>
                                                 </tr>
                                             @endif
                                         </table>
@@ -120,17 +120,17 @@
                                     </div>
                                 </form>
     
-                                <div class="table-responsive rounded-2 bg-dark border overflow-auto" style="min-height: 300px; max-height: 300px;">
-                                    <table class="table table-hover table-dark align-middle mb-0">
+                                <div class="table-responsive rounded-2 {{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }} border overflow-auto" style="min-height: 300px; max-height: 300px;">
+                                    <table class="table table-hover {{ session("tema") == "escuro" ? "table-dark" : "table-secondary" }} align-middle mb-0">
                                         <thead class="text-center">
                                             <tr>
-                                                <th>N°</th>
-                                                <th>Nome</th>
-                                                <th>Usuario</th>
-                                                <th>Email</th>
-                                                <th>Data Nasc.</th>
-                                                <th>Celular</th>
-                                                <th>Gênero</th>
+                                                <th class="border-end">N°</th>
+                                                <th class="border-end">Nome</th>
+                                                <th class="border-end">Usuario</th>
+                                                <th class="border-end">Email</th>
+                                                <th class="border-end">Data Nasc.</th>
+                                                <th class="border-end">Celular</th>
+                                                <th class="border-end">Gênero</th>
                                                 <th>Permissão</th>
                                             </tr>
                                         </thead>
@@ -156,7 +156,7 @@
                                                     </tr>
                                                 @empty
                                                     <tr class="text-center fw-bold">
-                                                        <td colspan="8">NENHUM USUÁRIO ENCONTRADO</td>
+                                                        <td colspan="8" class="{{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }}">NENHUM USUÁRIO ENCONTRADO</td>
                                                     </tr>
                                                 @endforelse
                                             </tbody>
@@ -164,7 +164,7 @@
                                             {{ session()->forget('dadosExportados') }}
                                         @else
                                             <tr class="text-center">
-                                                <td colspan="8" class="bg-secondary">EXPORTE SEU ARQUIVO</td>
+                                                <td colspan="8" class="{{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }}">EXPORTE SEU ARQUIVO</td>
                                             </tr>
                                         @endif
                                     </table>
