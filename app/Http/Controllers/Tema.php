@@ -7,14 +7,20 @@ class Tema
     public function trocarTema() {
         if (!session()->has("tema")) {
             session(["tema" => "escuro"]);
-        }
 
-        if (session("tema") == "escuro") {
-            session(["tema" => "claro"]);
+            return redirect()->back();
         } else {
-            session(["tema" => "escuro"]);
-        }
+            if (session("tema") == "claro") {
+                session(["tema" => "escuro"]);
 
-        return redirect()->back();
+                return redirect()->back();
+            }
+
+            if (session("tema") == "escuro") {
+                session(["tema" => "claro"]);
+
+                return redirect()->back();
+            }            
+        }        
     }
 }
