@@ -1,7 +1,7 @@
 @extends("layouts.main_layout")
 
 @section("content")
-    <nav class="navbar bg-primary bg-gradient border-5 border-bottom border-black shadow">
+    <nav class="navbar bg-primary bg-gradient border-5 border-bottom border-black shadow mb-1">
         <div class="container-fluid">
             <div class="navbar-brand fs-3 fw-bold ms-5">
                 <a href="{{ route("home") }}" class="link-offset-2 link-underline link-underline-opacity-0">
