@@ -16,22 +16,38 @@
             </div>
         </div>
 
-        <div class="dropdown d-flex flex-column flex-md-row align-items-start align-items-md-center me-5 mb-1">
-            <button id="usuario" class="btn {{ session("tema") == "escuro" ? "btn-secondary" : "btn-info" }} dropdown-toggle border focus-ring focus-ring-light" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+        <div class="btn-group d-flex flex-row align-items-start align-items-md-center me-5 mb-1">
+            <button type="button" class="btn {{ session('tema') == 'escuro' ? 'btn-secondary' : 'btn-info' }} border focus-ring focus-ring-light">
                 <img class="rounded-pill border border-black me-2" width="40" height="40" src="data:image/png;base64,{{ session('usuario.foto') }}">
-                    
+                
                 {{ session('usuario.usuario') }}
             </button>
+
+            <button style="height: 54px" type="button" class="btn {{ session('tema') == 'escuro' ? 'btn-secondary' : 'btn-info' }} dropdown-toggle dropdown-toggle-split border focus-ring focus-ring-light"
+                data-bs-toggle="dropdown" aria-expanded="false">
                 
+                <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+
             <ul class="dropdown-menu dropdown-menu-end shadow">
                 @if(session("usuario.usuario") != "Administrador")
-                    <li><a href="{{ route('update', ['id' => Crypt::encrypt(session('usuario.id'))]) }}" class="dropdown-item border-secondary-subtle border-top">Editar</a></li>
+                    <li>
+                        <a href="{{ route('update', ['id' => Crypt::encrypt(session('usuario.id'))]) }}" class="dropdown-item border-secondary-subtle border-top">
+                            Editar
+                        </a>
+                    </li>
                 @endif
-                    
-                <li><a href="{{ route('logout') }}" class="dropdown-item border-top border-bottom">Sair</a></li>
-                    
+
+                <li>
+                    <a href="{{ route('logout') }}" class="dropdown-item border-top border-bottom">Sair</a>
+                </li>
+
                 @if(session("usuario.usuario") != "Administrador")
-                    <li><a href="{{ route('deletar', ['id' => Crypt::encrypt(session('usuario.id'))]) }}" class="dropdown-item border-secondary-subtle border-bottom">Excluir Conta</a></li>
+                    <li>
+                        <a href="{{ route('deletar', ['id' => Crypt::encrypt(session('usuario.id'))]) }}" class="dropdown-item border-secondary-subtle border-bottom">
+                            Excluir Conta
+                        </a>
+                    </li>
                 @endif
             </ul>
         </div>

@@ -33,7 +33,7 @@
                                         </div>
     
                                         <div class="col mb-1 d-flex justify-content-center align-items-center">
-                                            <button id="importar" class="btn btn-lg btn-info w-100 w-md-auto fs-5 fs-md-1 p-2 p-md-4" type="submit" name="importar">
+                                            <button id="importar" class="btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary" : "btn-info" }} w-100 w-md-auto fs-5 fs-md-1 p-2 p-md-4" type="submit" name="importar">
                                                 IMPORTAR
                                             </button>
                                         </div>
@@ -58,14 +58,14 @@
                                                 <tbody>
                                                     @forelse(session('dadosImportados') as $dados)
                                                         <tr class="text-center">
-                                                            <td class="text-center fw-bold">{{ $loop->iteration }}</td>
-                                                            <td>{{ $dados['nome_completo'] }}</td>
-                                                            <td>{{ $dados['usuario'] }}</td>
-                                                            <td>{{ $dados['email'] }}</td>
-                                                            <td>{{ $dados['data_nascimento'] }}</td>
-                                                            <td>{{ $dados['celular'] }}</td>
-                                                            <td>{{ $dados['genero'] }}</td>
-                                                            <td>
+                                                            <td class="text-center fw-bold border-end">{{ $loop->iteration }}</td>
+                                                            <td class="border-end">{{ $dados['nome_completo'] }}</td>
+                                                            <td class="border-end">{{ $dados['usuario'] }}</td>
+                                                            <td class="border-end">{{ $dados['email'] }}</td>
+                                                            <td class="border-end">{{ $dados['data_nascimento'] }}</td>
+                                                            <td class="border-end">{{ $dados['celular'] }}</td>
+                                                            <td class="border-end">{{ $dados['genero'] }}</td>
+                                                            <td class="border-end">
                                                                 @if(isset($dados['permissao']) && $dados['permissao']==1)
                                                                     <button class="badge bg-success" disabled>SIM</button>
                                                                 @else
@@ -114,7 +114,7 @@
                                     </div>
 
                                     <div class="col mb-1 d-flex justify-content-center align-items-center">
-                                        <button id="exportar" class="btn btn-lg btn-info w-100 fs-5 fs-md-1 p-2 p-md-4" type="submit" name="exportar">
+                                        <button id="exportar" class="btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary" : "btn-info" }} w-100 fs-5 fs-md-1 p-2 p-md-4" type="submit" name="exportar">
                                             EXPORTAR
                                         </button>
                                     </div>
@@ -139,13 +139,13 @@
                                             <tbody>
                                                 @forelse(session('dadosExportados') as $dados)
                                                     <tr class="text-center">
-                                                        <td class="text-center fw-bold">{{ $loop->iteration }}</td>
-                                                        <td>{{ $dados->nome_completo }}</td>
-                                                        <td>{{ $dados->usuario }}</td>
-                                                        <td>{{ $dados->email }}</td>
-                                                        <td>{{ $dados->data_nascimento }}</td>
-                                                        <td>{{ $dados->celular }}</td>
-                                                        <td>{{ $dados->genero }}</td>
+                                                        <td class="text-center fw-bold border-end">{{ $loop->iteration }}</td>
+                                                        <td class="border-end">{{ $dados->nome_completo }}</td>
+                                                        <td class="border-end">{{ $dados->usuario }}</td>
+                                                        <td class="border-end">{{ $dados->email }}</td>
+                                                        <td class="border-end">{{ $dados->data_nascimento }}</td>
+                                                        <td class="border-end">{{ $dados->celular }}</td>
+                                                        <td class="border-end">{{ $dados->genero }}</td>
                                                         <td>
                                                             @if($dados->permissao==1)
                                                                 <button class="badge bg-success" disabled>SIM</button>

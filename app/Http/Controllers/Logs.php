@@ -23,18 +23,36 @@ class Logs
         $usuario->logs()->delete();
 
         if ($usuario) {
+
+            $cor = "info";
+
+            if (session("tema") == "escuro") {
+
+                $cor = "secondary";
+
+            }
+
             return redirect()->back()->withInput()->with("alerta", [
                 "icon" => "success",
                 "title" => "Sucesso!",
                 "text" => "Logs limpos com êxito!",
-                "cor" => "info"
+                "cor" => "$cor"
             ]);
         } else {
+
+            $cor = "danger";
+
+            if (session("tema") == "escuro") {
+
+                $cor = "dark";
+
+            }
+
             return redirect()->back()->withInput()->with("alerta", [
                 "icon" => "error",
                 "title" => "Erro!",
                 "text" => "Falha ao limpar os logs! Tente novamente.",
-                "cor" => "danger"
+                "cor" => "$cor"
             ]);
         }
     }

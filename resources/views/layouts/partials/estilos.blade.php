@@ -21,8 +21,12 @@
         -webkit-overflow-scrolling: touch;
     }
 
-    .opcao:hover {
-        background-color: rgba(0,0,0,.05);
+    .opcao_cyan:hover {
+        background-color: #0dcaf0;
+    }
+
+    .opcao_gray:hover {
+        background-color: #adb5bd;
     }
 
     #cards_efeito {

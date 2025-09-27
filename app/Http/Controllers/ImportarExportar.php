@@ -38,20 +38,38 @@ class ImportarExportar
         $dados_importados = Excel::toCollection(new UsuariosImportar, $request->file("arquivo"));
 
         if ($importar) {
+
+            $cor = "info";
+
+            if (session("tema") == "escuro") {
+
+                $cor = "secondary";
+
+            }
+
             session(["dadosImportados" => $dados_importados[0]]);
 
             return redirect()->back()->withInput()->with("alerta", [
                 "icon" => "success",
                 "title" => "Sucesso!",
                 "text" => "Arquivo importado com sucesso!",
-                "cor" => "info"
+                "cor" => "$cor"
             ]);
         } else {
+
+            $cor = "danger";
+
+            if (session("tema") == "escuro") {
+
+                $cor = "dark";
+
+            }
+
             return redirect()->back()->withInput()->with("alerta", [
                 "icon" => "error",
                 "title" => "Erro!",
                 "text" => "Falha ao tentar importar o arquivo! Tente novamente.",
-                "cor" => "danger"
+                "cor" => "$cor"
             ]);
         }
     }
@@ -88,20 +106,38 @@ class ImportarExportar
         $dados_exportados = Usuario::select("nome_completo", "usuario", "email", "cpf", "data_nascimento", "celular", "genero", "permissao")->get();
 
         if ($exportar) {
+
+            $cor = "info";
+
+            if (session("tema") == "escuro") {
+
+                $cor = "secondary";
+
+            }
+
             session(["dadosExportados" => $dados_exportados]);
 
             return redirect()->back()->withInput()->with("alerta", [
                 "icon" => "success",
                 "title" => "Sucesso!",
                 "text" => "Arquivo exportado com sucesso!",
-                "cor" => "info"
+                "cor" => "$cor"
             ]);
         } else {
+
+            $cor = "danger";
+
+            if (session("tema") == "escuro") {
+
+                $cor = "dark";
+
+            }
+
             return redirect()->back()->withInput()->with("alerta", [
                 "icon" => "error",
                 "title" => "Erro!",
                 "text" => "Falha ao tentar exportar o arquivo! Tente novamente.",
-                "cor" => "danger"
+                "cor" => "$cor"
             ]);
         }
     }

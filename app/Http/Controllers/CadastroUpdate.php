@@ -117,18 +117,36 @@ class CadastroUpdate
         $usuario->save();
 
         if ($usuario) {
+
+            $cor = "info";
+
+            if (session("tema") == "escuro") {
+
+                $cor = "secondary";
+
+            }
+
             return redirect()->route("login")->with("alerta", [
                 "icon" => "success",
                 "title" => "Sucesso!",
                 "text" => "Usuário cadastrado com êxito! Faça login para continuar.",
-                "cor" => "info"
+                "cor" => "$cor"
             ]);
         } else {
+
+            $cor = "danger";
+
+            if (session("tema") == "escuro") {
+
+                $cor = "dark";
+
+            }
+
             return redirect()->back()->withInput()->with("alerta", [
                 "icon" => "error",
                 "title" => "Erro!",
                 "text" => "Erro ao cadastrar o usuário! Tente novamente.",
-                "cor" => "danger"
+                "cor" => "$cor"
             ]);
         }
     }
@@ -235,18 +253,36 @@ class CadastroUpdate
         $usuario->save();
 
         if ($usuario) {
+
+            $cor = "info";
+
+            if (session("tema") == "escuro") {
+
+                $cor = "secondary";
+
+            }
+
             return redirect()->route("home")->with("alerta", [
                 "icon" => "success",
                 "title" => "Sucesso!",
                 "text" => "Usuário atualizado com êxito!",
-                "cor" => "info"
+                "cor" => "$cor"
             ]);
         } else {
+
+            $cor = "danger";
+
+            if (session("tema") == "escuro") {
+
+                $cor = "dark";
+
+            }
+
             return redirect()->back()->withInput()->with("alerta", [
                 "icon" => "error",
                 "title" => "Erro!",
                 "text" => "Falha ao atualizar o usuário! Tente novamente.",
-                "cor" => "danger"
+                "cor" => "$cor"
             ]);
         }
     }

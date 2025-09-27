@@ -32,7 +32,7 @@
                             @if(session("usuario.usuario") == "Administrador")
                                 @forelse($usuarios as $usuario)
                                     <tr>
-                                        <td class="text-center">
+                                        <td class="text-center border-end">
                                             <a href="{{ route("update", ["id" => Crypt::encrypt($usuario->id)]) }}" 
                                             class="btn btn-sm {{ session("tema") == "escuro" ? "btn-secondary" : "btn-primary" }} m-1" 
                                             data-bs-toggle="tooltip" title="Editar usuário">

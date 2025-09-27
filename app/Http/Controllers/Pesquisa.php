@@ -38,11 +38,20 @@ class Pesquisa
     
             return redirect()->back();            
         } else {
+
+            $cor = "danger";
+
+            if (session("tema") == "escuro") {
+
+                $cor = "dark";
+
+            }
+
             return redirect()->back()->withInput()->with("alerta", [
                 "icon" => "error",
                 "title" => "Erro!",
                 "text" => "Falha ao realizar a pesquisa! Tente novamente.",
-                "cor" => "danger"
+                "cor" => "$cor"
             ]);
         }
     }
@@ -65,11 +74,20 @@ class Pesquisa
     
             return redirect()->back();            
         } else {
+
+            $cor = "danger";
+
+            if (session("tema") == "escuro") {
+
+                $cor = "dark";
+
+            }
+
             return redirect()->back()->withInput()->with("alerta", [
                 "icon" => "error",
                 "title" => "Erro!",
                 "text" => "Falha ao realizar a pesquisa! Tente novamente.",
-                "cor" => "danger"
+                "cor" => "$cor"
             ]);
         }
     }
@@ -90,11 +108,20 @@ class Pesquisa
     
             return redirect()->back();            
         } else {
+
+            $cor = "danger";
+
+            if (session("tema") == "escuro") {
+
+                $cor = "dark";
+
+            }
+
             return redirect()->back()->withInput()->with("alerta", [
                 "icon" => "error",
                 "title" => "Erro!",
                 "text" => "Falha ao realizar a pesquisa! Tente novamente.",
-                "cor" => "danger"
+                "cor" => "$cor"
             ]);
         }
     }
@@ -117,11 +144,20 @@ class Pesquisa
     
             return redirect()->back();            
         } else {
+
+            $cor = "danger";
+
+            if (session("tema") == "escuro") {
+
+                $cor = "dark";
+
+            }
+
             return redirect()->back()->withInput()->with("alerta", [
                 "icon" => "error",
                 "title" => "Erro!",
                 "text" => "Falha ao realizar a pesquisa! Tente novamente.",
-                "cor" => "danger"
+                "cor" => "$cor"
             ]);
         }
     }
