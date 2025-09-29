@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Logs;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
-class Pesquisa
+class PesquisarBuscar
 {
     public function pesquisa() {
 
@@ -160,5 +161,16 @@ class Pesquisa
                 "cor" => "$cor"
             ]);
         }
+    }
+
+    public function buscar($cep) {
+        
+        $response = Http::get("https://viacep.com.br/ws/{$cep}/json/");
+
+        if ($response->successful() && !isset($response['erro'])) {
+            return response()->json($response->json());
+        }
+
+        return response()->json(['error' => 'CEP inválido ou não encontrado'], 404);
     }
 }

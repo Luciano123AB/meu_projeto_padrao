@@ -8,7 +8,7 @@ use App\Http\Controllers\ImportarExportar;
 use App\Http\Controllers\LoginLogout;
 use App\Http\Controllers\Logs;
 use App\Http\Controllers\Permissao;
-use App\Http\Controllers\Pesquisa;
+use App\Http\Controllers\PesquisarBuscar;
 use App\Http\Controllers\TabelaCards;
 use App\Http\Controllers\Tema;
 use App\Http\Middleware\VerificarEstaLogado;
@@ -50,15 +50,21 @@ Route::middleware([VerificarNaoEstaLogado::class])->group(function () {
 
     Route::get("/dashboard", [Dashboard::class, "dashboard"])->name("dashboard");
 
-    Route::get("/pesquisa", [Pesquisa::class, "pesquisa"])->name("pesquisa");
+    Route::get("/pesquisa", [PesquisarBuscar::class, "pesquisa"])->name("pesquisa");
 
-    Route::post("/pesquisaUsuario", [Pesquisa::class, "pesquisaUsuario"])->name("pesquisaUsuario");
+    Route::post("/pesquisaUsuario", [PesquisarBuscar::class, "pesquisaUsuario"])->name("pesquisaUsuario");
 
-    Route::post("/pesquisaStatus", [Pesquisa::class, "pesquisaStatus"])->name("pesquisaStatus");
+    Route::post("/pesquisaStatus", [PesquisarBuscar::class, "pesquisaStatus"])->name("pesquisaStatus");
 
-    Route::post("/pesquisaDataNascimento", [Pesquisa::class, "pesquisaDataNascimento"])->name("pesquisaDataNascimento");
+    Route::post("/pesquisaDataNascimento", [PesquisarBuscar::class, "pesquisaDataNascimento"])->name("pesquisaDataNascimento");
 
-    Route::post("/pesquisaDataInicialFinal", [Pesquisa::class, "pesquisaDataInicialFinal"])->name("pesquisaDataInicialFinal");
+    Route::post("/pesquisaDataInicialFinal", [PesquisarBuscar::class, "pesquisaDataInicialFinal"])->name("pesquisaDataInicialFinal");
+
+    Route::get("/cep/{cep}", [PesquisarBuscar::class, 'buscar']);
+
+    Route::get("/endereco", function () {
+        return view("endereco");
+    })->name("buscar");
 
     Route::get("/logs/{id}", [Logs::class, "logs"])->name("logs");
 
