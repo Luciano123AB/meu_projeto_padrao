@@ -29,6 +29,10 @@
         background-color: #adb5bd;
     }
 
+    .bg_gray {
+        background-color: #adb5bd;
+    }
+
     #cards_efeito {
         transition: transform .1s;
     }

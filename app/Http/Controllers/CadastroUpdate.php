@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Logs;
 use App\Models\Usuario;
 use App\Services\Operacoes;
 use Carbon\Carbon;
@@ -153,13 +152,9 @@ class CadastroUpdate
 
     public function update($id) {
 
-        $id_logado = session("usuario.id");
-        $log = new Logs();
-        $log->usuario_id = $id_logado;
-        $log->pagina = "Update";
-        $log->data_hora = date("Y-m-d H:i:s");        
+        $id = session("usuario.id");
 
-        $log->save();
+        Operacoes::salvarLog($id);
 
         $id = Operacoes::decryptId($id);
         $usuario = Usuario::find($id);

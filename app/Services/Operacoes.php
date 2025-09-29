@@ -2,8 +2,10 @@
 
 namespace App\Services;
 
+use App\Models\Logs;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Route;
 
 class Operacoes
 {
@@ -54,5 +56,16 @@ class Operacoes
         }
 
         return $value;
+    }
+
+    public static function salvarLog($id) {
+        
+        $pagina = Route::currentRouteName();
+        $log = new Logs();
+        $log->usuario_id = $id;
+        $log->pagina = "$pagina";
+        $log->data_hora = date("Y-m-d H:i:s");        
+
+        $log->save();
     }
 }

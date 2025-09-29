@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Logs;
 use App\Models\Usuario;
+use App\Services\Operacoes;
 
 class TabelaCards
 {
     public function tabela() {
 
         $id = session("usuario.id");
-        $log = new Logs();
-        $log->usuario_id = $id;
-        $log->pagina = "Tabela";
-        $log->data_hora = date("Y-m-d H:i:s");        
 
-        $log->save();
+        Operacoes::salvarLog($id);
 
         $usuarios = Usuario::all()->whereNull("deleted_at")
                                   ->whereNotInStrict("usuario", "Administrador");
@@ -26,12 +22,8 @@ class TabelaCards
     public function cards() {
 
         $id = session("usuario.id");
-        $log = new Logs();
-        $log->usuario_id = $id;
-        $log->pagina = "Cards";
-        $log->data_hora = date("Y-m-d H:i:s");        
-
-        $log->save();
+        
+        Operacoes::salvarLog($id);
 
         $usuarios = Usuario::all()->whereNull("deleted_at")
                                   ->whereNotInStrict("usuario", "Administrador");

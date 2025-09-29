@@ -6,7 +6,7 @@
     @include("layouts.tema")
 
     <div class="container-fluid px-2 px-md-3">
-        <div class="row flex-nowrap">
+        <div class="row flex-wrap">
             @include("layouts/opcoes")
 
             <div class="col-12 col-md-10 py-3">
@@ -30,16 +30,16 @@
                                                     <h5 class="card-title text-center mb-3">Informações</h5>
                                                     
                                                     <ul class="list-group list-group-flush small">
-                                                        <li class="list-group-item"><strong>Nome:</strong> {{ $usuario->nome_completo }}</li>
-                                                        <li class="list-group-item"><strong>Login:</strong> {{ $usuario->usuario }}</li>
-                                                        <li class="list-group-item"><strong>Email:</strong> {{ $usuario->email }}</li>
-                                                        <li class="list-group-item"><strong>Senha:</strong> *****</li>
-                                                        <li class="list-group-item"><strong>CPF:</strong> ***.***.***-**</li>
-                                                        <li class="list-group-item"><strong>Nascimento:</strong> {{ date("d/m/Y", strtotime($usuario->data_nascimento)) }}</li>
-                                                        <li class="list-group-item"><strong>Celular:</strong> {{ $usuario->celular }}</li>
-                                                        <li class="list-group-item"><strong>Gênero:</strong> {{ $usuario->genero }}</li>
+                                                        <li class="list-group-item"><strong><i class="bi bi-person me-1"></i>Nome:</strong> {{ $usuario->nome_completo }}</li>
+                                                        <li class="list-group-item"><strong><i class="bi bi-person-circle me-1"></i>Login:</strong> {{ $usuario->usuario }}</li>
+                                                        <li class="list-group-item"><strong><i class="bi bi-envelope-at me-1"></i>Email:</strong> {{ $usuario->email }}</li>
+                                                        <li class="list-group-item"><strong><i class="bi bi-key me-1"></i>Senha:</strong> *****</li>
+                                                        <li class="list-group-item"><strong><i class="bi bi-file-earmark-medical me-1"></i>CPF:</strong> ***.***.***-**</li>
+                                                        <li class="list-group-item"><strong><i class="bi bi-calendar-date me-1"></i>Nascimento:</strong> {{ date("d/m/Y", strtotime($usuario->data_nascimento)) }}</li>
+                                                        <li class="list-group-item"><strong><i class="bi bi-telephone me-1"></i>Celular:</strong> {{ $usuario->celular }}</li>
+                                                        <li class="list-group-item"><strong><i class="bi bi-gender-ambiguous me-1"></i>Gênero:</strong> {{ $usuario->genero }}</li>
                                                         <li class="list-group-item">
-                                                            <strong>Permissão:</strong>
+                                                            <strong><i class="bi bi-hand-thumbs-up me-1"></i>Permissão:</strong>
                                                             
                                                             @if($usuario->permissao == 1)
                                                                 <span class="badge bg-success">SIM</span>

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Exports\UsuariosExportar;
 use App\Imports\UsuariosImportar;
-use App\Models\Logs;
 use App\Models\Usuario;
+use App\Services\Operacoes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
@@ -15,12 +15,8 @@ class ImportarExportar
     public function importarExportar() {
 
         $id = session("usuario.id");
-        $log = new Logs();
-        $log->usuario_id = $id;
-        $log->pagina = "Importar / Exportar";
-        $log->data_hora = date("Y-m-d H:i:s");        
-        
-        $log->save();
+
+        Operacoes::salvarLog($id);
 
         return view("importar_exportar");
     }

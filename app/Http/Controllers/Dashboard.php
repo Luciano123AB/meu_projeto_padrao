@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Logs;
 use App\Models\Usuario;
+use App\Services\Operacoes;
 
 class Dashboard
 {
     public function dashboard() {
 
         $id = session("usuario.id");
-        $log = new Logs();
-        $log->usuario_id = $id;
-        $log->pagina = "Dashboard";
-        $log->data_hora = date("Y-m-d H:i:s");        
-        
-        $log->save();
+
+        Operacoes::salvarLog($id);
 
         $usuarios = Usuario::where("usuario", "!=", "Administrador")->get();
         $permitidos = $usuarios->where("permissao", 1)->count();

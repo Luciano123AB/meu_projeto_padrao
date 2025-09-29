@@ -13,6 +13,7 @@ use App\Http\Controllers\TabelaCards;
 use App\Http\Controllers\Tema;
 use App\Http\Middleware\VerificarEstaLogado;
 use App\Http\Middleware\VerificarNaoEstaLogado;
+use App\Services\Operacoes;
 use Illuminate\Support\Facades\Route;
 
 Route::get("/trocarTema", [Tema::class, "trocarTema"])->name("trocarTema");
@@ -63,6 +64,11 @@ Route::middleware([VerificarNaoEstaLogado::class])->group(function () {
     Route::get("/cep/{cep}", [PesquisarBuscar::class, 'buscar']);
 
     Route::get("/endereco", function () {
+        
+        $id = session("usuario.id");
+
+        Operacoes::salvarLog($id);
+
         return view("endereco");
     })->name("buscar");
 

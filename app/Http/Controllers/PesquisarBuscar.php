@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Logs;
 use App\Models\Usuario;
+use App\Services\Operacoes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -12,12 +12,8 @@ class PesquisarBuscar
     public function pesquisa() {
 
         $id = session("usuario.id");
-        $log = new Logs();
-        $log->usuario_id = $id;
-        $log->pagina = "Pesquisa";
-        $log->data_hora = date("Y-m-d H:i:s");        
-        
-        $log->save();
+
+        Operacoes::salvarLog($id);
 
         return view("pesquisa");
     }

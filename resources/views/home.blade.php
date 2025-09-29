@@ -6,7 +6,7 @@
     @include("layouts.tema")
 
     <div class="container-fluid px-2 px-md-3">
-        <div class="row flex-nowrap">
+        <div class="row flex-wrap">
             @include("layouts/opcoes")
 
             <div class="col-12 col-md-10 py-3" style="min-height: 700px">
