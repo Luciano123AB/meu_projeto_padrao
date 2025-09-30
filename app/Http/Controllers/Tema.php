@@ -20,7 +20,7 @@ class Tema
                 session(["tema" => "claro"]);
 
                 return redirect()->back();
-            }            
-        }        
+            }
+        }
     }
 }

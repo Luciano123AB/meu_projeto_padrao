@@ -72,6 +72,12 @@ Route::middleware([VerificarNaoEstaLogado::class])->group(function () {
         return view("endereco");
     })->name("buscar");
 
+    Route::get("/cnpj", function () {
+        return view("endereco"); 
+    })->name("consultar.form");
+
+    Route::post("/cnpj", [PesquisarBuscar::class, "consultar"])->name("consultar");
+
     Route::get("/logs/{id}", [Logs::class, "logs"])->name("logs");
 
     Route::get("/limparLogs/{id}", [Logs::class, "limparLogs"])->name("limparLogs");

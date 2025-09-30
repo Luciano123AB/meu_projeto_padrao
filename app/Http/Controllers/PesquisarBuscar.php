@@ -169,4 +169,35 @@ class PesquisarBuscar
 
         return response()->json(['error' => 'CEP inválido ou não encontrado'], 404);
     }
+
+    public function consultar(Request $request) {
+
+        $cnpj = preg_replace('/\D/', '', $request->cnpj);
+
+        $request->merge(['cnpj' => $cnpj]);
+
+        $request->validate([
+            'cnpj' => 'required|digits:14',
+        ],
+    
+        [
+            "required" => "O campo nome é obrigatório",
+            "digits" => "O campo CNPJ deve ter pelo menos 14 caracteres.",
+        ]);
+
+        try {
+
+            $response = Http::get("https://brasilapi.com.br/api/cnpj/v1/{$request->cnpj}");
+
+            if ($response->failed()) {
+                return back()->withErrors(['cnpj' => 'Não foi possível consultar este CNPJ']);
+            }
+
+            $empresa = $response->json();
+
+            return view('endereco', compact('empresa'));
+        } catch (\Exception $e) {
+            return back()->withErrors(['cnpj' => 'Erro na consulta: ' . $e->getMessage()]);
+        }
+    }
 }
