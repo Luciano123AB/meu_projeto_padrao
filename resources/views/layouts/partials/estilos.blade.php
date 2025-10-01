@@ -22,10 +22,12 @@
     }
 
     .opcao_cyan:hover {
+        transition: background-color 0.4s ease;
         background-color: #0dcaf0;
     }
 
     .opcao_gray:hover {
+        transition: background-color 0.4s ease;
         background-color: #adb5bd;
     }
 
