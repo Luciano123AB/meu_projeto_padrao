@@ -151,10 +151,7 @@ class CadastroUpdate
     }
 
     public function update($id) {
-
-        $id = session("usuario.id");
-
-        Operacoes::salvarLog($id);
+        Operacoes::salvarLog(session("usuario.id"));
 
         $id = Operacoes::decryptId($id);
         $usuario = Usuario::find($id);
