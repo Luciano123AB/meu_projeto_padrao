@@ -29,7 +29,7 @@
                         </thead>
                         
                         <tbody>
-                            @if(session("usuario.usuario") == "Administrador")
+                            @if(session("usuario.usuario") == "Administrador" || session("usuario.permissao") == 1)
                                 @forelse($usuarios as $usuario)
                                     <tr>
                                         <td class="text-center border-end">
