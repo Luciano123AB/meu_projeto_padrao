@@ -25,7 +25,7 @@
 
     @include("layouts.tema")
 
-    <div class="container d-flex justify-content-center align-items-center text-center mb-5" style="min-height: 660px">
+    <div class="container d-flex justify-content-center align-items-center text-center mb-5" style="min-height: 660px; max-width: 660px">
         <form action="{{ route("loginSubmit") }}" id="formulario" class="card border-black shadow w-100 w-md-75 w-lg-50" method="post" novalidate>
             @csrf
 
