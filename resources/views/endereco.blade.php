@@ -73,9 +73,15 @@
                         <div class="mt-3">
                             <i class="bi bi-crosshair2"></i>
 
-                            <label for="link" class="form-label mb-0">Link do Maps:</label>
+                            <label for="link" class="form-label">Link do Maps:</label>
 
-                            <div id="link"></div>
+                            <div class="input-group">
+                                <input type="text" id="link" class="form-control" readonly>
+
+                                <button type="button" id="copiar" class="input-group-text focus-ring focus-ring-secondary" name="copiar" onclick="event.preventDefault(); copiarTexto()" disabled>
+                                    <i class="bi bi-copy"></i>
+                                </button>                                
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -140,7 +146,15 @@
                                 $("#bairro").val(data.bairro ?? "");
                                 $("#cidade").val(data.localidade ?? "");
                                 $("#estado").val(data.uf ?? "");
-                                document.getElementById("link").innerHTML = "<a>https://www.google.com/maps/place/" + data.logradouro + "," + data.bairro + "," + data.localidade + "+" + data.uf + "</a>";
+                                $("#link").val(
+                                    "https://www.google.com/maps/place/" +
+                                    (data.logradouro ?? "") + "," +
+                                    (data.numero ?? "") + "," +
+                                    (data.bairro ?? "") + "," +
+                                    (data.localidade ?? "") + "+" +
+                                    (data.uf ?? "")
+                                );
+                                $("#copiar").prop("disabled", false);
                             } else {
                                 $("#erroCep").removeClass("d-none");
                                 $("#logradouro, #bairro, #cidade, #estado").val("");
