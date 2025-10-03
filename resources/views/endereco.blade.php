@@ -69,6 +69,14 @@
                                 <input type="text" id="estado" class="form-control" readonly disabled>
                             </div>
                         </div>
+
+                        <div class="mt-3">
+                            <i class="bi bi-crosshair2"></i>
+
+                            <label for="link" class="form-label mb-0">Link do Maps:</label>
+
+                            <div id="link"></div>
+                        </div>
                     </div>
                 </div>
                 
@@ -132,6 +140,7 @@
                                 $("#bairro").val(data.bairro ?? "");
                                 $("#cidade").val(data.localidade ?? "");
                                 $("#estado").val(data.uf ?? "");
+                                document.getElementById("link").innerHTML = "<a>https://www.google.com/maps/place/" + data.logradouro + "," + data.bairro + "," + data.localidade + "+" + data.uf + "</a>";
                             } else {
                                 $("#erroCep").removeClass("d-none");
                                 $("#logradouro, #bairro, #cidade, #estado").val("");
