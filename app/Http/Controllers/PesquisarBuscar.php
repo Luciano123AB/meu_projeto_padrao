@@ -159,45 +159,106 @@ class PesquisarBuscar
         }
     }
 
-    public function buscar($cep) {
-        
-        $response = Http::get("https://viacep.com.br/ws/{$cep}/json/");
+    public function endereco() {
 
-        if ($response->successful() && !isset($response['erro'])) {
-            return response()->json($response->json());
+        $id = session("usuario.id");
+
+        Operacoes::salvarLog($id);
+
+        return view("endereco");
+    }
+
+    public function buscar(Request $request) {
+        $request->validate(
+            [
+                "cep" => "required|min:9"
+            ],
+
+            [
+                "cep.required" => "O campo CEP é obrigatório",
+                "cep.min" => "O campo CEP deve ter pelo menos 9 caracteres"
+            ]
+        );
+
+        $cep = $request->input("cep");
+
+        $dados = [
+            'logradouro' => '',
+            'bairro' => '',
+            'cidade' => '',
+            'estado' => '',
+            'link' => '',
+            'erro' => false
+        ];
+
+        if ($cep) {
+
+            $response = Http::get("https://viacep.com.br/ws/{$cep}/json/");
+
+            if ($response->successful() && !isset($response['erro'])) {
+
+                $dados['logradouro'] = $response['logradouro'] ?? '';
+                $dados['bairro'] = $response['bairro'] ?? '';
+                $dados['cidade'] = $response['localidade'] ?? '';
+                $dados['estado'] = $response['uf'] ?? '';
+                $dados['link'] = 'https://www.google.com/maps/place/' . urlencode(
+                    $dados['logradouro'] . ',' . $dados['bairro'] . ',' . $dados['cidade'] . '+' . $dados['estado']
+                );
+
+            } else {
+
+                $dados['erro'] = true;
+
+                return redirect()->back()->withInput()->with("cepInvalido", "Não foi possível encontrar este CEP! Tente novamente");
+            }
         }
 
-        return response()->json(['error' => 'CEP inválido ou não encontrado'], 404);
+        return view('endereco', compact('dados', 'cep'));
     }
 
     public function consultar(Request $request) {
-
-        $cnpj = preg_replace('/\D/', '', $request->cnpj);
-
-        $request->merge(['cnpj' => $cnpj]);
-
         $request->validate([
-            'cnpj' => 'required|digits:14',
+            'cnpj' => 'required|min:18',
         ],
     
         [
-            "required" => "O campo nome é obrigatório",
-            "digits" => "O campo CNPJ deve ter pelo menos 14 caracteres.",
+            "required" => "O campo CNPJ é obrigatório",
+            "min" => "O campo CNPJ deve ter pelo menos 18 caracteres",
         ]);
 
-        try {
+        $cnpj = preg_replace('/\D/', '', $request->input("cnpj"));
 
-            $response = Http::get("https://brasilapi.com.br/api/cnpj/v1/{$request->cnpj}");
+        $dados = [
+            'razao_social' => '',
+            'nome_fantasia' => '',
+            'cnae_fiscal_descricao' => '',
+            'municipio' => '',
+            'uf' => '',
+            'descricao_situacao_cadastral' => '',
+            'erro' => false
+        ];
 
-            if ($response->failed()) {
-                return back()->withErrors(['cnpj' => 'Não foi possível consultar este CNPJ']);
+        if ($cnpj) {
+
+            $response = Http::get("https://brasilapi.com.br/api/cnpj/v1/{$cnpj}");
+
+            if ($response->successful() && !isset($response['erro'])) {
+
+                $dados['razao_social'] = $response['razao_social'] ?? '';
+                $dados['nome_fantasia'] = $response['nome_fantasia'] ?? '';
+                $dados['cnae_fiscal_descricao'] = $response['cnae_fiscal_descricao'] ?? '';
+                $dados['municipio'] = $response['municipio'] ?? '';
+                $dados['uf'] = $response['uf'] ?? '';
+                $dados['descricao_situacao_cadastral'] = $response['descricao_situacao_cadastral'] ?? '';
+
+            } else {
+
+                $dados['erro'] = true;
+
+                return redirect()->back()->withInput()->with("cnpjInvalido", "Não foi possível consultar este CNPJ! Tente novamente");
             }
-
-            $empresa = $response->json();
-
-            return view('endereco', compact('empresa'));
-        } catch (\Exception $e) {
-            return back()->withErrors(['cnpj' => 'Erro na consulta: ' . $e->getMessage()]);
         }
+
+        return view('endereco', compact('dados', 'cnpj'));
     }
 }

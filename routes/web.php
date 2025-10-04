@@ -13,7 +13,6 @@ use App\Http\Controllers\TabelaCards;
 use App\Http\Controllers\Tema;
 use App\Http\Middleware\VerificarEstaLogado;
 use App\Http\Middleware\VerificarNaoEstaLogado;
-use App\Services\Operacoes;
 use Illuminate\Support\Facades\Route;
 
 Route::get("/trocarTema", [Tema::class, "trocarTema"])->name("trocarTema");
@@ -61,22 +60,11 @@ Route::middleware([VerificarNaoEstaLogado::class])->group(function () {
 
     Route::post("/pesquisaDataInicialFinal", [PesquisarBuscar::class, "pesquisaDataInicialFinal"])->name("pesquisaDataInicialFinal");
 
-    Route::get("/cep/{cep}", [PesquisarBuscar::class, 'buscar']);
+    Route::get("/endereco", [PesquisarBuscar::class, "endereco"])->name("endereco");
 
-    Route::get("/endereco", function () {
-        
-        $id = session("usuario.id");
+    Route::get("/cep/{cep}", [PesquisarBuscar::class, "buscar"])->name("buscar");
 
-        Operacoes::salvarLog($id);
-
-        return view("endereco");
-    })->name("buscar");
-
-    Route::get("/cnpj", function () {
-        return view("endereco"); 
-    })->name("consultar.form");
-
-    Route::post("/cnpj", [PesquisarBuscar::class, "consultar"])->name("consultar");
+    Route::get("/cnpj/{cnpj}", [PesquisarBuscar::class, "consultar"])->name("consultar");
 
     Route::get("/logs/{id}", [Logs::class, "logs"])->name("logs");
 
