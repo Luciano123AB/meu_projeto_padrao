@@ -146,15 +146,6 @@ class CadastroUpdate
         }
     }
 
-    public function update($id) {
-        Operacoes::salvarLog(session("usuario.id"));
-
-        $id = Operacoes::decryptId($id);
-        $usuario = Usuario::find($id);
-
-        return view("update", ["usuario" => $usuario]);
-    }
-
     public function updateSubmit(Request $request) {
         $request->validate([
             "nome" => "required|min:1|max:80",

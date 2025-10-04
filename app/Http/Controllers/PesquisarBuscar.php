@@ -3,21 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usuario;
-use App\Services\Operacoes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class PesquisarBuscar
 {
-    public function pesquisa() {
-
-        $id = session("usuario.id");
-
-        Operacoes::salvarLog($id);
-
-        return view("pesquisa");
-    }
-
     public function pesquisaUsuario(Request $request){
         $request->validate([
             "usuario" => "required"
@@ -157,15 +147,6 @@ class PesquisarBuscar
                 "cor" => "$cor"
             ]);
         }
-    }
-
-    public function endereco() {
-
-        $id = session("usuario.id");
-
-        Operacoes::salvarLog($id);
-
-        return view("endereco");
     }
 
     public function buscar(Request $request) {

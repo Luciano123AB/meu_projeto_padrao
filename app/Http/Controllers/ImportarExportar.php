@@ -5,22 +5,12 @@ namespace App\Http\Controllers;
 use App\Exports\UsuariosExportar;
 use App\Imports\UsuariosImportar;
 use App\Models\Usuario;
-use App\Services\Operacoes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ImportarExportar
 {
-    public function importarExportar() {
-
-        $id = session("usuario.id");
-
-        Operacoes::salvarLog($id);
-
-        return view("importar_exportar");
-    }
-
     public function importar(Request $request) {
         $request->validate([
             "arquivo" => "required"

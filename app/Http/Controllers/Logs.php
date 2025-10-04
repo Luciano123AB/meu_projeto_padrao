@@ -7,14 +7,6 @@ use App\Services\Operacoes;
 
 class Logs
 {
-    public function logs($id) {
-
-        $id = Operacoes::decryptId($id);
-        $logs = Usuario::find($id)->logs()->whereNull("deleted_at")->get()->toArray();
-
-        return view("logs", ["logs" => $logs]);
-    }
-
     public function limparLogs($id) {
 
         $id = Operacoes::decryptId($id);
