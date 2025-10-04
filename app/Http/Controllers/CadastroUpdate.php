@@ -9,10 +9,6 @@ use Illuminate\Http\Request;
 
 class CadastroUpdate
 {
-    public function cadastro() {
-        return view("cadastro");
-    }
-
     public function cadastroSubmit(Request $request) {
         $request->validate([
             "nome" => "required|min:1|max:80",
