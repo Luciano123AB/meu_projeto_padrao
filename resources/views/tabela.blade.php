@@ -63,7 +63,7 @@
                                                 {{ $usuario->permissao ? 'SIM' : 'NÃO' }}
                                             </a>
                                         @else
-                                            <span class="badge {{ $usuario->permissao ? 'bg-success' : 'bg-danger' }} p-2">
+                                            <span class="badge {{ $usuario->permissao ? 'bg-success' : 'bg-danger' }} bloqueado p-2">
                                                 {{ $usuario->permissao ? 'SIM' : 'NÃO' }}
                                             </span>
                                         @endif

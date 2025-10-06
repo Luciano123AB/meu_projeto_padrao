@@ -6,12 +6,27 @@ use App\Models\Usuario;
 use App\Services\Boot;
 use App\Services\Operacoes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MainController
 {
     public function login() {
-        if (!session("boot")) {
-            Boot::comandos();
+
+        $banco = null;
+
+        try {
+            DB::connection()->getPdo();
+            $banco = true;
+        } catch (\Exception $e) {
+            $banco = false;
+        }
+        
+        if ($banco == false) {
+            Boot::criarPovoarBanco();
+        }
+
+        if (is_dir(base_path("vendor")) || is_dir(base_path("node_modules"))) {
+            Boot::dependencias();
         }
 
         return view("login");

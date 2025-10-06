@@ -45,8 +45,18 @@
         transform: scale(1.04);
     }
 
+    .user-photo {
+        width: 160px;
+        height: 160px;
+        object-fit: cover;
+    }
+
     .dropdown-menu {
         position: absolute;
         z-index: 2000;
+    }
+
+    .bloqueado:hover {
+        cursor: not-allowed;
     }
 </style>

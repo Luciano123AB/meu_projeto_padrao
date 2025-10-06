@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Artisan;
 
 class Boot
 {
-    public static function comandos() {
+    public static function criarPovoarBanco() {
         Artisan::call("migrate", [
             "--force" => true
         ]);
@@ -16,5 +16,10 @@ class Boot
         ]);
 
         session(["boot" => true]);
+    }
+
+    public static function dependencias() {
+        shell_exec("composer install 2>&1");
+        shell_exec("npm install 2>&1");
     }
 }

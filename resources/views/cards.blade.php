@@ -21,8 +21,7 @@
                                                 <img 
                                                     src="data:image/png;base64,{{ $usuario->foto }}" 
                                                     alt="Foto de {{ $usuario->nome_completo }}" 
-                                                    class="img-fluid rounded-circle border border-black"
-                                                    style="max-height: 160px; object-fit: cover;">
+                                                    class="img-fluid rounded-circle border border-black user-photo">
                                             </div>
 
                                             <div class="col-md-8">

@@ -11,11 +11,17 @@
 
             <div class="col-12 col-md-10 py-3">
                 <div class="mx-2 mx-md-3">
-                    <a href="{{ route('limparLogs', ['id' => Crypt::encrypt(session('usuario.id'))]) }}" 
-                       id="limparLogs" 
-                       class="btn {{ session("tema") == "escuro" ? "btn-secondary" : "btn-info" }} border w-100 w-md-auto fs-5 px-4 py-2 mb-1">
-                        LIMPAR LOGS
-                    </a>
+                    @forelse($logs as $log)
+                        <a href="{{ route('limparLogs', ['id' => Crypt::encrypt(session('usuario.id'))]) }}" 
+                            id="limparLogs" 
+                            class="btn {{ session("tema") == "escuro" ? "btn-secondary" : "btn-info" }} border w-100 w-md-auto fs-5 px-4 py-2 mb-1">
+                            LIMPAR LOGS
+                        </a>
+                    @empty
+                        <button id="limparLogs" class="btn {{ session("tema") == "escuro" ? "btn-secondary" : "btn-info" }} border bloqueado w-100 w-md-auto fs-5 px-4 py-2 mb-1" name="limparLogs">
+                            LIMPAR LOGS
+                        </button>
+                    @endforelse
     
                     <div class="{{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }} border shadow rounded-2 overflow-auto" style="min-height: 750px; max-height: 750px;">
                         <div class="table-responsive">
