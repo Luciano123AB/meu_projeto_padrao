@@ -19,7 +19,6 @@ class Boot
     }
 
     public static function dependencias() {
-        shell_exec("composer install 2>&1");
         shell_exec("npm install 2>&1");
     }
 }
