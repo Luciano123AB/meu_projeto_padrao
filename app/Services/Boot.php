@@ -6,6 +6,20 @@ use Illuminate\Support\Facades\Artisan;
 
 class Boot
 {
+    public static function testarConexao() {
+        
+        $banco = null;
+
+        try {
+            DB::connection()->getPdo();
+            $banco = true;
+        } catch (\Exception $e) {
+            $banco = false;
+        }
+
+        return $banco;
+    }
+    
     public static function criarPovoarBanco() {
         Artisan::call("migrate", [
             "--force" => true
