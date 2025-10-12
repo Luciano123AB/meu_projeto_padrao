@@ -12,14 +12,7 @@ class MainController
 {
     public function login() {
 
-        $banco = null;
-
-        try {
-            DB::connection()->getPdo();
-            $banco = true;
-        } catch (\Exception $e) {
-            $banco = false;
-        }
+        $banco = Boot::testarConexao();
         
         if ($banco == false) {
             Boot::criarPovoarBanco();
