@@ -25,7 +25,7 @@ class MainController
             Boot::criarPovoarBanco();
         }
 
-        if (is_dir(base_path("vendor")) || is_dir(base_path("node_modules"))) {
+        if (!is_dir(base_path("node_modules"))) {
             Boot::dependencias();
         }
 
