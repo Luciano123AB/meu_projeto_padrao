@@ -179,8 +179,8 @@
                                             <td class="text-start border-end">{{ $usuario->nome_completo }}</td>
                                             <td class="border-end">{{ $usuario->usuario }}</td>
                                             <td class="border-end">{{ $usuario->email }}</td>
-                                            <td class="border-end">{{ $usuario->data_nascimento }}</td>
-                                            <td class="border-end">{{ $usuario->created_at }}</td>
+                                            <td class="border-end">{{ date("d/m/Y", strtotime($usuario->data_nascimento)) }}</td>
+                                            <td class="border-end">{{ date("d/m/Y", strtotime($usuario->created_at)) }}</td>
                                             <td class="border-end">{{ $usuario->celular }}</td>
                                             <td class="border-end">{{ $usuario->genero }}</td>
                                             <td>
