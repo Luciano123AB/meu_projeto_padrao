@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 class PesquisarBuscar
@@ -93,7 +94,7 @@ class PesquisarBuscar
         if ($usuarios) {
             session(["resultado" => $usuarios]);
     
-            return redirect()->back();            
+            return redirect()->back();
         } else {
 
             $cor = "danger";
@@ -125,6 +126,87 @@ class PesquisarBuscar
         $dataInicial = \Carbon\Carbon::createFromFormat("d/m/Y", $request->input("data_inicial"))->format("Y-m-d");
         $dataFinal = \Carbon\Carbon::createFromFormat("d/m/Y", $request->input("data_final"))->format("Y-m-d");
         $usuarios = Usuario::whereBetween("data_nascimento", [$dataInicial, $dataFinal])->get();
+
+        if ($usuarios) {
+            session(["resultado" => $usuarios]);
+    
+            return redirect()->back();            
+        } else {
+
+            $cor = "danger";
+
+            if (session("tema") == "escuro") {
+
+                $cor = "dark";
+
+            }
+
+            return redirect()->back()->withInput()->with("alerta", [
+                "icon" => "error",
+                "title" => "Erro!",
+                "text" => "Falha ao realizar a pesquisa! Tente novamente.",
+                "cor" => "$cor"
+            ]);
+        }
+    }
+
+    public function pesquisaMes(Request $request) {
+        $request->validate([
+            "mes" => "required"
+        ], [
+            "mes.required" => "O campo mês é obrigatório"
+        ]);
+
+        $mes = $request->input("mes");
+        $ultimoAno = DB::table("usuarios")
+                       ->selectRaw("YEAR(created_at) as ano")
+                       ->orderByDesc("ano")
+                       ->limit(1)
+                       ->value("ano");
+        $inicio = "$ultimoAno-$mes-01";
+        $fim = date("Y-m-d", strtotime("+1 month", strtotime($inicio)));
+        $usuarios = Usuario::whereBetween("created_at", [$inicio, $fim])->get();
+
+        if ($usuarios) {
+            session(["resultado" => $usuarios]);
+    
+            return redirect()->back();
+        } else {
+            
+            $cor = "danger";
+
+            if (session("tema") == "escuro") {
+
+                $cor = "dark";
+
+            }
+
+            return redirect()->back()->withInput()->with("alerta", [
+                "icon" => "error",
+                "title" => "Erro!",
+                "text" => "Falha ao realizar a pesquisa! Tente novamente.",
+                "cor" => "$cor"
+            ]);
+        }
+    }
+
+    public function pesquisaMesInicialFinal(Request $request){
+        $request->validate([
+            "mes_inicial_cadastros" => "required",
+            "mes_final_cadastros" => "required"
+        ], [
+            "mes_inicial_cadastros.required" => "O campo mês inicial é obrigatória",
+            "mes_final_cadastros.required" => "O campo mês final é obrigatória"
+        ]);
+
+        $mesInicial = $request->input("mes_inicial_cadastros");
+        $mesFinal = $request->input("mes_final_cadastros");
+        $ultimoAno = DB::table("usuarios")
+                       ->selectRaw("YEAR(created_at) as ano")
+                       ->orderByDesc("ano")
+                       ->limit(1)
+                       ->value("ano");
+        $usuarios = Usuario::whereBetween("created_at", ["$ultimoAno/$mesInicial/01", "$ultimoAno/$mesFinal/01"])->get();
 
         if ($usuarios) {
             session(["resultado" => $usuarios]);

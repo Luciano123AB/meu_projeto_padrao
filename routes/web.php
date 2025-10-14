@@ -58,6 +58,10 @@ Route::middleware([VerificarNaoEstaLogado::class])->group(function () {
 
     Route::post("/pesquisaDataInicialFinal", [PesquisarBuscar::class, "pesquisaDataInicialFinal"])->name("pesquisaDataInicialFinal");
 
+    Route::post("/pesquisaMes", [PesquisarBuscar::class, "pesquisaMes"])->name("pesquisaMes");
+
+    Route::post("/pesquisaMesInicialFinal", [PesquisarBuscar::class, "pesquisaMesInicialFinal"])->name("pesquisaMesInicialFinal");
+
     Route::get("/endereco", [MainController::class, "endereco"])->name("endereco");
 
     Route::get("/cep/{cep}", [PesquisarBuscar::class, "buscar"])->name("buscar");

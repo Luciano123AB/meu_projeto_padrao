@@ -6,7 +6,6 @@ use App\Models\Usuario;
 use App\Services\Boot;
 use App\Services\Operacoes;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class MainController
 {
