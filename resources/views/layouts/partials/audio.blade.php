@@ -3,7 +3,7 @@
 </audio>
 
 <a href="{{ route("tocarMusica") }}" id="musica" class="btn {{ session("tema") == "escuro" ? "btn-secondary" : "btn-info" }} border shadow rounded-circle px-3 py-2">
-    <i class="bi {{ session("musica") == "desativado" ? "bi-volume-mute" : "bi-volume-up" }} fs-4"></i>
+    <i class="bi {{ session("musica") == "desativado" ? "bi-volume-up" : "bi-volume-mute" }} fs-4"></i>
 </a>
 
 <script>
