@@ -12,18 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('usuarios', function (Blueprint $table) {
-            $table->id()->autoIncrement();
-            $table->string("nome_completo", 80)->nullable();
-            $table->string("usuario", 30)->nullable();
-            $table->string("email", 100)->nullable();
-            $table->string("senha", 60)->nullable();
-            $table->string("cpf", 14)->nullable();
-            $table->date("data_nascimento", 10)->nullable();
-            $table->string("celular", 14)->nullable();
-            $table->string("genero", 9)->nullable();
-            $table->longText("foto", 13980320);
-            $table->integer("permissao")->default(1)->comment("1 = Administrador, 0 = Usuário Comum");
-            $table->dateTime("ultimo_acesso")->nullable();
+            $table->id()->autoIncrement()->comment("...");
+            $table->string("nome_completo", 80)->nullable()->comment("...");
+            $table->string("usuario", 30)->nullable()->comment("Usuario123ABC");
+            $table->string("email", 100)->nullable()->comment("usuario@gmail.com");
+            $table->string("senha", 60)->nullable()->comment("...");
+            $table->string("cpf", 14)->nullable()->comment("000.000.000-00");
+            $table->date("data_nascimento", 10)->nullable()->comment("00/00/0000");
+            $table->string("celular", 14)->nullable()->comment("(99)99999-9999");
+            $table->string("genero", 9)->nullable()->comment("Masculino | Feminino | Outro");
+            $table->longText("foto", 13980320)->comment("...");
+            $table->integer("permissao")->default(1)->comment("1 = Administrador | 0 = Usuário Comum");
+            $table->dateTime("ultimo_acesso")->nullable()->comment("00/00/0000 00:00:00");
             $table->timestamps();
             $table->softDeletes();
         });

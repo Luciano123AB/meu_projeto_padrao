@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('logs', function (Blueprint $table) {
-            $table->id()->autoIncrement();
-            $table->integer("usuario_id")->nullable();
-            $table->string("pagina", 20)->nullable();
-            $table->dateTime("data_hora")->nullable();
+            $table->id()->autoIncrement()->comment("...");
+            $table->integer("usuario_id")->nullable()->comment("...");
+            $table->string("pagina", 20)->nullable()->comment("...");
+            $table->dateTime("data_hora")->nullable()->comment("00/00/0000 00:00:00");
             $table->timestamps();
             $table->softDeletes();
         });
