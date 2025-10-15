@@ -8,12 +8,14 @@ use App\Http\Controllers\Logs;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\Permissao;
 use App\Http\Controllers\PesquisarBuscar;
-use App\Http\Controllers\Tema;
+use App\Http\Controllers\TemaMusica;
 use App\Http\Middleware\VerificarEstaLogado;
 use App\Http\Middleware\VerificarNaoEstaLogado;
 use Illuminate\Support\Facades\Route;
 
-Route::get("/trocarTema", [Tema::class, "trocarTema"])->name("trocarTema");
+Route::get("/trocarTema", [TemaMusica::class, "trocarTema"])->name("trocarTema");
+
+Route::get("/tocarMusica", [TemaMusica::class, "tocarMusica"])->name("tocarMusica");
 
 Route::middleware([VerificarEstaLogado::class])->group(function () {
     Route::get("/", [MainController::class, "login"])->name("login");
