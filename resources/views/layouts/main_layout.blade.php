@@ -22,7 +22,7 @@
         <br>
         <img style="width: 35px; height: 35px;" class="border border-black shadow me-1" src="{{ asset("assets/images/foto_proprietario.png") }}">
 
-        <label class="text-white align-middle fs-5">Todos os Direitos Reservados: Luciano Eduardo Stefanello da Silva - 2025</label>
+        <label class="text-white align-middle fs-5">© 2025 Meu Projeto Padrão - Todos os direitos reservados: Luciano Eduardo Stefanello da Silva</label>
     </footer>
     
     @include("layouts.partials.funcoes")
