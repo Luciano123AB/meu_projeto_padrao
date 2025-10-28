@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class MainController
 {
-    public function login() {
+    public function login(): View {
 
         $banco = Boot::testarConexao();
         
@@ -24,11 +24,11 @@ class MainController
         return view("login");
     }
     
-    public function cadastro() {
+    public function cadastro(): View {
         return view("cadastro");
     }
 
-    public function update($id) {
+    public function update($id): View {
         Operacoes::salvarLog(session("usuario.id"));
 
         $id = Operacoes::decryptId($id);
@@ -37,7 +37,7 @@ class MainController
         return view("update", ["usuario" => $usuario]);
     }
 
-    public function home() {
+    public function home(): View {
 
         $id = session("usuario.id");
 
@@ -46,7 +46,7 @@ class MainController
         return view("home");
     }
 
-    public function tabela() {
+    public function tabela(): View {
 
         $id = session("usuario.id");
 
@@ -58,7 +58,7 @@ class MainController
         return view("tabela", ["usuarios" => $usuarios]);
     }
 
-    public function cards() {
+    public function cards(): View {
 
         $id = session("usuario.id");
         
@@ -70,7 +70,7 @@ class MainController
         return view("cards", ["usuarios" => $usuarios]);
     }
 
-    public function dashboard() {
+    public function dashboard(): View {
 
         $id = session("usuario.id");
 
@@ -92,7 +92,7 @@ class MainController
         ]);
     }
 
-    public function logs($id) {
+    public function logs($id): View {
 
         $id = Operacoes::decryptId($id);
         $logs = Usuario::find($id)->logs()->whereNull("deleted_at")->get()->toArray();
@@ -100,7 +100,7 @@ class MainController
         return view("logs", ["logs" => $logs]);
     }
 
-    public function pesquisa() {
+    public function pesquisa(): View {
 
         $id = session("usuario.id");
 
@@ -109,7 +109,7 @@ class MainController
         return view("pesquisa");
     }
 
-    public function endereco() {
+    public function endereco(): View {
 
         $id = session("usuario.id");
 
@@ -118,7 +118,7 @@ class MainController
         return view("endereco");
     }
 
-    public function importarExportar() {
+    public function importarExportar(): View {
 
         $id = session("usuario.id");
 
