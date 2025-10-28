@@ -14,15 +14,14 @@ use App\Http\Middleware\VerificarNaoEstaLogado;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("/")->group(function () {
-    Route::get("/trocarTema", [TemaMusica::class, "trocarTema"])->name("trocarTema");
+    Route::get("trocarTema", [TemaMusica::class, "trocarTema"])->name("trocarTema");
 
-    Route::get("/tocarMusica", [TemaMusica::class, "tocarMusica"])->name("tocarMusica");
+    Route::get("tocarMusica", [TemaMusica::class, "tocarMusica"])->name("tocarMusica");
 });
     
 Route::middleware([VerificarEstaLogado::class])->group(function () {
-    Route::get("/", [MainController::class, "login"])->name("login");
-
     Route::prefix("/")->group(function () {
+        Route::get("", [MainController::class, "login"])->name("login");
         Route::post("loginSubmit", [LoginLogout::class, "loginSubmit"])->name("loginSubmit");
 
         Route::get("cadastro", [MainController::class, "cadastro"])->name("cadastro");
