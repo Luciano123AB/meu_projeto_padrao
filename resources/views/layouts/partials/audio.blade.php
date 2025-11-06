@@ -7,6 +7,7 @@
 </a>
 
 <script>
+    
     const audio = document.getElementById("trilha_sonora");
 
     @if(session("musica") === "desativado")
