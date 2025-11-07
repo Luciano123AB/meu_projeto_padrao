@@ -25,6 +25,7 @@ class Boot
         Artisan::call("migrate", [
             "--force" => true
         ]);
+        
         Artisan::call("db:seed", [
             "--class" => "UsuariosTableSeeder",
             "--force" => true
