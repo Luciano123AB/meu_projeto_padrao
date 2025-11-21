@@ -85,7 +85,7 @@ class CadastroUpdate
             $foto_conteudo = file_get_contents($foto_escolhida->getRealPath());
 
             if (!$foto_conteudo) {
-                return redirect()->back()->withInput()->with("fotoErro", "Não foi possível carregar esta foto");
+                return redirect()->back()->withInput()->with("fotoErro", "Não foi possível carregar esta foto. Tente novamente");
             }
 
             $foto = base64_encode($foto_conteudo);
