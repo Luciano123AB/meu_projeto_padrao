@@ -10,8 +10,7 @@ class Logs
 {
     public function limparLogs($id): RedirectResponse {
 
-        $id = Operacoes::decryptId($id);
-        $usuario = Usuario::find($id);
+        $usuario = Usuario::find(Operacoes::decryptId($id));
 
         $usuario->logs()->delete();
 

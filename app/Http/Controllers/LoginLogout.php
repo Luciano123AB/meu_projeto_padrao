@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Usuario;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class LoginLogout
 {
@@ -24,29 +24,21 @@ class LoginLogout
             "senha.max" => "O campo senha deve ter no máximo 64 caracteres"
         ]);
 
-        $usuarioInserido = $request->input("usuario");
-        $senha = $request->input("senha");
-
-        $usuario = Usuario::where("usuario", $usuarioInserido)
+        $usuario = Usuario::where("usuario", $request->input("usuario"))
                     ->where("deleted_at", NULL)->first();
 
         if (!$usuario) {
             return redirect()->back()->withInput()->with("usuarioErro", "Usuário não encontrado");
         }
 
-        if (!password_verify($senha, $usuario->senha)) {
+        if (!password_verify($request->input("senha"), $usuario->senha)) {
             return redirect()->back()->withInput()->with("senhaErro", "Senha incorreta");
         }
 
         $usuario->ultimo_acesso = date("Y-m-d H:i:s");
         $usuario->save();
 
-        session(["usuario" => [
-            "id" => $usuario->id,
-            "usuario" => $usuario->usuario,
-            "foto" => $usuario->foto,
-            "permissao" => $usuario->permissao
-        ]]);
+        Auth::login($usuario);
 
         return redirect()->route("home")->with("alertaOiTchau", [
             "title" => "Hello Sr.(ª) $usuario->usuario!",
@@ -54,16 +46,17 @@ class LoginLogout
         ]);;
     }
 
-    public function logout(): RedirectResponse {
+    public function logout(Request $request): RedirectResponse {
 
-        $id = session("usuario.id");
-        $usuario = session("usuario.usuario");
-        $logs = Usuario::find($id)->logs();
+        $usuario = Auth::user()->usuario;
+        $logs = Usuario::find(Auth::user()->id)->logs();
 
         $logs->delete();
-        DB::statement("ALTER TABLE logs AUTO_INCREMENT = 1");
 
-        session()->forget("usuario");
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
         return redirect()->route("login")->with("alertaOiTchau", [
             "title" => "Até Mais Sr.(ª) $usuario!",

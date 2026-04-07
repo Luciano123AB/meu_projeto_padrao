@@ -7,6 +7,7 @@ use App\Services\Operacoes;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CadastroUpdate
 {
@@ -15,7 +16,7 @@ class CadastroUpdate
             "nome" => "required|min:1|max:80",
             "usuario" => "required|min:6|max:30",
             "email" => "required|email",
-            "senha" => "required|min:8|max:64",
+            "senha" => "required|min:8|max:64|regex:/(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/",
             "confirmar_senha" => "required|same:senha",
             "cpf" => "required",
             "data" => "required",
@@ -36,6 +37,7 @@ class CadastroUpdate
             "senha.required" => "O campo senha é obrigatório",
             "senha.min" => "O campo senha deve ter pelo menos 8 caracteres",
             "senha.max" => "O campo senha deve ter no máximo 64 caracteres",
+            "senha.regex" => "A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula e um número.",
             "confirmar_senha.required" => "O campo confirmar senha é obrigatório",
             "confirmar_senha.same" => "As senhas não coincidem.",
             "cpf.required" => "O campo CPF é obrigatório",
@@ -46,13 +48,10 @@ class CadastroUpdate
             "foto.max" => "O campo foto deve ter no máximo 10MB"
         ]);
 
-        $nome = $request->input("nome");
         $nome_usuario = $request->input("usuario");
         $email = $request->input("email");
         $cpf = $request->input("cpf");
-        $dataNascimento = Carbon::createFromFormat("d/m/Y", $request->input("data"))->format("Y-m-d");
         $celular = $request->input("celular");
-        $genero = $request->input("genero");
         $foto_escolhida = $request->file("foto");
 
         if (!Operacoes::validarCPF($cpf)) {
@@ -70,11 +69,7 @@ class CadastroUpdate
         }
 
         if ($foto_escolhida && $foto_escolhida->isValid()) {
-
-            $foto_tamanho = $foto_escolhida->getSize();
-            $tamanho_maximo = 10485760;
-
-            if ($foto_tamanho > $tamanho_maximo) {
+            if ($foto_escolhida->getSize() > 10485760) {
                 return redirect()->back()->withInput()->with("fotoTamanho", "Essa foto é muito grande");
             }
 
@@ -93,14 +88,14 @@ class CadastroUpdate
         }
 
         $usuario = new Usuario();
-        $usuario->nome_completo = $nome;
+        $usuario->nome_completo = $request->input("nome");
         $usuario->usuario = $nome_usuario;
         $usuario->email = $email;
         $usuario->senha = bcrypt($request->input("senha"));
         $usuario->cpf = $cpf;
-        $usuario->data_nascimento = $dataNascimento;
+        $usuario->data_nascimento = Carbon::createFromFormat("d/m/Y", $request->input("data"))->format("Y-m-d");
         $usuario->celular = $celular;
-        $usuario->genero = $genero;
+        $usuario->genero = $request->input("genero");
         $usuario->foto = $foto;
         $usuario->permissao = 0;
         $usuario->ultimo_acesso = null;
@@ -146,8 +141,6 @@ class CadastroUpdate
             "nome" => "required|min:1|max:80",
             "usuario" => "required|min:6|max:30",
             "email" => "required|email",
-            "senha" => "required|min:8|max:64",
-            "confirmar_senha" => "required",
             "celular" => "required|min:14",
             "foto" => "max:10485760"
         ],
@@ -161,27 +154,16 @@ class CadastroUpdate
             "usuario.max" => "O campo usuário deve ter no máximo 30 caracteres",
             "email.required" => "O campo email é obrigatório",
             "email.email" => "O campo email deve ser um endereço de email válido",
-            "senha.required" => "O campo senha é obrigatório",
-            "senha.min" => "O campo senha deve ter pelo menos 8 caracteres",
-            "senha.max" => "O campo senha deve ter no máximo 64 caracteres",
-            "confirmar_senha.required" => "O campo confirmar senha é obrigatório",
             "celular.required" => "O campo celular é obrigatório",
             "celular.min" => "O campo celular deve ter pelo menos 14 caracteres",
             "foto.max" => "O campo foto deve ter no máximo 10MB"
         ]);
 
         $id = Operacoes::decryptId($request->input("id"));
-        $nome = $request->input("nome");
         $nome_usuario = $request->input("usuario");
         $email = $request->input("email");
-        $senha = $request->input("senha");
-        $confirmarSenha = $request->input("confirmar_senha");
         $celular = $request->input("celular");
         $foto_escolhida = $request->file("foto");
-
-        if ($senha !== $confirmarSenha) {
-            return redirect()->back()->withInput()->with("senhaErro", "As senhas não coincidem");
-        }
 
         $usuario_existe = Usuario::where('id', '!=', $id)->where(function ($query) use ($nome_usuario, $email, $celular) {
                            $query->where('usuario', $nome_usuario)
@@ -195,11 +177,7 @@ class CadastroUpdate
         $usuario = Usuario::find($id);        
 
         if ($foto_escolhida && $foto_escolhida->isValid()) {
-
-            $foto_tamanho = $foto_escolhida->getSize();
-            $tamanho_maximo = 10485760;
-
-            if ($foto_tamanho > $tamanho_maximo) {
+            if ($foto_escolhida->getSize() > 10485760) {
                 return redirect()->back()->withInput()->with("fotoTamanho", "Essa foto é muito grande");
             }
 
@@ -217,10 +195,9 @@ class CadastroUpdate
 
         }
 
-        $usuario->nome_completo = $nome;
+        $usuario->nome_completo = $request->input("nome");
         $usuario->usuario = $nome_usuario;
         $usuario->email = $email;
-        $usuario->senha = bcrypt($senha);
         $usuario->celular = $celular;
         $usuario->foto = $foto;
         $usuario->updated_at = date("Y-m-d H:i:s");
@@ -256,6 +233,72 @@ class CadastroUpdate
             "icon" => "error",
             "title" => "Erro!",
             "text" => "Falha ao atualizar o usuário! Tente novamente.",
+            "cor" => "$cor"
+        ]);
+    }
+
+    public function mudarSenhaSubmit(Request $request): RedirectResponse {
+        $request->validate([
+            "senha_atual" => "required",
+            "nova_senha" => "required|min:8|max:64|regex:/(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/",
+            "confirmar_senha" => "required|same:nova_senha"
+        ],
+        
+        [
+            "senha_atual.required" => "O campo senha atual é obrigatório",
+            "nova_senha.required" => "O campo senha é obrigatório",
+            "nova_senha.min" => "O campo senha deve ter pelo menos 8 caracteres",
+            "nova_senha.max" => "O campo senha deve ter no máximo 64 caracteres",
+            "nova_senha.regex" => "A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula e um número.",
+            "confirmar_senha.required" => "O campo confirmar senha é obrigatório",
+            "confirmar_senha.same" => "As senhas não coincidem"
+        ]);
+
+        $senha = $request->input("senha_atual");
+        $senha_inesistente = Usuario::where("id", "==", Auth::user()->id)
+                                    ->where("senha", $senha)
+                                    ->first();
+
+        if (!$senha_inesistente) {
+            return redirect()->back()->withInput()->with("senhaInvalida", "A senha atual está incorreta");
+        }
+
+        $usuario = Usuario::find(Auth::user()->id);
+
+        $usuario->senha = bcrypt($request->input("nova_senha"));
+        $usuario->updated_at = date("Y-m-d H:i:s");
+        $usuario->save();
+
+        if ($usuario) {
+
+            $cor = "info";
+
+            if (session("tema") == "escuro") {
+
+                $cor = "secondary";
+
+            }
+
+            return redirect()->route("home")->with("alerta", [
+                "icon" => "success",
+                "title" => "Sucesso!",
+                "text" => "Senha atualizada com êxito!",
+                "cor" => "$cor"
+            ]);
+        }
+
+        $cor = "danger";
+
+        if (session("tema") == "escuro") {
+
+            $cor = "dark";
+
+        }
+
+        return redirect()->back()->withInput()->with("alerta", [
+            "icon" => "error",
+            "title" => "Erro!",
+            "text" => "Falha ao atualizar a senha! Tente novamente.",
             "cor" => "$cor"
         ]);
     }

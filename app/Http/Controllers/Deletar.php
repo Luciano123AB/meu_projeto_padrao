@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Usuario;
 use App\Services\Operacoes;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class Deletar
 {
     public function deletar($id): RedirectResponse {
 
-        $id = Operacoes::decryptId($id);
-        $usuario = Usuario::find($id);
+        $usuario = Usuario::find(Operacoes::decryptId($id));
 
         session(["id" => $usuario->id]);
 
@@ -37,16 +37,15 @@ class Deletar
 
     public function deletarConfirmar($id): RedirectResponse {
 
-        $usuario = Usuario::find($id);
+        $usuario = Usuario::find(Operacoes::decryptId($id));
 
         $usuario->delete();
+
         session()->forget("id");
 
         if ($usuario) {
-            if (session("usuario.usuario") == $usuario->usuario) {
-                session()->forget("usuario");
-
-                return redirect()->route("login");
+            if (Auth::user()->usuario == $usuario->usuario) {
+                return redirect()->route("logout");
             } else {
 
                 $cor = "info";

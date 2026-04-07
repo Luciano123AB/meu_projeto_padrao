@@ -9,9 +9,7 @@
 
     @include("layouts.partials.links")
     
-    @include("layouts.partials.estilos")
-
-    @include("layouts.partials.scripts")
+    @include("layouts.partials.styles.estilos")
     @vite([
         'resources/css/app.css',
         'resources/js/app.js'
@@ -30,6 +28,6 @@
         <label class="text-white align-middle fs-5">© 2025 - {{ date("Y") }} {{ env("APP_NAME") }} / Todos os direitos reservados: Luciano Eduardo Stefanello da Silva</label>
     </footer>
     
-    @include("layouts.partials.funcoes")
+    @include("layouts.partials.scripts.scripts")
 </body>
 </html>

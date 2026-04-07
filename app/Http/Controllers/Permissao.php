@@ -10,8 +10,7 @@ class Permissao
 {
     public function permissao($id): RedirectResponse {
         
-        $id = Operacoes::decryptId($id);
-        $usuario = Usuario::find($id);
+        $usuario = Usuario::find(Operacoes::decryptId($id));
 
         session(["id" => $usuario->id]);
 

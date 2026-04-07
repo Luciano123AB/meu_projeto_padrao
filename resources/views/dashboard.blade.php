@@ -3,7 +3,7 @@
 @section("content")
     @include("layouts/navbar_logado")
 
-    @include("layouts.tema")
+    @include("layouts.subnavbar")
 
     <div class="container-fluid px-2 px-md-3">
         <div class="row flex-wrap">

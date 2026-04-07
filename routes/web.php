@@ -8,15 +8,13 @@ use App\Http\Controllers\Logs;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\Permissao;
 use App\Http\Controllers\PesquisarBuscar;
-use App\Http\Controllers\TemaMusica;
+use App\Http\Controllers\Tema;
 use App\Http\Middleware\VerificarEstaLogado;
 use App\Http\Middleware\VerificarNaoEstaLogado;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("/")->group(function () {
-    Route::get("trocarTema", [TemaMusica::class, "trocarTema"])->name("trocarTema");
-
-    Route::get("tocarMusica", [TemaMusica::class, "tocarMusica"])->name("tocarMusica");
+    Route::get("trocarTema", [Tema::class, "trocarTema"])->name("trocarTema");
     
     Route::middleware([VerificarEstaLogado::class])->group(function () {
         Route::get("", [MainController::class, "login"])->name("login");
@@ -33,6 +31,9 @@ Route::prefix("/")->group(function () {
 
         Route::get("update/{id}", [MainController::class, "update"])->name("update");
         Route::post("updateSubmit", [CadastroUpdate::class, "updateSubmit"])->name("updateSubmit");
+
+        Route::get("mudar_senha", [MainController::class, "mudarSenha"])->name("mudar_senha");
+        Route::post("mudar_senha_submit", [CadastroUpdate::class, "mudarSenhaSubmit"])->name("mudar_senha_submit");
 
         Route::get("deletar/{id}", [Deletar::class, "deletar"])->name("deletar");
         Route::get("deletarConfirmar/{id}", [Deletar::class, "deletarConfirmar"])->name("deletarConfirmar");

@@ -21,10 +21,7 @@ class ImportarExportar
             "arquivo.required" => "O campo arquivo é obrigatório",
         ]);
 
-        $importar = Excel::import(new UsuariosImportar, $request->file("arquivo"));
-        $dados_importados = Excel::toCollection(new UsuariosImportar, $request->file("arquivo"));
-
-        if ($importar) {
+        if (Excel::import(new UsuariosImportar, $request->file("arquivo"))) {
 
             $cor = "info";
 
@@ -34,7 +31,7 @@ class ImportarExportar
 
             }
 
-            session(["dadosImportados" => $dados_importados[0]]);
+            session(["dadosImportados" => Excel::toCollection(new UsuariosImportar, $request->file("arquivo"))[0]]);
 
             return redirect()->back()->withInput()->with("alerta", [
                 "icon" => "success",
@@ -68,17 +65,16 @@ class ImportarExportar
         [
             "formato.required" => "O campo formato é obrigatório",
         ]);
-        
-        $formato = $request->input("formato");
 
-        if ($formato == "Excel") {
+        if ($request->input("formato") == "Excel") {
+
             $exportar = Excel::store(new UsuariosExportar, "excels/usuarios.xlsx", "public");
+
         } else {
 
-            $usuarios = Usuario::all();
             $pdf = app("dompdf.wrapper");
 
-            $pdf->loadView("tabela", compact("usuarios"));
+            $pdf->loadView("tabela", compact(Usuario::all()));
 
             Storage::disk("public")->makeDirectory("pdfs");
 
@@ -88,8 +84,6 @@ class ImportarExportar
             
             $exportar = response()->download($caminho);
         }
-
-        $dados_exportados = Usuario::select("nome_completo", "usuario", "email", "cpf", "data_nascimento", "celular", "genero", "permissao")->get();
 
         if ($exportar) {
 
@@ -101,7 +95,7 @@ class ImportarExportar
 
             }
 
-            session(["dadosExportados" => $dados_exportados]);
+            session(["dadosExportados" => Usuario::select("nome_completo", "usuario", "email", "cpf", "data_nascimento", "celular", "genero", "permissao")->get()]);
 
             return redirect()->back()->withInput()->with("alerta", [
                 "icon" => "success",

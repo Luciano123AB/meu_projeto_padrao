@@ -3,7 +3,7 @@
 @section("content")
     @include("layouts/navbar_logado")
 
-    @include("layouts.tema")
+    @include("layouts.subnavbar")
 
     <div class="container-fluid px-2 px-md-3">
         <div class="row flex-wrap">
@@ -32,7 +32,7 @@
                             @forelse($usuarios as $usuario)
                                 <tr>
                                     <td class="text-center border-end">
-                                        @if(session("usuario.usuario") == "Administrador" || session("usuario.permissao") == 1)
+                                        @if(Auth::user()->usuario == "Administrador" || Auth::user()->permissao == 1)
                                             <a href="{{ route("update", ["id" => Crypt::encrypt($usuario->id)]) }}" 
                                             class="btn btn-sm {{ session("tema") == "escuro" ? "btn-secondary" : "btn-primary" }} m-1" 
                                             data-bs-toggle="tooltip" title="Editar usuário">
@@ -57,7 +57,7 @@
                                     <td class="text-center border-end">{{ $usuario->celular }}</td>
                                     <td class="text-center border-end">{{ $usuario->genero }}</td>
                                     <td class="text-center">
-                                        @if(session("usuario.usuario") == "Administrador")
+                                        @if(Auth::user()->usuario == "Administrador")
                                             <a href="{{ route("permissao", ["id" => Crypt::encrypt($usuario->id)]) }}" 
                                             class="badge {{ $usuario->permissao ? 'bg-success' : 'bg-danger' }} p-2 text-decoration-none">
                                                 {{ $usuario->permissao ? 'SIM' : 'NÃO' }}
