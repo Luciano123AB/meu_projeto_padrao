@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usuario;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class LoginLogout
 {
-    public function loginSubmit(Request $request) {
+    public function loginSubmit(Request $request): RedirectResponse {
         $request->validate([
             "usuario" => "required|min:6|max:30",
             "senha" => "required|min:8|max:64"
@@ -53,7 +54,7 @@ class LoginLogout
         ]);;
     }
 
-    public function logout() {
+    public function logout(): RedirectResponse {
 
         $id = session("usuario.id");
         $usuario = session("usuario.usuario");

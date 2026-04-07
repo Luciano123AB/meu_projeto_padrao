@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Exports\UsuariosExportar;
 use App\Imports\UsuariosImportar;
 use App\Models\Usuario;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ImportarExportar
 {
-    public function importar(Request $request) {
+    public function importar(Request $request): RedirectResponse {
         $request->validate([
             "arquivo" => "required"
         ],
@@ -41,26 +42,25 @@ class ImportarExportar
                 "text" => "Arquivo importado com sucesso!",
                 "cor" => "$cor"
             ]);
-        } else {
-
-            $cor = "danger";
-
-            if (session("tema") == "escuro") {
-
-                $cor = "dark";
-
-            }
-
-            return redirect()->back()->withInput()->with("alerta", [
-                "icon" => "error",
-                "title" => "Erro!",
-                "text" => "Falha ao tentar importar o arquivo! Tente novamente.",
-                "cor" => "$cor"
-            ]);
         }
+
+        $cor = "danger";
+
+        if (session("tema") == "escuro") {
+
+            $cor = "dark";
+
+        }
+
+        return redirect()->back()->withInput()->with("alerta", [
+            "icon" => "error",
+            "title" => "Erro!",
+            "text" => "Falha ao tentar importar o arquivo! Tente novamente.",
+            "cor" => "$cor"
+        ]);        
     }
 
-    public function exportar(Request $request) {
+    public function exportar(Request $request): RedirectResponse {
         $request->validate([
             "formato" => "required"
         ],
@@ -109,22 +109,21 @@ class ImportarExportar
                 "text" => "Arquivo exportado com sucesso!",
                 "cor" => "$cor"
             ]);
-        } else {
-
-            $cor = "danger";
-
-            if (session("tema") == "escuro") {
-
-                $cor = "dark";
-
-            }
-
-            return redirect()->back()->withInput()->with("alerta", [
-                "icon" => "error",
-                "title" => "Erro!",
-                "text" => "Falha ao tentar exportar o arquivo! Tente novamente.",
-                "cor" => "$cor"
-            ]);
         }
+
+        $cor = "danger";
+
+        if (session("tema") == "escuro") {
+
+            $cor = "dark";
+
+        }
+
+        return redirect()->back()->withInput()->with("alerta", [
+            "icon" => "error",
+            "title" => "Erro!",
+            "text" => "Falha ao tentar exportar o arquivo! Tente novamente.",
+            "cor" => "$cor"
+        ]);
     }
 }

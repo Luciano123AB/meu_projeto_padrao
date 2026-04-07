@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usuario;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\View\View;
 
 class PesquisarBuscar
 {
-    public function pesquisaUsuario(Request $request){
+    public function pesquisaUsuario(Request $request): RedirectResponse {
         $request->validate([
             "usuario" => "required"
         ],
@@ -25,26 +27,25 @@ class PesquisarBuscar
             session(["resultado" => $usuarios]);
     
             return redirect()->back();            
-        } else {
-
-            $cor = "danger";
-
-            if (session("tema") == "escuro") {
-
-                $cor = "dark";
-
-            }
-
-            return redirect()->back()->withInput()->with("alerta", [
-                "icon" => "error",
-                "title" => "Erro!",
-                "text" => "Falha ao realizar a pesquisa! Tente novamente.",
-                "cor" => "$cor"
-            ]);
         }
+
+        $cor = "danger";
+
+        if (session("tema") == "escuro") {
+
+            $cor = "dark";
+
+        }
+
+        return redirect()->back()->withInput()->with("alerta", [
+            "icon" => "error",
+            "title" => "Erro!",
+            "text" => "Falha ao realizar a pesquisa! Tente novamente.",
+            "cor" => "$cor"
+        ]);
     }
 
-    public function pesquisaStatus(Request $request){
+    public function pesquisaStatus(Request $request): RedirectResponse {
         $request->validate([
             "permissao" => "required"
         ],
@@ -61,26 +62,25 @@ class PesquisarBuscar
             session(["resultado" => $usuarios]);
     
             return redirect()->back();            
-        } else {
-
-            $cor = "danger";
-
-            if (session("tema") == "escuro") {
-
-                $cor = "dark";
-
-            }
-
-            return redirect()->back()->withInput()->with("alerta", [
-                "icon" => "error",
-                "title" => "Erro!",
-                "text" => "Falha ao realizar a pesquisa! Tente novamente.",
-                "cor" => "$cor"
-            ]);
         }
+
+        $cor = "danger";
+
+        if (session("tema") == "escuro") {
+
+            $cor = "dark";
+
+        }
+
+        return redirect()->back()->withInput()->with("alerta", [
+            "icon" => "error",
+            "title" => "Erro!",
+            "text" => "Falha ao realizar a pesquisa! Tente novamente.",
+            "cor" => "$cor"
+        ]);
     }
 
-    public function pesquisaDataNascimento(Request $request){
+    public function pesquisaDataNascimento(Request $request): RedirectResponse {
         $request->validate([
             "data" => "required"
         ], [
@@ -95,26 +95,25 @@ class PesquisarBuscar
             session(["resultado" => $usuarios]);
     
             return redirect()->back();
-        } else {
-
-            $cor = "danger";
-
-            if (session("tema") == "escuro") {
-
-                $cor = "dark";
-
-            }
-
-            return redirect()->back()->withInput()->with("alerta", [
-                "icon" => "error",
-                "title" => "Erro!",
-                "text" => "Falha ao realizar a pesquisa! Tente novamente.",
-                "cor" => "$cor"
-            ]);
         }
+
+        $cor = "danger";
+
+        if (session("tema") == "escuro") {
+
+            $cor = "dark";
+
+        }
+
+        return redirect()->back()->withInput()->with("alerta", [
+            "icon" => "error",
+            "title" => "Erro!",
+            "text" => "Falha ao realizar a pesquisa! Tente novamente.",
+            "cor" => "$cor"
+        ]);
     }
 
-    public function pesquisaDataInicialFinal(Request $request){
+    public function pesquisaDataInicialFinal(Request $request): RedirectResponse {
         $request->validate([
             "data_inicial" => "required",
             "data_final" => "required"
@@ -131,26 +130,25 @@ class PesquisarBuscar
             session(["resultado" => $usuarios]);
     
             return redirect()->back();            
-        } else {
-
-            $cor = "danger";
-
-            if (session("tema") == "escuro") {
-
-                $cor = "dark";
-
-            }
-
-            return redirect()->back()->withInput()->with("alerta", [
-                "icon" => "error",
-                "title" => "Erro!",
-                "text" => "Falha ao realizar a pesquisa! Tente novamente.",
-                "cor" => "$cor"
-            ]);
         }
+
+        $cor = "danger";
+
+        if (session("tema") == "escuro") {
+
+            $cor = "dark";
+
+        }
+
+        return redirect()->back()->withInput()->with("alerta", [
+            "icon" => "error",
+            "title" => "Erro!",
+            "text" => "Falha ao realizar a pesquisa! Tente novamente.",
+            "cor" => "$cor"
+        ]);
     }
 
-    public function pesquisaMes(Request $request) {
+    public function pesquisaMes(Request $request): RedirectResponse {
         $request->validate([
             "mes" => "required"
         ], [
@@ -171,26 +169,25 @@ class PesquisarBuscar
             session(["resultado" => $usuarios]);
     
             return redirect()->back();
-        } else {
-            
-            $cor = "danger";
-
-            if (session("tema") == "escuro") {
-
-                $cor = "dark";
-
-            }
-
-            return redirect()->back()->withInput()->with("alerta", [
-                "icon" => "error",
-                "title" => "Erro!",
-                "text" => "Falha ao realizar a pesquisa! Tente novamente.",
-                "cor" => "$cor"
-            ]);
         }
+            
+        $cor = "danger";
+
+        if (session("tema") == "escuro") {
+
+            $cor = "dark";
+
+        }
+
+        return redirect()->back()->withInput()->with("alerta", [
+            "icon" => "error",
+            "title" => "Erro!",
+            "text" => "Falha ao realizar a pesquisa! Tente novamente.",
+            "cor" => "$cor"
+        ]);
     }
 
-    public function pesquisaMesInicialFinal(Request $request){
+    public function pesquisaMesInicialFinal(Request $request): RedirectResponse {
         $request->validate([
             "mes_inicial_cadastros" => "required",
             "mes_final_cadastros" => "required"
@@ -212,26 +209,25 @@ class PesquisarBuscar
             session(["resultado" => $usuarios]);
     
             return redirect()->back();            
-        } else {
-
-            $cor = "danger";
-
-            if (session("tema") == "escuro") {
-
-                $cor = "dark";
-
-            }
-
-            return redirect()->back()->withInput()->with("alerta", [
-                "icon" => "error",
-                "title" => "Erro!",
-                "text" => "Falha ao realizar a pesquisa! Tente novamente.",
-                "cor" => "$cor"
-            ]);
         }
+
+        $cor = "danger";
+
+        if (session("tema") == "escuro") {
+
+            $cor = "dark";
+
+        }
+
+        return redirect()->back()->withInput()->with("alerta", [
+            "icon" => "error",
+            "title" => "Erro!",
+            "text" => "Falha ao realizar a pesquisa! Tente novamente.",
+            "cor" => "$cor"
+        ]);
     }
 
-    public function buscar(Request $request) {
+    public function buscar(Request $request): RedirectResponse | View {
         $request->validate(
             [
                 "cep" => "required|min:9"
@@ -244,7 +240,6 @@ class PesquisarBuscar
         );
 
         $cep = $request->input("cep");
-
         $dados = [
             'logradouro' => '',
             'bairro' => '',
@@ -259,7 +254,6 @@ class PesquisarBuscar
             $response = Http::get("https://viacep.com.br/ws/{$cep}/json/");
 
             if ($response->successful() && !isset($response['erro'])) {
-
                 $dados['logradouro'] = $response['logradouro'] ?? '';
                 $dados['bairro'] = $response['bairro'] ?? '';
                 $dados['cidade'] = $response['localidade'] ?? '';
@@ -267,9 +261,7 @@ class PesquisarBuscar
                 $dados['link'] = 'https://www.google.com/maps/place/' . urlencode(
                     $dados['logradouro'] . ',' . $dados['bairro'] . ',' . $dados['cidade'] . '+' . $dados['estado']
                 );
-
             } else {
-
                 $dados['erro'] = true;
 
                 return redirect()->back()->withInput()->with("cepInvalido", "Não foi possível encontrar este CEP! Tente novamente");
@@ -279,7 +271,7 @@ class PesquisarBuscar
         return view('endereco', compact('dados', 'cep'));
     }
 
-    public function consultar(Request $request) {
+    public function consultar(Request $request): RedirectResponse | View {
         $request->validate([
             'cnpj' => 'required|min:18',
         ],
@@ -290,7 +282,6 @@ class PesquisarBuscar
         ]);
 
         $cnpj = preg_replace('/\D/', '', $request->input("cnpj"));
-
         $dados = [
             'razao_social' => '',
             'nome_fantasia' => '',
@@ -306,16 +297,13 @@ class PesquisarBuscar
             $response = Http::get("https://brasilapi.com.br/api/cnpj/v1/{$cnpj}");
 
             if ($response->successful() && !isset($response['erro'])) {
-
                 $dados['razao_social'] = $response['razao_social'] ?? '';
                 $dados['nome_fantasia'] = $response['nome_fantasia'] ?? '';
                 $dados['cnae_fiscal_descricao'] = $response['cnae_fiscal_descricao'] ?? '';
                 $dados['municipio'] = $response['municipio'] ?? '';
                 $dados['uf'] = $response['uf'] ?? '';
                 $dados['descricao_situacao_cadastral'] = $response['descricao_situacao_cadastral'] ?? '';
-
             } else {
-
                 $dados['erro'] = true;
 
                 return redirect()->back()->withInput()->with("cnpjInvalido", "Não foi possível consultar este CNPJ! Tente novamente");

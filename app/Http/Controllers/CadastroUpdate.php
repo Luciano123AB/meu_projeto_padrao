@@ -5,17 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Usuario;
 use App\Services\Operacoes;
 use Carbon\Carbon;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class CadastroUpdate
 {
-    public function cadastroSubmit(Request $request) {
+    public function cadastroSubmit(Request $request): RedirectResponse {
         $request->validate([
             "nome" => "required|min:1|max:80",
             "usuario" => "required|min:6|max:30",
             "email" => "required|email",
             "senha" => "required|min:8|max:64",
-            "confirmar_senha" => "required",
+            "confirmar_senha" => "required|same:senha",
             "cpf" => "required",
             "data" => "required",
             "celular" => "required|min:14",
@@ -36,6 +37,7 @@ class CadastroUpdate
             "senha.min" => "O campo senha deve ter pelo menos 8 caracteres",
             "senha.max" => "O campo senha deve ter no máximo 64 caracteres",
             "confirmar_senha.required" => "O campo confirmar senha é obrigatório",
+            "confirmar_senha.same" => "As senhas não coincidem.",
             "cpf.required" => "O campo CPF é obrigatório",
             "data.required" => "O campo data de nascimento é obrigatório",
             "celular.required" => "O campo celular é obrigatório",
@@ -47,8 +49,6 @@ class CadastroUpdate
         $nome = $request->input("nome");
         $nome_usuario = $request->input("usuario");
         $email = $request->input("email");
-        $senha = $request->input("senha");
-        $confirmarSenha = $request->input("confirmar_senha");
         $cpf = $request->input("cpf");
         $dataNascimento = Carbon::createFromFormat("d/m/Y", $request->input("data"))->format("Y-m-d");
         $celular = $request->input("celular");
@@ -57,10 +57,6 @@ class CadastroUpdate
 
         if (!Operacoes::validarCPF($cpf)) {
             return redirect()->back()->withInput()->with("cpfErro", "CPF inválido");
-        }
-
-        if ($senha !== $confirmarSenha) {
-            return redirect()->back()->withInput()->with("senhaErro", "As senhas não coincidem");
         }
 
         $usuario = Usuario::where("usuario", $nome_usuario)
@@ -100,7 +96,7 @@ class CadastroUpdate
         $usuario->nome_completo = $nome;
         $usuario->usuario = $nome_usuario;
         $usuario->email = $email;
-        $usuario->senha = bcrypt($senha);
+        $usuario->senha = bcrypt($request->input("senha"));
         $usuario->cpf = $cpf;
         $usuario->data_nascimento = $dataNascimento;
         $usuario->celular = $celular;
@@ -127,26 +123,25 @@ class CadastroUpdate
                 "text" => "Usuário cadastrado com êxito! Faça login para continuar.",
                 "cor" => "$cor"
             ]);
-        } else {
-
-            $cor = "danger";
-
-            if (session("tema") == "escuro") {
-
-                $cor = "dark";
-
-            }
-
-            return redirect()->back()->withInput()->with("alerta", [
-                "icon" => "error",
-                "title" => "Erro!",
-                "text" => "Erro ao cadastrar o usuário! Tente novamente.",
-                "cor" => "$cor"
-            ]);
         }
+
+        $cor = "danger";
+
+        if (session("tema") == "escuro") {
+
+            $cor = "dark";
+
+        }
+
+        return redirect()->back()->withInput()->with("alerta", [
+            "icon" => "error",
+            "title" => "Erro!",
+            "text" => "Erro ao cadastrar o usuário! Tente novamente.",
+            "cor" => "$cor"
+        ]);
     }
 
-    public function updateSubmit(Request $request) {
+    public function updateSubmit(Request $request): RedirectResponse {
         $request->validate([
             "nome" => "required|min:1|max:80",
             "usuario" => "required|min:6|max:30",
@@ -247,22 +242,21 @@ class CadastroUpdate
                 "text" => "Usuário atualizado com êxito!",
                 "cor" => "$cor"
             ]);
-        } else {
-
-            $cor = "danger";
-
-            if (session("tema") == "escuro") {
-
-                $cor = "dark";
-
-            }
-
-            return redirect()->back()->withInput()->with("alerta", [
-                "icon" => "error",
-                "title" => "Erro!",
-                "text" => "Falha ao atualizar o usuário! Tente novamente.",
-                "cor" => "$cor"
-            ]);
         }
+
+        $cor = "danger";
+
+        if (session("tema") == "escuro") {
+
+            $cor = "dark";
+
+        }
+
+        return redirect()->back()->withInput()->with("alerta", [
+            "icon" => "error",
+            "title" => "Erro!",
+            "text" => "Falha ao atualizar o usuário! Tente novamente.",
+            "cor" => "$cor"
+        ]);
     }
 }

@@ -5,15 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Usuario;
 use App\Services\Boot;
 use App\Services\Operacoes;
-use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class MainController
 {
     public function login(): View {
-
-        $banco = Boot::testarConexao();
-        
-        if ($banco == false) {
+        if (Boot::testarConexao() == false) {
             Boot::criarPovoarBanco();
         }
 
@@ -21,11 +18,11 @@ class MainController
             Boot::dependencias();
         }
 
-        return view("login");
+        return view("auth.login");
     }
     
     public function cadastro(): View {
-        return view("cadastro");
+        return view("auth.cadastro");
     }
 
     public function update($id): View {
@@ -34,7 +31,7 @@ class MainController
         $id = Operacoes::decryptId($id);
         $usuario = Usuario::find($id);
 
-        return view("update", ["usuario" => $usuario]);
+        return view("auth.update", ["usuario" => $usuario]);
     }
 
     public function home(): View {

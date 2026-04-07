@@ -17,20 +17,16 @@ Route::prefix("/")->group(function () {
     Route::get("trocarTema", [TemaMusica::class, "trocarTema"])->name("trocarTema");
 
     Route::get("tocarMusica", [TemaMusica::class, "tocarMusica"])->name("tocarMusica");
-});
     
-Route::middleware([VerificarEstaLogado::class])->group(function () {
-    Route::prefix("/")->group(function () {
+    Route::middleware([VerificarEstaLogado::class])->group(function () {
         Route::get("", [MainController::class, "login"])->name("login");
         Route::post("loginSubmit", [LoginLogout::class, "loginSubmit"])->name("loginSubmit");
 
         Route::get("cadastro", [MainController::class, "cadastro"])->name("cadastro");
         Route::post("cadastroSubmit", [CadastroUpdate::class, "cadastroSubmit"])->name("cadastroSubmit");
     });
-});
 
-Route::middleware([VerificarNaoEstaLogado::class])->group(function () {
-    Route::prefix("/")->group(function () {
+    Route::middleware([VerificarNaoEstaLogado::class])->group(function () {
         Route::get("home", [MainController::class, "home"])->name("home");
 
         Route::get("logout", [LoginLogout::class, "logout"])->name("logout");    

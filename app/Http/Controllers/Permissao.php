@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use App\Services\Operacoes;
+use Illuminate\Http\RedirectResponse;
 
 class Permissao
 {
-    public function permissao($id) {
+    public function permissao($id): RedirectResponse {
         
         $id = Operacoes::decryptId($id);
         $usuario = Usuario::find($id);
@@ -34,7 +35,7 @@ class Permissao
         ]);
     }
 
-    public function permissaoConfirmar($id) {
+    public function permissaoConfirmar($id): RedirectResponse {
         
         $usuario = Usuario::find($id);
 
@@ -68,22 +69,21 @@ class Permissao
                 "text" => "Permissão do usuário alterada com êxito!",
                 "cor" => "$cor"
             ]);
-        } else {
-
-            $cor = "danger";
-
-            if (session("tema") == "escuro") {
-
-                $cor = "dark";
-
-            }
-
-            return redirect()->back()->withInput()->with("alerta", [
-                "icon" => "error",
-                "title" => "Erro!",
-                "text" => "Falha ao alterar a permissão do usuário! Tente novamente.",
-                "cor" => "$cor"
-            ]);
         }
+
+        $cor = "danger";
+
+        if (session("tema") == "escuro") {
+
+            $cor = "dark";
+
+        }
+
+        return redirect()->back()->withInput()->with("alerta", [
+            "icon" => "error",
+            "title" => "Erro!",
+            "text" => "Falha ao alterar a permissão do usuário! Tente novamente.",
+            "cor" => "$cor"
+        ]);
     }
 }

@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use App\Services\Operacoes;
+use Illuminate\Http\RedirectResponse;
 
 class Logs
 {
-    public function limparLogs($id) {
+    public function limparLogs($id): RedirectResponse {
 
         $id = Operacoes::decryptId($id);
         $usuario = Usuario::find($id);
@@ -30,22 +31,21 @@ class Logs
                 "text" => "Logs limpos com êxito!",
                 "cor" => "$cor"
             ]);
-        } else {
-
-            $cor = "danger";
-
-            if (session("tema") == "escuro") {
-
-                $cor = "dark";
-
-            }
-
-            return redirect()->back()->withInput()->with("alerta", [
-                "icon" => "error",
-                "title" => "Erro!",
-                "text" => "Falha ao limpar os logs! Tente novamente.",
-                "cor" => "$cor"
-            ]);
         }
+
+        $cor = "danger";
+
+        if (session("tema") == "escuro") {
+
+            $cor = "dark";
+
+        }
+
+        return redirect()->back()->withInput()->with("alerta", [
+            "icon" => "error",
+            "title" => "Erro!",
+            "text" => "Falha ao limpar os logs! Tente novamente.",
+            "cor" => "$cor"
+        ]);        
     }
 }

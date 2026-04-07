@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use App\Services\Operacoes;
+use Illuminate\Http\RedirectResponse;
 
 class Deletar
 {
-    public function deletar($id) {
+    public function deletar($id): RedirectResponse {
 
         $id = Operacoes::decryptId($id);
         $usuario = Usuario::find($id);
@@ -34,7 +35,7 @@ class Deletar
         ]);
     }
 
-    public function deletarConfirmar($id) {
+    public function deletarConfirmar($id): RedirectResponse {
 
         $usuario = Usuario::find($id);
 
@@ -63,22 +64,21 @@ class Deletar
                     "cor" => "$cor"
                 ]);
             }
-        } else {
-
-            $cor = "danger";
-
-            if (session("tema") == "escuro") {
-
-                $cor = "dark";
-
-            }
-
-            return redirect()->back()->withInput()->with("alerta", [
-                "icon" => "error",
-                "title" => "Erro!",
-                "text" => "Falha ao deletar o usuário! Tente novamente.",
-                "cor" => "danger"
-            ]);
         }
+
+        $cor = "danger";
+
+        if (session("tema") == "escuro") {
+
+            $cor = "dark";
+
+        }
+
+        return redirect()->back()->withInput()->with("alerta", [
+            "icon" => "error",
+            "title" => "Erro!",
+            "text" => "Falha ao deletar o usuário! Tente novamente.",
+            "cor" => "danger"
+        ]);        
     }
 }
