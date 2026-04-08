@@ -45,7 +45,12 @@
         transform: scale(1.04);
     }
 
-    .user-photo {
+    .imagens_cards {
+        max-height: 160px;
+        object-fit: cover;
+    }
+
+    .user_foto {
         width: 160px;
         height: 160px;
         object-fit: cover;

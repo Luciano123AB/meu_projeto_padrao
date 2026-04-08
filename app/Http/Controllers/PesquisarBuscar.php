@@ -18,7 +18,7 @@ class PesquisarBuscar
         ],
         
         [
-            "usuario.required" => "O campo usuario é obrigatório"
+            "usuario.required" => "O campo usuario é obrigatório."
         ]);
 
         $usuarios = Usuario::where("usuario", "like", "%" . $request->input("usuario") . "%")->get();
@@ -51,7 +51,7 @@ class PesquisarBuscar
         ],
         
         [
-            "permissao.required" => "A seleção do status é obrigatória"
+            "permissao.required" => "A seleção do status é obrigatória."
         ]);
 
         $usuarios = Usuario::where("permissao", ($request->input("permissao") === "permitidos") ? 1 : 0)->get();
@@ -82,7 +82,7 @@ class PesquisarBuscar
         $request->validate([
             "data" => "required"
         ], [
-            "data.required" => "O campo data de nascimento é obrigatório"
+            "data.required" => "O campo data de nascimento é obrigatório."
         ]);
 
         $usuarios = Usuario::whereDate("data_nascimento", Carbon::createFromFormat("d/m/Y", $request->input("data"))->format("Y-m-d"))->get();
@@ -114,8 +114,8 @@ class PesquisarBuscar
             "data_inicial" => "required",
             "data_final" => "required"
         ], [
-            "data_inicial.required" => "O campo data inicial é obrigatória",
-            "data_final.required" => "O campo data final é obrigatória"
+            "data_inicial.required" => "O campo data inicial é obrigatória.",
+            "data_final.required" => "O campo data final é obrigatória."
         ]);
 
         $usuarios = Usuario::whereBetween(
@@ -151,7 +151,7 @@ class PesquisarBuscar
         $request->validate([
             "mes" => "required"
         ], [
-            "mes.required" => "O campo mês é obrigatório"
+            "mes.required" => "O campo mês é obrigatório."
         ]);
 
         $ultimo_ano = DB::table("usuarios")
@@ -195,8 +195,8 @@ class PesquisarBuscar
             "mes_inicial_cadastros" => "required",
             "mes_final_cadastros" => "required"
         ], [
-            "mes_inicial_cadastros.required" => "O campo mês inicial é obrigatória",
-            "mes_final_cadastros.required" => "O campo mês final é obrigatória"
+            "mes_inicial_cadastros.required" => "O campo mês inicial é obrigatória.",
+            "mes_final_cadastros.required" => "O campo mês final é obrigatória."
         ]);
 
         $ultimo_ano = DB::table("usuarios")
@@ -242,8 +242,8 @@ class PesquisarBuscar
             ],
 
             [
-                "cep.required" => "O campo CEP é obrigatório",
-                "cep.min" => "O campo CEP deve ter pelo menos 9 caracteres"
+                "cep.required" => "O campo CEP é obrigatório.",
+                "cep.min" => "O campo CEP deve ter pelo menos :min caracteres."
             ]
         );
 
@@ -285,8 +285,8 @@ class PesquisarBuscar
         ],
     
         [
-            "required" => "O campo CNPJ é obrigatório",
-            "min" => "O campo CNPJ deve ter pelo menos 18 caracteres",
+            "required" => "O campo CNPJ é obrigatório.",
+            "min" => "O campo CNPJ deve ter pelo menos :min caracteres.",
         ]);
 
         $cnpj = preg_replace('/\D/', "", $request->input("cnpj"));

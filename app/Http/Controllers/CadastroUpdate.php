@@ -26,26 +26,26 @@ class CadastroUpdate
         ],
         
         [
-            "nome.required" => "O campo nome é obrigatório",
-            "nome.min" => "O campo nome deve ter pelo menos 1 caractere",
-            "nome.max" => "O campo nome deve ter no máximo 80 caracteres",
-            "usuario.required" => "O campo usuário é obrigatório",
-            "usuario.min" => "O campo usuário deve ter pelo menos 6 caracteres",
-            "usuario.max" => "O campo usuário deve ter no máximo 30 caracteres",
-            "email.required" => "O campo email é obrigatório",
-            "email.email" => "O campo email deve ser um endereço de email válido",
-            "senha.required" => "O campo senha é obrigatório",
-            "senha.min" => "O campo senha deve ter pelo menos 8 caracteres",
-            "senha.max" => "O campo senha deve ter no máximo 64 caracteres",
+            "nome.required" => "O campo nome é obrigatório.",
+            "nome.min" => "O campo nome deve ter pelo menos :min caractere.",
+            "nome.max" => "O campo nome deve ter no máximo :max caracteres.",
+            "usuario.required" => "O campo usuário é obrigatório.",
+            "usuario.min" => "O campo usuário deve ter pelo menos :min caracteres.",
+            "usuario.max" => "O campo usuário deve ter no máximo :max caracteres.",
+            "email.required" => "O campo email é obrigatório.",
+            "email.email" => "O campo email deve ser um endereço de email válido.",
+            "senha.required" => "O campo senha é obrigatório.",
+            "senha.min" => "O campo senha deve ter pelo menos :min caracteres.",
+            "senha.max" => "O campo senha deve ter no máximo :max caracteres.",
             "senha.regex" => "A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula e um número.",
-            "confirmar_senha.required" => "O campo confirmar senha é obrigatório",
+            "confirmar_senha.required" => "O campo confirmar senha é obrigatório.",
             "confirmar_senha.same" => "As senhas não coincidem.",
-            "cpf.required" => "O campo CPF é obrigatório",
-            "data.required" => "O campo data de nascimento é obrigatório",
-            "celular.required" => "O campo celular é obrigatório",
-            "celular.min" => "O campo celular deve ter pelo menos 14 caracteres",
-            "genero.required" => "O campo gênero é obrigatório",
-            "foto.max" => "O campo foto deve ter no máximo 10MB"
+            "cpf.required" => "O campo CPF é obrigatório.",
+            "data.required" => "O campo data de nascimento é obrigatório.",
+            "celular.required" => "O campo celular é obrigatório.",
+            "celular.min" => "O campo celular deve ter pelo menos :min caracteres.",
+            "genero.required" => "O campo gênero é obrigatório.",
+            "foto.max" => "O campo foto deve ter no máximo 10MB."
         ]);
 
         $nome_usuario = $request->input("usuario");
@@ -146,17 +146,17 @@ class CadastroUpdate
         ],
         
         [
-            "nome.required" => "O campo nome é obrigatório",
-            "nome.min" => "O campo nome deve ter pelo menos 1 caractere",
-            "nome.max" => "O campo nome deve ter no máximo 80 caracteres",
-            "usuario.required" => "O campo usuário é obrigatório",
-            "usuario.min" => "O campo usuário deve ter pelo menos 6 caracteres",
-            "usuario.max" => "O campo usuário deve ter no máximo 30 caracteres",
-            "email.required" => "O campo email é obrigatório",
-            "email.email" => "O campo email deve ser um endereço de email válido",
-            "celular.required" => "O campo celular é obrigatório",
-            "celular.min" => "O campo celular deve ter pelo menos 14 caracteres",
-            "foto.max" => "O campo foto deve ter no máximo 10MB"
+            "nome.required" => "O campo nome é obrigatório.",
+            "nome.min" => "O campo nome deve ter pelo menos :min caractere.",
+            "nome.max" => "O campo nome deve ter no máximo :max caracteres.",
+            "usuario.required" => "O campo usuário é obrigatório.",
+            "usuario.min" => "O campo usuário deve ter pelo menos :min caracteres.",
+            "usuario.max" => "O campo usuário deve ter no máximo :max caracteres.",
+            "email.required" => "O campo email é obrigatório.",
+            "email.email" => "O campo email deve ser um endereço de email válido.",
+            "celular.required" => "O campo celular é obrigatório.",
+            "celular.min" => "O campo celular deve ter pelo menos :min caracteres.",
+            "foto.max" => "O campo foto deve ter no máximo 10MB."
         ]);
 
         $id = Operacoes::decryptId($request->input("id"));
@@ -245,13 +245,13 @@ class CadastroUpdate
         ],
         
         [
-            "senha_atual.required" => "O campo senha atual é obrigatório",
-            "nova_senha.required" => "O campo senha é obrigatório",
-            "nova_senha.min" => "O campo senha deve ter pelo menos 8 caracteres",
-            "nova_senha.max" => "O campo senha deve ter no máximo 64 caracteres",
+            "senha_atual.required" => "O campo senha atual é obrigatório.",
+            "nova_senha.required" => "O campo senha é obrigatório.",
+            "nova_senha.min" => "O campo senha deve ter pelo menos :min caracteres.",
+            "nova_senha.max" => "O campo senha deve ter no máximo :max caracteres.",
             "nova_senha.regex" => "A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula e um número.",
-            "confirmar_senha.required" => "O campo confirmar senha é obrigatório",
-            "confirmar_senha.same" => "As senhas não coincidem"
+            "confirmar_senha.required" => "O campo confirmar senha é obrigatório.",
+            "confirmar_senha.same" => "As senhas não coincidem."
         ]);
 
         $senha = $request->input("senha_atual");

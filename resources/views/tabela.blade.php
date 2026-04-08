@@ -33,15 +33,11 @@
                                 <tr>
                                     <td class="text-center border-end">
                                         @if(Auth::user()->usuario == "Administrador" || Auth::user()->permissao == 1)
-                                            <a href="{{ route("update", ["id" => Crypt::encrypt($usuario->id)]) }}" 
-                                            class="btn btn-sm {{ session("tema") == "escuro" ? "btn-secondary" : "btn-primary" }} m-1" 
-                                            data-bs-toggle="tooltip" title="Editar usuário">
+                                            <a href="{{ route("update", ["id" => Crypt::encrypt($usuario->id)]) }}" class="btn btn-sm {{ session("tema") == "escuro" ? "btn-secondary" : "btn-primary" }} m-1" data-bs-toggle="tooltip" title="Editar usuário">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
                                                 
-                                            <a href="{{ route("deletar", ["id" => Crypt::encrypt($usuario->id)]) }}" 
-                                            class="btn btn-sm {{ session("tema") == "escuro" ? "btn-dark" : "btn-danger" }}" 
-                                            data-bs-toggle="tooltip" title="Excluir usuário">
+                                            <a href="{{ route("deletar", ["id" => Crypt::encrypt($usuario->id)]) }}" class="btn btn-sm {{ session("tema") == "escuro" ? "btn-dark" : "btn-danger" }}" data-bs-toggle="tooltip" title="Excluir usuário">
                                                 <i class="bi bi-trash"></i>
                                             </a>
                                         @endif

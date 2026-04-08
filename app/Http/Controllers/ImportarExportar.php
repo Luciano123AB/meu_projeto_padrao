@@ -18,7 +18,7 @@ class ImportarExportar
         ],
     
         [
-            "arquivo.required" => "O campo arquivo é obrigatório",
+            "arquivo.required" => "O campo arquivo é obrigatório.",
         ]);
 
         if (Excel::import(new UsuariosImportar, $request->file("arquivo"))) {
@@ -63,7 +63,7 @@ class ImportarExportar
         ],
     
         [
-            "formato.required" => "O campo formato é obrigatório",
+            "formato.required" => "O campo formato é obrigatório.",
         ]);
 
         if ($request->input("formato") == "Excel") {

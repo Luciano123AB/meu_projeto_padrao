@@ -16,12 +16,12 @@ class LoginLogout
         ],
         
         [
-            "usuario.required" => "O campo usuário é obrigatório",
-            "usuario.min" => "O campo usuário deve ter no mínimo 6 caracteres",
-            "usuario.max" => "O campo usuário deve ter no máximo 30 caracteres",
-            "senha.required" => "O campo senha é obrigatório",
-            "senha.min" => "O campo senha deve ter no mínimo 8 caracteres",
-            "senha.max" => "O campo senha deve ter no máximo 64 caracteres"
+            "usuario.required" => "O campo usuário é obrigatório.",
+            "usuario.min" => "O campo usuário deve ter no mínimo :min caracteres.",
+            "usuario.max" => "O campo usuário deve ter no máximo :max caracteres.",
+            "senha.required" => "O campo senha é obrigatório.",
+            "senha.min" => "O campo senha deve ter no mínimo :min caracteres.",
+            "senha.max" => "O campo senha deve ter no máximo :max caracteres."
         ]);
 
         $usuario = Usuario::where("usuario", $request->input("usuario"))
