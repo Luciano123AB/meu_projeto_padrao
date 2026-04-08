@@ -1,15 +1,11 @@
 @extends("layouts.main_layout")
 
 @section("content")
-    @include("layouts/navbar_logado")
-
-    @include("layouts.subnavbar")
-
     <div class="container-fluid px-2 px-md-3">
         <div class="row flex-wrap">
-            @include("layouts/opcoes")
+            @include("layouts.opcoes")
 
-            <div class="col-12 col-md-10 py-3" style="min-height: 700px">
+            <div class="col-12 col-md-10 py-3" style="min-height: 700px;">
                 <div class="row text-center text-md-start align-items-center">
                     <div class="col-12 col-md-6 text-center mb-4 mb-md-0">
                         <h1 class="fs-md-4 fs-lg-5">Seja BEM VINDO ao Nosso Site!</h1>

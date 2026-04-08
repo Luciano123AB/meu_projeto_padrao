@@ -1,13 +1,9 @@
 @extends("layouts.main_layout")
 
 @section("content")
-    @include("layouts/navbar_logado")
-
-    @include("layouts.subnavbar")
-
     <div class="container-fluid px-2 px-md-3">
         <div class="row flex-wrap">
-            @include("layouts/opcoes")
+            @include("layouts.opcoes")
 
             <div class="col-12 col-md-10 py-3">
                 <div style="height: 750px;" class="{{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }} border mx-3 shadow overflow-auto rounded">

@@ -1,13 +1,9 @@
 @extends("layouts.main_layout")
 
 @section("content")
-    @include("layouts/navbar_logado")
-
-    @include("layouts.subnavbar")
-
     <div class="container-fluid px-2 px-md-3">
         <div class="row flex-wrap">
-            @include("layouts/opcoes")
+            @include("layouts.opcoes")
 
             <div class="col-12 col-md-10 py-3">
                 <div class="bg-light border border-black p-3 mx-3 shadow rounded-3">

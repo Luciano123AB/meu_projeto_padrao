@@ -1,13 +1,9 @@
 @extends("layouts.main_layout")
 
 @section("content")
-    @include("layouts/navbar_logado")
-
-    @include("layouts.subnavbar")
-
     <div class="container-fluid px-2 px-md-3">
         <div class="row flex-wrap">
-            @include("layouts/opcoes")
+            @include("layouts.opcoes")
 
             <div class="col-12 col-md-10 py-3">
                 <div class="mx-2 mx-md-3">
@@ -21,7 +17,7 @@
                         </button>
                     @endif
     
-                    <div class="{{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }} border shadow rounded-2 overflow-auto" style="min-height: 750px; max-height: 750px;">
+                    <div id="tabela_logs" class="{{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }} border shadow rounded-2 overflow-auto">
                         <div class="table-responsive">
                             <table class="table table-hover {{ session("tema") == "escuro" ? "table-dark" : "table-secondary" }} align-middle mb-0">
                                 <thead class="text-center">

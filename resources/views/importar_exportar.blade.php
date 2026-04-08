@@ -1,13 +1,9 @@
 @extends("layouts.main_layout")
 
 @section("content")
-    @include("layouts/navbar_logado")
-
-    @include("layouts.subnavbar")
-
     <div class="container-fluid px-2 px-md-3">
         <div class="row flex-wrap">
-            @include("layouts/opcoes")
+            @include("layouts.opcoes")
 
             <div class="col-12 col-md-10 py-3">
                 <div class="mx-3">
@@ -42,7 +38,7 @@
                                         </div>
                                     </div>
     
-                                    <div class="table-responsive rounded-2 {{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }} border overflow-auto" style="min-height: 300px; max-height: 300px;">
+                                    <div class="importar_exportar table-responsive rounded-2 {{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }} border overflow-auto">
                                         <table class="table table-hover {{ session("tema") == "escuro" ? "table-dark" : "table-secondary" }} align-middle mb-0">
                                             <thead class="text-center">
                                                 <tr>
@@ -126,7 +122,7 @@
                                     </div>
                                 </form>
     
-                                <div class="table-responsive rounded-2 {{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }} border overflow-auto" style="min-height: 300px; max-height: 300px;">
+                                <div class="importar_exportar table-responsive rounded-2 {{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }} border overflow-auto">
                                     <table class="table table-hover {{ session("tema") == "escuro" ? "table-dark" : "table-secondary" }} align-middle mb-0">
                                         <thead class="text-center">
                                             <tr>

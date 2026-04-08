@@ -1,4 +1,4 @@
-<nav id="sidebar" class="col-12 col-md-2 bg-white border-top border-end border-bottom border-black mt-3 py-2 overflow-auto" style="border-radius: 0 20px 20px 0; max-height: 310px; transition: transform 0.3s ease; z-index: 1100;">
+<nav id="sidebar" class="col-12 col-md-2 bg-white border-top border-end border-bottom border-black mt-3 py-2 overflow-auto">
     <h6 class="fw-bold border-bottom border-black py-1">OPÇÕES:</h6>
 
     <li class="{{ session("tema") == "escuro" ? "opcao_gray" : "opcao_cyan" }} @if (url()->current() === url('/home')) {{ session("tema") == "escuro" ? "bg_gray" : "bg-info" }} @endif rounded-end icon-link icon-link-hover p-1">
@@ -73,4 +73,4 @@
     </li>
 </nav>
 
-<div id="overlay" style="position: fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(0,0,0,0.5); display:none; z-index:1050;"></div>
+<div id="overlay" class="opcoes"></div>

@@ -18,6 +18,10 @@
 
 <body style="background-position: center center;" class="fst-italic d-flex flex-column min-vh-100">
     @include("layouts.partials.alertas")
+
+    @include("layouts.navbar")
+
+    @include("layouts.subnavbar")
     
     @yield("content")
 

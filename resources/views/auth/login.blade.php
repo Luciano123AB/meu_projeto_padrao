@@ -1,36 +1,7 @@
 @extends("layouts.main_layout")
 
 @section("content")
-    <nav class="navbar {{ session("tema") == "escuro" ? "bg-dark" : "bg-primary" }} bg-gradient border-5 border-bottom border-black shadow mb-1">
-        <div class="container-fluid">
-            <div class="d-flex align-items-center">
-                <div class="navbar-brand fs-5 fs-lg-3 fw-bold ms-md-5 text-center text-md-start">
-                    <a href="{{ route("login") }}" class="link-offset-2 link-underline link-underline-opacity-0 text-black">
-                        <svg class="me-1 {{ session("tema") == "escuro" ? "text-white" : "text-dark" }}" id="logo_efeito" xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="50" height="50" fill="currentColor" class="bi bi-card-image" viewBox="0 0 16 16">
-                            <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
-                            <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54L1 12.5v-9a.5.5 0 0 1 .5-.5z"/>
-                        </svg>
-                        
-                        Meu Projeto <span class="text-white">Padrão</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center me-5">
-                <a href="{{ route("cadastro") }}" class="btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary" : "btn-info" }} border icon-link icon-link-hover focus-ring focus-ring-light my-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-right me-1" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M14.854 4.854a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 4H3.5A2.5 2.5 0 0 0 1 6.5v8a.5.5 0 0 0 1 0v-8A1.5 1.5 0 0 1 3.5 5h9.793l-3.147 3.146a.5.5 0 0 0 .708.708z"/>
-                    </svg>
-                            
-                    Cadastrar Usuário
-                </a>
-            </div>
-        </div>
-    </nav>
-
-    @include("layouts.subnavbar")
-
-    <div class="container d-flex justify-content-center align-items-center text-center mb-5" style="min-height: 660px; max-width: 660px">
+    <div id="pagina_login" class="container d-flex justify-content-center align-items-center text-center mb-5">
         <form action="{{ route("loginSubmit") }}" id="formulario" class="card border-black shadow w-100 w-md-75 w-lg-50" method="post" novalidate>
             @csrf
 
