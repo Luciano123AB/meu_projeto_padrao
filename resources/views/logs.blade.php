@@ -23,23 +23,19 @@
                                 <thead class="text-center">
                                     <tr>
                                         <th class="border-end">N°</th>
-                                        <th class="border-end">Página Acessada</th>
+                                        <th class="border-end">Página</th>
                                         <th class="border-end">Data</th>
-                                        <th>Hora</th>
+                                        <th class="border-end">Hora</th>
+                                        <th style="width: 5%;">Deletar</th>
                                     </tr>
                                 </thead>
                                 
                                 <tbody>
                                     @forelse($logs as $log)
-                                        <tr>
-                                            <td class="text-center fw-bold border-end">{{ $loop->iteration }}</td>
-                                            <td class="text-start border-end">{{ $log["pagina"] }}</td>
-                                            <td class="text-center border-end">{{ date("d/m/Y", strtotime($log["data_hora"])) }}</td>
-                                            <td class="text-center">{{ date("H:i:s", strtotime($log["data_hora"])) }}</td>
-                                        </tr>
+                                        <x-logs_component :log="$log" :loop="$loop->index" />
                                     @empty
                                         <tr class="text-center">
-                                            <td colspan="4" class="{{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }}">NENHUM LOG EXISTENTE</td>
+                                            <td colspan="5" class="{{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }}">NENHUM LOG EXISTENTE</td>
                                         </tr>
                                     @endforelse
                                 </tbody>

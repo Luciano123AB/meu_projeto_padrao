@@ -213,25 +213,7 @@
 
                             @if(session()->has("resultado"))                               
                                 @forelse(session("resultado") as $usuario)
-                                    <tbody>
-                                        <tr class="text-center">
-                                            <td class="border-end">{{ $loop->iteration }}</td>
-                                            <td class="text-start border-end">{{ $usuario->nome_completo }}</td>
-                                            <td class="border-end">{{ $usuario->usuario }}</td>
-                                            <td class="border-end">{{ $usuario->email }}</td>
-                                            <td class="border-end">{{ date("d/m/Y", strtotime($usuario->data_nascimento)) }}</td>
-                                            <td class="border-end">{{ date("d/m/Y", strtotime($usuario->created_at)) }}</td>
-                                            <td class="border-end">{{ $usuario->celular }}</td>
-                                            <td class="border-end">{{ $usuario->genero }}</td>
-                                            <td>
-                                                @if($usuario->permissao == 1)
-                                                    <span class="badge bg-success">SIM</span>
-                                                @else
-                                                    <span class="badge bg-danger">NÃO</span>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    </tbody>
+                                    <x-pesquisa_component :usuario="$usuario" :loop="$loop->index" />
                                 @empty
                                     <tr class="text-center">
                                         <td colspan="9" class="{{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }}">NENHUM USUÁRIO ENCONTRADO</td>
@@ -250,11 +232,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        $(document).ready(function() {
-            $("#data, #data_inicial, #data_final").mask("00/00/0000");
-            $("#mes, #mes_inicial_cadastros, #mes_final_cadastros").mask("00");
-        });
-    </script>
 @endsection

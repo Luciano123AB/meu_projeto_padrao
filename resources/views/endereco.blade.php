@@ -13,7 +13,10 @@
                                 <label class="fs-3 fs-md-4 fw-bold">Busca de CEP</label>
 
                                 <div class="input-group flex-column flex-md-row">
-                                    <label class="input-group-text mb-2 mb-md-0"><i class="bi bi-geo-alt"></i>Digite o CEP:</label>
+                                    <label class="input-group-text mb-2 mb-md-0">
+                                        <i class="bi bi-geo-alt"></i>
+                                        Digite o CEP:
+                                    </label>
     
                                     <input id="cep" class="form-control w-50" type="text" name="cep" placeholder="00000-000" value="{{ $cep ?? '' }}">
     
@@ -98,7 +101,10 @@
     
                         <form method="GET" action="{{ route("consultar", ["cnpj" => $cnpj ?? '000']) }}" id="form_cnpj">
                             <div class="input-group flex-column flex-md-row">
-                                <label for="cnpj" class="input-group-text mb-2 mb-md-0"><i class="bi bi-geo-alt"></i>Digite o CNPJ (Somente números):</label>
+                                <label for="cnpj" class="input-group-text mb-2 mb-md-0">
+                                    <i class="bi bi-geo-alt"></i>
+                                    Digite o CNPJ (Somente números):
+                                </label>
     
                                 <input id="cnpj" class="form-control w-50" type="text" name="cnpj" placeholder="00.000.000/0000-00" maxlength="18" value="{{ $cnpj ?? '' }}">
     
@@ -130,21 +136,34 @@
                         <label class="fs-5 mt-3">Resultado da Consulta:</label>
 
                         <ul class="mb-0">
-                            <li><b>Razão Social:</b> {{ $dados['razao_social'] ?? '...' }}</li>
-                            <li><b>Nome Fantasia:</b> {{ $dados['nome_fantasia'] ?? '...' }}</li>
-                            <li><b>CNAE Principal:</b> {{ $dados['cnae_fiscal_descricao'] ?? '...' }}</li>
-                            <li><b>Município:</b> {{ $dados['municipio'] ?? '...' }}</li>
-                            <li><b>UF:</b> {{ $dados['uf'] ?? '...' }}</li>
-                            <li><b>Status:</b> {{ $dados['descricao_situacao_cadastral'] ?? '...' }}</li>
+                            <li>
+                                <b>Razão Social:</b>
+                                {{ $dados['razao_social'] ?? '...' }}
+                            </li>
+                            <li>
+                                <b>Nome Fantasia:</b>
+                                {{ $dados['nome_fantasia'] ?? '...' }}
+                            </li>
+                            <li>
+                                <b>CNAE Principal:</b>
+                                {{ $dados['cnae_fiscal_descricao'] ?? '...' }}
+                            </li>
+                            <li>
+                                <b>Município:</b>
+                                {{ $dados['municipio'] ?? '...' }}
+                            </li>
+                            <li>
+                                <b>UF:</b>
+                                {{ $dados['uf'] ?? '...' }}
+                            </li>
+                            <li>
+                                <b>Status:</b>
+                                {{ $dados['descricao_situacao_cadastral'] ?? '...' }}
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <script>
-        $("#cep").mask("00000-000");
-        $("#cnpj").mask("00.000.000/0000-00");
-    </script>
 @endsection

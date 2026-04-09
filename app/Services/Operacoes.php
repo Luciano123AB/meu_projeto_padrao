@@ -2,7 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\Logs;
+use App\Models\Log;
+use Carbon\Carbon;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
@@ -61,10 +62,10 @@ class Operacoes
     public static function salvarLog($id) {
         
         $pagina = Route::currentRouteName();
-        $log = new Logs();
+        $log = new Log();
         $log->usuario_id = $id;
         $log->pagina = "$pagina";
-        $log->data_hora = date("Y-m-d H:i:s");        
+        $log->data_hora = Carbon::now();        
 
         $log->save();
     }

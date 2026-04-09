@@ -271,12 +271,4 @@
             <div class="card-footer {{ session("tema") == "escuro" ? "bg-black" : "bg-primary" }}"></div>
         </form>
     </div>
-
-    <script>
-        $(document).ready(function() {
-            $("#cpf").mask("000.000.000-00");
-            $("#celular").mask("(00)00000-0000");
-            $("#data").mask("00/00/0000");
-        });
-    </script>
 @endsection

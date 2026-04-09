@@ -25,6 +25,6 @@ class Usuario extends Authenticatable
     ];
 
     public function logs() {
-        return $this->hasMany(Logs::class);
+        return $this->hasMany(Log::class);
     }
 }

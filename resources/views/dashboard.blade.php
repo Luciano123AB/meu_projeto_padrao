@@ -46,8 +46,7 @@
 
                     <div class="card bg-secondary-subtle mt-3 p-3 shadow-sm rounded-3">
                         <div class="d-flex justify-content-between mb-1">
-                            <span class="{{ session("tema") == "escuro" ? "text-secondary" : "text-success" }} fw-bold">Permitidos {{ $porcentagemPermitidos }}%</span>
-                            
+                            <span class="{{ session("tema") == "escuro" ? "text-secondary" : "text-success" }} fw-bold">Permitidos {{ $porcentagemPermitidos }}%</span>                            
                             <span class="{{ session("tema") == "escuro" ? "text-dark" : "text-danger" }} fw-bold">Negados {{ $porcentagemNegados }}%</span>
                         </div>
 

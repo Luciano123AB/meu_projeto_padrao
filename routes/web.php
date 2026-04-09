@@ -9,61 +9,84 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\Permissao;
 use App\Http\Controllers\PesquisarBuscar;
 use App\Http\Controllers\Tema;
-use App\Http\Middleware\VerificarEstaLogado;
-use App\Http\Middleware\VerificarNaoEstaLogado;
+use App\Http\Middleware\VerificarLogado;
+use App\Http\Middleware\VerificarDeslogado;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("/")->group(function () {
     Route::get("trocarTema", [Tema::class, "trocarTema"])->name("trocarTema");
     
-    Route::middleware([VerificarEstaLogado::class])->group(function () {
-        Route::get("", [MainController::class, "login"])->name("login");
-        Route::post("loginSubmit", [LoginLogout::class, "loginSubmit"])->name("loginSubmit");
+    Route::controller(MainController::class)->group(function() {
+        Route::middleware([VerificarDeslogado::class])->group(function () {
+            Route::get("home", "home")->name("home"); 
 
-        Route::get("cadastro", [MainController::class, "cadastro"])->name("cadastro");
-        Route::post("cadastroSubmit", [CadastroUpdate::class, "cadastroSubmit"])->name("cadastroSubmit");
+            Route::get("update/{id}", "update")->name("update");
+
+            Route::get("mudar_senha", "mudarSenha")->name("mudar_senha");
+
+            Route::get("tabela", "tabela")->name("tabela");
+
+            Route::get("cards", "cards")->name("cards");
+
+            Route::get("dashboard", "dashboard")->name("dashboard");
+
+            Route::get("pesquisa", "pesquisa")->name("pesquisa");
+
+            Route::get("endereco", "endereco")->name("endereco");
+
+            Route::get("logs/{id}", "logs")->name("logs");
+
+            Route::get("importarExportar", "importarExportar")->name("importarExportar");
+        });
+
+        Route::middleware([VerificarLogado::class])->group(function () {
+            Route::get("", "login")->name("login");
+            Route::post("loginSubmit", [LoginLogout::class, "loginSubmit"])->name("loginSubmit");
+
+            Route::get("cadastro", "cadastro")->name("cadastro");
+            Route::post("cadastroSubmit", [CadastroUpdate::class, "cadastroSubmit"])->name("cadastroSubmit");
+        });
     });
 
-    Route::middleware([VerificarNaoEstaLogado::class])->group(function () {
-        Route::get("home", [MainController::class, "home"])->name("home");
-
+    Route::middleware([VerificarDeslogado::class])->group(function () {
         Route::get("logout", [LoginLogout::class, "logout"])->name("logout");    
 
-        Route::get("update/{id}", [MainController::class, "update"])->name("update");
-        Route::post("updateSubmit", [CadastroUpdate::class, "updateSubmit"])->name("updateSubmit");
+        Route::controller(CadastroUpdate::class)->group(function() {
+            Route::post("updateSubmit", "updateSubmit")->name("updateSubmit");
 
-        Route::get("mudar_senha", [MainController::class, "mudarSenha"])->name("mudar_senha");
-        Route::post("mudar_senha_submit", [CadastroUpdate::class, "mudarSenhaSubmit"])->name("mudar_senha_submit");
+            Route::post("mudar_senha_submit", "mudarSenhaSubmit")->name("mudar_senha_submit");
+        });
 
-        Route::get("deletar/{id}", [Deletar::class, "deletar"])->name("deletar");
-        Route::get("deletarConfirmar/{id}", [Deletar::class, "deletarConfirmar"])->name("deletarConfirmar");
+        Route::controller(Deletar::class)->group(function() {
+            Route::get("deletar/{id}", "deletar")->name("deletar");
+            Route::get("deletarConfirmar/{id}", "deletarConfirmar")->name("deletarConfirmar");
+        });
 
-        Route::get("tabela", [MainController::class, "tabela"])->name("tabela");
+        Route::controller(Permissao::class)->group(function() {
+            Route::get("permissao/{id}", "permissao")->name("permissao");
+            Route::get("permissaoConfirmar/{id}", "permissaoConfirmar")->name("permissaoConfirmar");
+        });
 
-        Route::get("permissao/{id}", [Permissao::class, "permissao"])->name("permissao");
-        Route::get("permissaoConfirmar/{id}", [Permissao::class, "permissaoConfirmar"])->name("permissaoConfirmar");
+        Route::controller(PesquisarBuscar::class)->group(function() {
+            Route::post("pesquisaUsuario", "pesquisaUsuario")->name("pesquisaUsuario");
+            Route::post("pesquisaStatus", "pesquisaStatus")->name("pesquisaStatus");
+            Route::post("pesquisaDataNascimento", "pesquisaDataNascimento")->name("pesquisaDataNascimento");
+            Route::post("pesquisaDataInicialFinal", "pesquisaDataInicialFinal")->name("pesquisaDataInicialFinal");
+            Route::post("pesquisaMes", "pesquisaMes")->name("pesquisaMes");
+            Route::post("pesquisaMesInicialFinal", "pesquisaMesInicialFinal")->name("pesquisaMesInicialFinal");
+            
+            Route::get("cep/{cep}", "buscar")->name("buscar");
+            Route::get("cnpj/{cnpj}", "consultar")->name("consultar");
+        });
 
-        Route::get("cards", [MainController::class, "cards"])->name("cards");
+        Route::controller(Logs::class)->group(function() {
+            Route::get("limparLogs/{id}", "limparLogs")->name("limparLogs");
+            Route::get("limparLog/{id}", "limparLog")->name("limparLog");
+        });
 
-        Route::get("dashboard", [MainController::class, "dashboard"])->name("dashboard");
-
-        Route::get("pesquisa", [MainController::class, "pesquisa"])->name("pesquisa");
-        Route::post("pesquisaUsuario", [PesquisarBuscar::class, "pesquisaUsuario"])->name("pesquisaUsuario");
-        Route::post("pesquisaStatus", [PesquisarBuscar::class, "pesquisaStatus"])->name("pesquisaStatus");
-        Route::post("pesquisaDataNascimento", [PesquisarBuscar::class, "pesquisaDataNascimento"])->name("pesquisaDataNascimento");
-        Route::post("pesquisaDataInicialFinal", [PesquisarBuscar::class, "pesquisaDataInicialFinal"])->name("pesquisaDataInicialFinal");
-        Route::post("pesquisaMes", [PesquisarBuscar::class, "pesquisaMes"])->name("pesquisaMes");
-        Route::post("pesquisaMesInicialFinal", [PesquisarBuscar::class, "pesquisaMesInicialFinal"])->name("pesquisaMesInicialFinal");
-
-        Route::get("endereco", [MainController::class, "endereco"])->name("endereco");
-        Route::get("cep/{cep}", [PesquisarBuscar::class, "buscar"])->name("buscar");
-        Route::get("cnpj/{cnpj}", [PesquisarBuscar::class, "consultar"])->name("consultar");
-
-        Route::get("logs/{id}", [MainController::class, "logs"])->name("logs");
-        Route::get("limparLogs/{id}", [Logs::class, "limparLogs"])->name("limparLogs");
-
-        Route::get("importarExportar", [MainController::class, "importarExportar"])->name("importarExportar");
-        Route::post("importar", [ImportarExportar::class, "importar"])->name("importar");
-        Route::get("exportar", [ImportarExportar::class, "exportar"])->name("exportar");
+        Route::controller(ImportarExportar::class)->group(function() {
+            Route::post("importar", "importar")->name("importar");
+            Route::get("exportar", "exportar")->name("exportar");
+        });
     });
 });

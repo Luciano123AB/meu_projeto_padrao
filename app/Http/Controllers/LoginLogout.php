@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usuario;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,18 +25,17 @@ class LoginLogout
             "senha.max" => "O campo senha deve ter no máximo :max caracteres."
         ]);
 
-        $usuario = Usuario::where("usuario", $request->input("usuario"))
-                    ->where("deleted_at", NULL)->first();
+        $usuario = Usuario::where("usuario", $request->input("usuario"))->where("deleted_at", NULL)->first();
 
         if (!$usuario) {
-            return redirect()->back()->withInput()->with("usuarioErro", "Usuário não encontrado");
+            return redirect()->back()->withInput()->with("usuarioErro", "Usuário não encontrado.");
         }
 
         if (!password_verify($request->input("senha"), $usuario->senha)) {
-            return redirect()->back()->withInput()->with("senhaErro", "Senha incorreta");
+            return redirect()->back()->withInput()->with("senhaErro", "Senha incorreta.");
         }
 
-        $usuario->ultimo_acesso = date("Y-m-d H:i:s");
+        $usuario->ultimo_acesso = Carbon::now();
         $usuario->save();
 
         Auth::login($usuario);

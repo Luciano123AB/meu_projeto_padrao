@@ -42,36 +42,21 @@
                                         <table class="table table-hover {{ session("tema") == "escuro" ? "table-dark" : "table-secondary" }} align-middle mb-0">
                                             <thead class="text-center">
                                                 <tr>
-                                                    <th class="border-end">N°</th>
-                                                    <th class="border-end">Nome</th>
-                                                    <th class="border-end">Usuario</th>
-                                                    <th class="border-end">Email</th>
+                                                    <th class="border-end align-middle">N°</th>
+                                                    <th class="border-end align-middle">Nome</th>
+                                                    <th class="border-end align-middle">Usuario</th>
+                                                    <th class="border-end align-middle">Email</th>
                                                     <th class="border-end">Data Nasc.</th>
-                                                    <th class="border-end">Celular</th>
-                                                    <th class="border-end">Gênero</th>
-                                                    <th>Permissão</th>
+                                                    <th class="border-end align-middle">Celular</th>
+                                                    <th class="border-end align-middle">Gênero</th>
+                                                    <th class="align-middle">Permissão</th>
                                                 </tr>
                                             </thead>
 
-                                            @if(session()->has('dadosImportados'))    
+                                            @if(session()->has('dadosImportados'))
                                                 <tbody>
                                                     @forelse(session('dadosImportados') as $dados)
-                                                        <tr class="text-center">
-                                                            <td class="text-center fw-bold border-end">{{ $loop->iteration }}</td>
-                                                            <td class="border-end">{{ $dados['nome_completo'] }}</td>
-                                                            <td class="border-end">{{ $dados['usuario'] }}</td>
-                                                            <td class="border-end">{{ $dados['email'] }}</td>
-                                                            <td class="border-end">{{ $dados['data_nascimento'] }}</td>
-                                                            <td class="border-end">{{ $dados['celular'] }}</td>
-                                                            <td class="border-end">{{ $dados['genero'] }}</td>
-                                                            <td class="border-end">
-                                                                @if(isset($dados['permissao']) && $dados['permissao']==1)
-                                                                    <button class="badge bg-success" disabled>SIM</button>
-                                                                @else
-                                                                    <button class="badge bg-danger" disabled>NÃO</button>
-                                                                @endif
-                                                            </td>
-                                                        </tr>
+                                                        <x-importar :dados="$dados" :loop="$loop->index" />
                                                     @empty
                                                         <tr class="text-center fw-bold">
                                                             <td colspan="8" class="{{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }}">NENHUM USUÁRIO ENCONTRADO</td>
@@ -97,8 +82,7 @@
                                     @csrf                                   
                                     
                                     <div class="col">
-                                        <label class="form-label">Formato:</label>
-                                        
+                                        <label class="form-label">Formato:</label>                                        
                                         <select id="formato" class="form-select w-100" name="formato" required>
                                             <option value="" selected disabled>Selecione...</option>
                                             <option value="Excel">Excel</option>
@@ -126,36 +110,21 @@
                                     <table class="table table-hover {{ session("tema") == "escuro" ? "table-dark" : "table-secondary" }} align-middle mb-0">
                                         <thead class="text-center">
                                             <tr>
-                                                <th class="border-end">N°</th>
-                                                <th class="border-end">Nome</th>
-                                                <th class="border-end">Usuario</th>
-                                                <th class="border-end">Email</th>
+                                                <th class="border-end align-middle">N°</th>
+                                                <th class="border-end align-middle">Nome</th>
+                                                <th class="border-end align-middle">Usuario</th>
+                                                <th class="border-end align-middle">Email</th>
                                                 <th class="border-end">Data Nasc.</th>
-                                                <th class="border-end">Celular</th>
-                                                <th class="border-end">Gênero</th>
-                                                <th>Permissão</th>
+                                                <th class="border-end align-middle">Celular</th>
+                                                <th class="border-end align-middle">Gênero</th>
+                                                <th class="align-middle">Permissão</th>
                                             </tr>
                                         </thead>
 
                                         @if(session()->has('dadosExportados'))    
                                             <tbody>
                                                 @forelse(session('dadosExportados') as $dados)
-                                                    <tr class="text-center">
-                                                        <td class="text-center fw-bold border-end">{{ $loop->iteration }}</td>
-                                                        <td class="border-end">{{ $dados->nome_completo }}</td>
-                                                        <td class="border-end">{{ $dados->usuario }}</td>
-                                                        <td class="border-end">{{ $dados->email }}</td>
-                                                        <td class="border-end">{{ $dados->data_nascimento }}</td>
-                                                        <td class="border-end">{{ $dados->celular }}</td>
-                                                        <td class="border-end">{{ $dados->genero }}</td>
-                                                        <td>
-                                                            @if($dados->permissao==1)
-                                                                <button class="badge bg-success" disabled>SIM</button>
-                                                            @else
-                                                                <button class="badge bg-danger" disabled>NÃO</button>
-                                                            @endif
-                                                        </td>
-                                                    </tr>
+                                                    <x-exportar :dados="$dados" :loop="$loop->index" />                                                    
                                                 @empty
                                                     <tr class="text-center fw-bold">
                                                         <td colspan="8" class="{{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }}">NENHUM USUÁRIO ENCONTRADO</td>

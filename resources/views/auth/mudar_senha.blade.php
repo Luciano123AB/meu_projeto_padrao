@@ -33,7 +33,7 @@
                     @enderror
 
                     @if(session("senhaInvalida"))
-                        <div class="alert alert-danger mx-3 mb-3" role="alert">
+                        <div class="alert alert-danger mt-1 mb-0" role="alert">
                             {{ session("senhaInvalida") }}
                             <svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill mb-1" viewBox="0 0 16 16">
                                 <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
@@ -46,12 +46,12 @@
                     <div class="input-group">
                         <label class="input-group-text">Nova Senha:</label>
 
-                        <input id="senha" class="form-control" type="password" name="nova_senha" placeholder="Ex: @ABde12" required value="{{ old("nova_senha") }}">
+                        <input id="senha" class="form-control" type="password" name="senha" placeholder="Ex: @ABde12" required value="{{ old("senha") }}">
                         
                         <button id="mostrar_ocultar_senha" class="input-group-text focus-ring focus-ring-secondary" type="button" name="mostrar_ocultar_senha" onclick="mostrarOcultarSenha()"><i class="bi bi-eye"></i></button>
                     </div>
 
-                    @error("nova_senha")
+                    @error("senha")
                         <div class="alert alert-danger mt-1 mb-0" role="alert">
                             {{ $message }}
                             <svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill mb-1" viewBox="0 0 16 16">
@@ -90,7 +90,7 @@
                     SALVAR
                 </button>
                                 
-                <button style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" id="limpar" class="btn btn-lg {{ session("tema") == "escuro" ? "btn-dark" : "btn-secondary" }} fw-bold icon-link icon-link-hover focus-ring focus-ring-secondary justify-content-center" type="button" name="limpar" onclick="resetarCampos()">
+                <button style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" id="limpar" class="btn btn-lg {{ session("tema") == "escuro" ? "btn-dark" : "btn-secondary" }} fw-bold icon-link icon-link-hover focus-ring focus-ring-secondary justify-content-center" type="button" name="limpar" onclick="limparCampos()">
                     <svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="16" height="16" fill="currentColor" class="bi bi-backspace-reverse" viewBox="0 0 16 16">
                         <path d="M9.854 5.146a.5.5 0 0 1 0 .708L7.707 8l2.147 2.146a.5.5 0 0 1-.708.708L7 8.707l-2.146 2.147a.5.5 0 0 1-.708-.708L6.293 8 4.146 5.854a.5.5 0 1 1 .708-.708L7 7.293l2.146-2.147a.5.5 0 0 1 .708 0"/>
                         <path d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h7.08a2 2 0 0 0 1.519-.698l4.843-5.651a1 1 0 0 0 0-1.302L10.6 1.7A2 2 0 0 0 9.08 1zm7.08 1a1 1 0 0 1 .76.35L14.682 8l-4.844 5.65a1 1 0 0 1-.759.35H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/>
@@ -102,10 +102,4 @@
             <div class="card-footer {{ session("tema") == "escuro" ? "bg-black" : "bg-primary" }}"></div>
         </form>
     </div>
-
-    <script>
-        function resetarCampos() {
-            document.getElementById("formulario").reset();
-        }
-    </script>
 @endsection

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class VerificarNaoEstaLogado
+class VerificarLogado
 {
     /**
      * Handle an incoming request.
@@ -16,8 +16,8 @@ class VerificarNaoEstaLogado
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::user()) {
-            return redirect()->route("login");
+        if (Auth::user()) {
+            return redirect()->route("home");
         }
 
         return $next($request);

@@ -31,7 +31,7 @@ class ImportarExportar
 
             }
 
-            session(["dadosImportados" => Excel::toCollection(new UsuariosImportar, $request->file("arquivo"))[0]]);
+            session()->flash("dadosImportados", Excel::toCollection(new UsuariosImportar, $request->file("arquivo"))[0]);
 
             return redirect()->back()->withInput()->with("alerta", [
                 "icon" => "success",
@@ -95,7 +95,7 @@ class ImportarExportar
 
             }
 
-            session(["dadosExportados" => Usuario::select("nome_completo", "usuario", "email", "cpf", "data_nascimento", "celular", "genero", "permissao")->get()]);
+            session()->flash("dadosExportados", Usuario::select("nome_completo", "usuario", "email", "cpf", "data_nascimento", "celular", "genero", "permissao")->get());
 
             return redirect()->back()->withInput()->with("alerta", [
                 "icon" => "success",
