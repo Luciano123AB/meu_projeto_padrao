@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
+
 class Tema
 {
-    public function trocarTema() {
+    public function trocarTema(): RedirectResponse {
         if (!session()->has("tema")) {
             session(["tema" => "escuro"]);
 
