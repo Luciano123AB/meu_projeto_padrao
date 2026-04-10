@@ -23,7 +23,9 @@
 
     @include("layouts.subnavbar")
     
-    @yield("content")
+    <div class="mb-5">
+        @yield("content")
+    </div>
 
     @include("layouts.footer")
     

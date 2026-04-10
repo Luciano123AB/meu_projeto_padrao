@@ -62,7 +62,7 @@
                     </div>
                 </div>
 
-                <div class="bg-light border border-black p-3 mx-3 mt-3 mb-5 shadow rounded-3">
+                <div class="bg-light border border-black p-3 mx-3 mt-3 shadow rounded-3">
                     <div class="row g-3">
                         <div class="col-12 col-md-6">
                             <div class="card bg-secondary-subtle text-center p-3 shadow-sm rounded-3">
