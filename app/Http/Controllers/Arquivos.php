@@ -1,0 +1,62 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
+class Arquivos
+{
+    public function criarArquivo(Request $request) {
+        $request->validate(
+            [
+                "texto" => "required"
+            ],
+
+            [
+                "texto.required" => "Digite algo abaixo primeiro."
+            ]
+        );
+
+        $arquivos = Storage::disk("public")->allFiles();
+        $quantidade = 0;
+
+        foreach ($arquivos as $arquivo) {
+            $quantidade++;
+        }
+
+        Storage::disk("public")->put("texto" . $quantidade . ".txt", $request->input("texto"));
+
+        return redirect()->back();
+    }
+
+    public function subirArquivo(Request $request) {
+        $request->validate(
+            [
+                "arquivo" => "required|mimes:txt,jpg,png|max:1024"
+            ],
+
+            [
+                "arquivo.required" => "Escolha um arquivo.",
+                "arquivo.mimes" => "Somente arquivos .txt, .jpeg e .png são permitidos.",
+                "arquivos.max" => "O arquivo pode ter no máximo :max MB."
+            ]
+        );
+
+        $arquivo = $request->file("arquivo");
+
+        Storage::disk("public")->putFileAs("", $arquivo, $arquivo->getClientOriginalName());
+
+        return redirect()->back();
+    }
+
+    public function downloadArquivo($arquivo) {
+        return Storage::download("arquivos/$arquivo");
+    }
+
+    public function excluirArquivo($arquivo) {
+        Storage::disk("public")->delete($arquivo);
+
+        return redirect()->back();
+    }
+}

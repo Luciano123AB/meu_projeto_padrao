@@ -85,6 +85,11 @@
         max-height: 300px;
     }
 
+    #arquivos {
+        min-height: 500px;
+        max-height: 500px;
+    }
+
     #tabela_logs {
         min-height: 750px;
         max-height: 750px;

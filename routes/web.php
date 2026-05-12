@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Arquivos;
 use App\Http\Controllers\CadastroUpdate;
 use App\Http\Controllers\Deletar;
 use App\Http\Controllers\ImportarExportar;
@@ -37,6 +38,8 @@ Route::prefix("/")->group(function () {
             Route::get("logs/{id}", "logs")->name("logs");
 
             Route::get("importarExportar", "importarExportar")->name("importarExportar");
+
+            Route::get("arquivos", "arquivos")->name("arquivos");
         });
 
         Route::middleware([VerificarLogado::class])->group(function () {
@@ -87,6 +90,13 @@ Route::prefix("/")->group(function () {
         Route::controller(ImportarExportar::class)->group(function() {
             Route::post("importar", "importar")->name("importar");
             Route::get("exportar", "exportar")->name("exportar");
+        });
+
+        Route::controller(Arquivos::class)->group(function() {
+            Route::post("criarArquivo", "criarArquivo")->name("criarArquivo");
+            Route::post("subirArquivo", "subirArquivo")->name("subirArquivo");
+            Route::get("downloadArquivo/{arquivo}", "downloadArquivo")->name("downloadArquivo");
+            Route::get("excluirArquivo/{arquivo}", "excluirArquivo")->name("excluirArquivo");
         });
     });
 });

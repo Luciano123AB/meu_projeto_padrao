@@ -63,6 +63,14 @@
         </svg>                        
         <a href="{{ route("importarExportar") }}" class="link-secondary text-decoration-none">Importar / Exportar</a>
     </li>
+    <br>
+                    
+    <li class="{{ session("tema") == "escuro" ? "opcao_gray" : "opcao_cyan" }} @if (url()->current() === url('/arquivos')) {{ session("tema") == "escuro" ? "bg_gray" : "bg-info" }} @endif rounded-end icon-link icon-link-hover p-1">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right me-1" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+        </svg>                        
+        <a href="{{ route("arquivos") }}" class="link-secondary text-decoration-none">Arquivos</a>
+    </li>
 </nav>
 
 <div id="overlay" class="opcoes"></div>

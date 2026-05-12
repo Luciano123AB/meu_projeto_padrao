@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Usuario;
 use App\Services\Boot;
 use App\Services\Operacoes;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class MainController
@@ -104,5 +106,25 @@ class MainController
         Operacoes::salvarLog(Auth::user()->id);
 
         return view("importar_exportar")->with("pagina", "Importar/Exportar");
+    }
+
+    public function arquivos(): View {
+        Operacoes::salvarLog(Auth::user()->id);
+
+        $disco = Storage::disk("public");
+        $arquivos = $disco->allFiles();
+        $dados_arquivos = [];
+
+        foreach ($arquivos as $arquivo) {
+            $dados_arquivos[] = [
+                "arquivo" => $arquivo,
+                "nome" => basename($arquivo),
+                "tamanho" => round($disco->size($arquivo) / 1024, 2),
+                "tipo" => $disco->mimeType($arquivo),
+                "data" => Carbon::createFromTimestamp($disco->lastModified($arquivo))->format("d-m-Y H:i:s")
+            ];
+        }
+
+        return view("arquivos", compact("dados_arquivos"))->with("pagina", "Arquivos");
     }
 }
