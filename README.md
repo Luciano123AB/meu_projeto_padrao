@@ -5,7 +5,9 @@
 
 ## 📜 Sobre
 
-Aplicação web padrão com **Laravel**.
+Aplicação web padrão com **Laravel**, com foco em:
+
+- Funcionalidades mais frequêntes.
 
 ---
 
@@ -27,7 +29,7 @@ Aplicação web padrão com **Laravel**.
 - **Backend:** PHP 8.3.30 + Laravel 12
 - **Frontend build:** Vite + CSS/JS
 - **Banco de dados:** MySQL 8
-- **Testes:** Pest/PHPUnit (Feature tests)
+- **Testes:** Não
 - **Containerização:** Docker
 
 ---
@@ -163,13 +165,13 @@ Exemplo de build e run:
 
 ```bash
 docker build -t meu-projeto-padrao .
-docker run -p 8000:8000 --env-file .env meu-projeto-padrao
+docker run -p 8080:8080 --env-file .env meu-projeto-padrao
 ```
 
 Comando de start definido no container:
 
 ```bash
-php artisan migrate --force && php artisan optimize && php artisan serve --host=0.0.0.0 --port=${PORT:-8000}
+php artisan migrate --force && php artisan optimize && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}
 ```
 
 ---
