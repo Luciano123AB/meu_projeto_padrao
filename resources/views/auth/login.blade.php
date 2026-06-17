@@ -5,102 +5,74 @@
         <form action="{{ route("loginSubmit") }}" id="formulario" class="card border-black shadow w-100 w-md-75 w-lg-50" method="post" novalidate>
             @csrf
 
-            <div class="card-header d-flex align-items-center justify-content-center">
-                <svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="28" height="28" fill="currentColor" class="bi bi-door-open me-1" viewBox="0 0 16 16">
-                    <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1"/>
-                    <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117M11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5M4 1.934V15h6V1.077z"/>
-                </svg>
-                
-                <label class="fs-5 fs-md-4 fw-bold">LOGIN</label>
+            <div class="card-header d-flex gap-1 align-items-center justify-content-center fs-5">
+                <i class="bi bi-door-open fs-3"></i>                
+                <label class="fw-bold">LOGIN</label>
             </div>
 
             <div class="card-body">
                 <div class="mb-3 text-center text-md-start">
-                    <label>Usuário:</label>
-                    
+                    <label>Usuário:</label>                    
                     <div class="input-group">
                         <span class="input-group-text">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
-                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
-                            </svg>
-                        </span>
-                        
+                            <i class="bi bi-person"></i>
+                        </span>                        
                         <input id="usuario" class="form-control" type="text" name="usuario" placeholder="..." value="{{ old("usuario") }}" required>
                     </div>
-
                     @error("usuario")
                         <div class="alert alert-danger text-center mt-1" role="alert">
                             {{ $message }}
-                            <svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill mb-1" viewBox="0 0 16 16">
-                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
-                            </svg>
+                            <i class="bi bi-info-circle-fill"></i>
                         </div>
                     @enderror
-
                     @if(session("usuarioErro"))
                         <div class="alert alert-danger text-center mt-1" role="alert">
                             {{ session("usuarioErro") }}
-                            <svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill mb-1" viewBox="0 0 16 16">
-                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
-                            </svg>
+                            <i class="bi bi-info-circle-fill"></i>
                         </div>
                     @endif
                 </div>
 
                 <div class="text-center text-md-start">
-                    <label>Senha:</label>
-                    
+                    <label>Senha:</label>                    
                     <div class="input-group">
                         <span class="input-group-text">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-key" viewBox="0 0 16 16">
-                                <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8m4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5"/>
-                                <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-                            </svg>
-                        </span>
-                        
-                        <input id="senha" class="form-control" type="password" name="senha" placeholder="..." value="{{ old("senha") }}" required>
-                        
+                            <i class="bi bi-key"></i>
+                        </span>                        
+                        <input id="senha" class="form-control" type="password" name="senha" placeholder="..." value="{{ old("senha") }}" required>                        
                         <button id="mostrar_ocultar_senha" class="input-group-text focus-ring focus-ring-secondary" type="button" onclick="mostrarOcultarSenha()">
                             <i class="bi bi-eye"></i>
                         </button>
                     </div>
-
                     @error("senha")
                         <div class="alert alert-danger text-center mt-1 mb-0" role="alert">
                             {{ $message }}
-                            <svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill mb-1" viewBox="0 0 16 16">
-                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
-                            </svg>
+                            <i class="bi bi-info-circle-fill"></i>
                         </div>
                     @enderror
-
                     @if(session("senhaErro"))
                         <div class="alert alert-danger text-center mt-1 mb-0" role="alert">
                             {{ session("senhaErro") }}
-                            <svg xmlns="{{ asset("http://www.w3.org/2000/svg") }}" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill mb-1" viewBox="0 0 16 16">
-                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
-                            </svg>
+                            <i class="bi bi-info-circle-fill"></i>
                         </div>
                     @endif
                 </div>                
             </div>
 
             <div class="card-footer d-grid gap-2">
-                <button id="logar" class="btn {{ session("tema") == "escuro" ? "btn-secondary" : "btn-info" }} fw-bold {{ session("tema") == "escuro" ? "text-white" : "text-primary" }} icon-link icon-link-hover focus-ring justify-content-center" type="submit">
+                <button type="submit" id="logar" class="btn {{ session("tema") == "escuro" ? "btn-secondary" : "btn-info" }} fw-bold {{ session("tema") == "escuro" ? "text-white" : "text-primary" }} icon-link icon-link-hover focus-ring justify-content-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right me-1" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
                         <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
-                    </svg>
-                    
+                    </svg>                    
                     LOGAR
                 </button>
 
-                <button id="limpar" class="btn {{ session("tema") == "escuro" ? "btn-dark" : "btn-secondary" }} fw-bold icon-link icon-link-hover focus-ring justify-content-center" type="button" onclick="limparCampos()">
+                <button type="button" id="limpar" class="btn {{ session("tema") == "escuro" ? "btn-dark" : "btn-secondary" }} fw-bold icon-link icon-link-hover focus-ring justify-content-center" onclick="limparCampos()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-backspace-reverse me-1" viewBox="0 0 16 16">
                         <path d="M9.854 5.146a.5.5 0 0 1 0 .708L7.707 8l2.147 2.146a.5.5 0 0 1-.708.708L7 8.707l-2.146 2.147a.5.5 0 0 1-.708-.708L6.293 8 4.146 5.854a.5.5 0 1 1 .708-.708L7 7.293l2.146-2.147a.5.5 0 0 1 .708 0"/>
                         <path d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h7.08a2 2 0 0 0 1.519-.698l4.843-5.651a1 1 0 0 0 0-1.302L10.6 1.7A2 2 0 0 0 9.08 1zm7.08 1a1 1 0 0 1 .76.35L14.682 8l-4.844 5.65a1 1 0 0 1-.759.35H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/>
-                    </svg>
-                    
+                    </svg>                    
                     LIMPAR
                 </button>
             </div>

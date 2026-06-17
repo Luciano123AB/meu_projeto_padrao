@@ -18,7 +18,7 @@ class CadastroUpdate
             "nome" => "required|min:1|max:80",
             "usuario" => "required|min:6|max:30",
             "email" => "required|email",
-            "senha" => "required|min:8|max:64|regex:/(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/",
+            "senha" => "required|min:8|max:64|regex:/(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&]).+$/",
             "confirmar_senha" => "required|same:senha",
             "cpf" => "required",
             "data" => "required",
@@ -39,7 +39,7 @@ class CadastroUpdate
             "senha.required" => "O campo senha é obrigatório.",
             "senha.min" => "O campo senha deve ter pelo menos :min caracteres.",
             "senha.max" => "O campo senha deve ter no máximo :max caracteres.",
-            "senha.regex" => "A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula e um número.",
+            "senha.regex" => "A senha deve conter pelo menos um caractere especial, uma letra maiúscula, uma letra minúscula e um número.",
             "confirmar_senha.required" => "O campo confirmar senha é obrigatório.",
             "confirmar_senha.same" => "As senhas não coincidem.",
             "cpf.required" => "O campo CPF é obrigatório.",
@@ -248,7 +248,7 @@ class CadastroUpdate
                 "required",
                 "min:8",
                 "max:64",
-                "regex:/(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/",
+                "regex:/(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&]).+$/",
                 Rule::unique("usuarios")->ignore(Auth::user()->id)
             ],
             "confirmar_senha" => "required|same:senha"
@@ -259,7 +259,7 @@ class CadastroUpdate
             "senha.required" => "O campo senha é obrigatório.",
             "senha.min" => "O campo senha deve ter pelo menos :min caracteres.",
             "senha.max" => "O campo senha deve ter no máximo :max caracteres.",
-            "senha.regex" => "A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula e um número.",
+            "senha.regex" => "A senha deve conter pelo menos um caractere especial, uma letra maiúscula, uma letra minúscula e um número.",
             "confirmar_senha.required" => "O campo confirmar senha é obrigatório.",
             "confirmar_senha.same" => "As senhas não coincidem."
         ]);
