@@ -1,17 +1,17 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
 
-    const audio = document.getElementById("trilha_sonora");
-    const icone = document.getElementById("icone_musica");
-    let tocando = sessionStorage.getItem("musica_tocando") === "true";
-    let tempo_salvo = sessionStorage.getItem("musica_tempo");
+    const audio = document.getElementById('trilha_sonora');
+    const icone = document.getElementById('icone_musica');
+    let tocando = sessionStorage.getItem('musica_tocando') === 'true';
+    let tempo_salvo = sessionStorage.getItem('musica_tempo');
 
     function atualizarIcone(tocando) {
         if (tocando) {
-            icone.classList.remove("bi-volume-mute-fill");
-            icone.classList.add("bi-volume-up-fill");
+            icone.classList.remove('bi-volume-mute-fill');
+            icone.classList.add('bi-volume-up-fill');
         } else {
-            icone.classList.remove("bi-volume-up-fill");
-            icone.classList.add("bi-volume-mute-fill");
+            icone.classList.remove('bi-volume-up-fill');
+            icone.classList.add('bi-volume-mute-fill');
         }
     }
 
@@ -21,10 +21,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (tocando) {
         audio.play().catch(() => {});
-        icone.classList.replace("bi-volume-up-fill", "bi-volume-mute-fill");
+        icone.classList.replace('bi-volume-up-fill', 'bi-volume-mute-fill');
     }
 
-    document.getElementById("botao_musica").addEventListener("click", () => {
+    document.getElementById('botao_musica').addEventListener('click', () => {
         tocando = !tocando;
 
         if (tocando) {
@@ -33,13 +33,13 @@ document.addEventListener("DOMContentLoaded", () => {
             audio.pause();
         }
 
-        sessionStorage.setItem("musica_tocando", tocando);
+        sessionStorage.setItem('musica_tocando', tocando);
         atualizarIcone(tocando);
     });
 
     atualizarIcone(tocando);
 
-    window.addEventListener("beforeunload", () => {
-        sessionStorage.setItem("musica_tempo", audio.currentTime);
+    window.addEventListener('beforeunload', () => {
+        sessionStorage.setItem('musica_tempo', audio.currentTime);
     });
 });

@@ -10,22 +10,22 @@ class Arquivos
     public function criarArquivo(Request $request) {
         $request->validate(
             [
-                "texto" => "required"
+                'texto' => 'required'
             ],
 
             [
-                "texto.required" => "Digite algo abaixo primeiro."
+                'texto.required' => 'Digite algo abaixo primeiro.'
             ]
         );
 
-        $arquivos = Storage::disk("public")->allFiles();
+        $arquivos = Storage::disk('arquivos')->allFiles();
         $quantidade = 0;
 
         foreach ($arquivos as $arquivo) {
             $quantidade++;
         }
 
-        Storage::disk("public")->put("texto" . $quantidade . ".txt", $request->input("texto"));
+        Storage::disk('arquivos')->put('texto' . $quantidade . '.txt', $request->input('texto'));
 
         return redirect()->back();
     }
@@ -33,29 +33,29 @@ class Arquivos
     public function subirArquivo(Request $request) {
         $request->validate(
             [
-                "arquivo" => "required|mimes:txt,jpg,png|max:1024"
+                'arquivo' => 'required|mimes:txt,jpg,png|max:1024'
             ],
 
             [
-                "arquivo.required" => "Escolha um arquivo.",
-                "arquivo.mimes" => "Somente arquivos .txt, .jpeg e .png são permitidos.",
-                "arquivos.max" => "O arquivo pode ter no máximo :max MB."
+                'arquivo.required' => 'Escolha um arquivo.',
+                'arquivo.mimes' => 'Somente arquivos .txt, .jpeg e .png são permitidos.',
+                'arquivos.max' => 'O arquivo pode ter no máximo :max MB.'
             ]
         );
 
-        $arquivo = $request->file("arquivo");
+        $arquivo = $request->file('arquivo');
 
-        Storage::disk("public")->putFileAs("", $arquivo, $arquivo->getClientOriginalName());
+        Storage::disk('arquivos')->putFileAs('', $arquivo, $arquivo->getClientOriginalName());
 
         return redirect()->back();
     }
 
     public function downloadArquivo($arquivo) {
-        return Storage::download("arquivos/$arquivo");
+        return Storage::download('arquivos/$arquivo');
     }
 
     public function excluirArquivo($arquivo) {
-        Storage::disk("public")->delete($arquivo);
+        Storage::disk('arquivos')->delete($arquivo);
 
         return redirect()->back();
     }

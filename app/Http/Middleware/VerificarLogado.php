@@ -17,7 +17,7 @@ class VerificarLogado
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::user()) {
-            return redirect()->route("home");
+            return redirect()->route('home');
         }
 
         return $next($request);

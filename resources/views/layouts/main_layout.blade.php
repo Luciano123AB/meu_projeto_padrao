@@ -10,7 +10,7 @@
     @include("layouts.partials.links")
 
     @php
-        if (session("tema") === "escuro") {
+        if (session('tema') === "escuro") {
             $imagem = "fundo_escuro.png";
         } else {
             $imagem = "fundo.png";

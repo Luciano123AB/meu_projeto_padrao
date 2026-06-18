@@ -32,14 +32,14 @@
                                         </div>
     
                                         <div class="col mb-1 d-flex justify-content-center align-items-center">
-                                            <button id="importar" class="btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary" : "btn-info" }} w-100 w-md-auto fs-5 fs-md-1 p-2 p-md-4" type="submit" name="importar">
+                                            <button id="importar" class="btn btn-lg {{ session('tema') == "escuro" ? "btn-secondary" : "btn-info" }} w-100 w-md-auto fs-5 fs-md-1 p-2 p-md-4" type="submit" name="importar">
                                                 IMPORTAR
                                             </button>
                                         </div>
                                     </div>
     
-                                    <div class="importar_exportar table-responsive rounded-2 {{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }} border overflow-auto">
-                                        <table class="table table-hover {{ session("tema") == "escuro" ? "table-dark" : "table-secondary" }} align-middle mb-0">
+                                    <div class="importar_exportar table-responsive rounded-2 {{ session('tema') == "escuro" ? "bg-dark" : "bg-secondary" }} border overflow-auto">
+                                        <table class="table table-hover {{ session('tema') == "escuro" ? "table-dark" : "table-secondary" }} align-middle mb-0">
                                             <thead class="text-center">
                                                 <tr>
                                                     <th class="border-end align-middle">N°</th>
@@ -59,7 +59,7 @@
                                                         <x-importar :dados="$dados" :loop="$loop->index" />
                                                     @empty
                                                         <tr class="text-center fw-bold">
-                                                            <td colspan="8" class="{{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }}">NENHUM USUÁRIO ENCONTRADO</td>
+                                                            <td colspan="8" class="{{ session('tema') == "escuro" ? "bg-dark" : "bg-secondary" }}">NENHUM USUÁRIO ENCONTRADO</td>
                                                         </tr>
                                                     @endforelse
                                                 </tbody>
@@ -67,7 +67,7 @@
                                                 {{ session()->forget('dadosImportados') }}
                                             @else
                                                 <tr class="text-center">
-                                                    <td colspan="8" class="{{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }}">IMPORTE SEU ARQUIVO</td>
+                                                    <td colspan="8" class="{{ session('tema') == "escuro" ? "bg-dark" : "bg-secondary" }}">IMPORTE SEU ARQUIVO</td>
                                                 </tr>
                                             @endif
                                         </table>
@@ -100,14 +100,14 @@
                                     </div>
 
                                     <div class="col mb-1 d-flex justify-content-center align-items-center">
-                                        <button id="exportar" class="btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary" : "btn-info" }} w-100 fs-5 fs-md-1 p-2 p-md-4" type="submit" name="exportar">
+                                        <button id="exportar" class="btn btn-lg {{ session('tema') == "escuro" ? "btn-secondary" : "btn-info" }} w-100 fs-5 fs-md-1 p-2 p-md-4" type="submit" name="exportar">
                                             EXPORTAR
                                         </button>
                                     </div>
                                 </form>
     
-                                <div class="importar_exportar table-responsive rounded-2 {{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }} border overflow-auto">
-                                    <table class="table table-hover {{ session("tema") == "escuro" ? "table-dark" : "table-secondary" }} align-middle mb-0">
+                                <div class="importar_exportar table-responsive rounded-2 {{ session('tema') == "escuro" ? "bg-dark" : "bg-secondary" }} border overflow-auto">
+                                    <table class="table table-hover {{ session('tema') == "escuro" ? "table-dark" : "table-secondary" }} align-middle mb-0">
                                         <thead class="text-center">
                                             <tr>
                                                 <th class="border-end align-middle">N°</th>
@@ -127,7 +127,7 @@
                                                     <x-exportar :dados="$dados" :loop="$loop->index" />                                                    
                                                 @empty
                                                     <tr class="text-center fw-bold">
-                                                        <td colspan="8" class="{{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }}">NENHUM USUÁRIO ENCONTRADO</td>
+                                                        <td colspan="8" class="{{ session('tema') == "escuro" ? "bg-dark" : "bg-secondary" }}">NENHUM USUÁRIO ENCONTRADO</td>
                                                     </tr>
                                                 @endforelse
                                             </tbody>
@@ -135,7 +135,7 @@
                                             {{ session()->forget('dadosExportados') }}
                                         @else
                                             <tr class="text-center">
-                                                <td colspan="8" class="{{ session("tema") == "escuro" ? "bg-dark" : "bg-secondary" }}">EXPORTE SEU ARQUIVO</td>
+                                                <td colspan="8" class="{{ session('tema') == "escuro" ? "bg-dark" : "bg-secondary" }}">EXPORTE SEU ARQUIVO</td>
                                             </tr>
                                         @endif
                                     </table>

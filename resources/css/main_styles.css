@@ -117,3 +117,10 @@ body {
 .bloqueado:hover {
     cursor: not-allowed;
 }
+
+@media (width <= 430px) {
+    .botoes_pesquisar {
+        width: 100%;
+        border-radius: 5px 5px 5px 5px !important;
+    }
+}

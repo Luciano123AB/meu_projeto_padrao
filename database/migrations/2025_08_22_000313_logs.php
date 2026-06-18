@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('logs', function (Blueprint $table) {
             $table->id();
-            $table->integer("usuario_id");
-            $table->string("pagina", 20);
-            $table->dateTime("data_hora")->comment("00/00/0000 00:00:00");
+            $table->integer('usuario_id');
+            $table->string('pagina', 20)->comment('Ex: Dashboard');
+            $table->dateTime('data_hora');
             $table->timestamps();
             $table->softDeletes();
         });

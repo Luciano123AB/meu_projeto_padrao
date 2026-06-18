@@ -17,35 +17,35 @@ class Logs
 
         if ($logs) {
 
-            $cor = "info";
+            $cor = 'info';
 
-            if (session("tema") == "escuro") {
+            if (session('tema') == 'escuro') {
 
-                $cor = "secondary";
+                $cor = 'secondary';
 
             }
 
-            return redirect()->back()->withInput()->with("alerta", [
-                "icon" => "success",
-                "title" => "Sucesso!",
-                "text" => "Logs limpos com êxito!",
-                "cor" => "$cor"
+            return redirect()->back()->withInput()->with('alerta', [
+                'icon' => 'success',
+                'title' => 'Sucesso!',
+                'text' => 'Logs limpos com êxito!',
+                'cor' => "$cor"
             ]);
         }
 
-        $cor = "danger";
+        $cor = 'danger';
 
-        if (session("tema") == "escuro") {
+        if (session('tema') == 'escuro') {
 
-            $cor = "dark";
+            $cor = 'dark';
 
         }
 
-        return redirect()->back()->withInput()->with("alerta", [
-            "icon" => "error",
-            "title" => "Erro!",
-            "text" => "Falha ao limpar os logs! Tente novamente.",
-            "cor" => "$cor"
+        return redirect()->back()->withInput()->with('alerta', [
+            'icon' => 'error',
+            'title' => 'Erro!',
+            'text' => 'Falha ao limpar os logs! Tente novamente.',
+            'cor' => "$cor"
         ]);
     }
 
@@ -57,30 +57,30 @@ class Logs
 
         if ($log) {
 
-            $cor = "info";
+            $cor = 'info';
 
-            if (session("tema") == "escuro") {
+            if (session('tema') == 'escuro') {
 
-                $cor = "secondary";
+                $cor = 'secondary';
 
             }
 
             return redirect()->back();
         }
 
-        $cor = "danger";
+        $cor = 'danger';
 
-        if (session("tema") == "escuro") {
+        if (session('tema') == 'escuro') {
 
-            $cor = "dark";
+            $cor = 'dark';
 
         }
 
-        return redirect()->back()->withInput()->with("alerta", [
-            "icon" => "error",
-            "title" => "Erro!",
-            "text" => "Falha ao limpar os logs! Tente novamente.",
-            "cor" => "$cor"
+        return redirect()->back()->withInput()->with('alerta', [
+            'icon' => 'error',
+            'title' => 'Erro!',
+            'text' => 'Falha ao limpar os logs! Tente novamente.',
+            'cor' => "$cor"
         ]);
     }
 }

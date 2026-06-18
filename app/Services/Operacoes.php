@@ -53,7 +53,7 @@ class Operacoes
             $value = Crypt::decrypt($value);
             
         } catch (DecryptException $e) {
-            return redirect()->route("home");
+            return redirect()->route('home');
         }
 
         return $value;

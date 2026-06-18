@@ -14,71 +14,71 @@ class ImportarExportar
 {
     public function importar(Request $request): RedirectResponse {
         $request->validate([
-            "arquivo" => "required"
+            'arquivo' => 'required'
         ],
     
         [
-            "arquivo.required" => "O campo arquivo é obrigatório.",
+            'arquivo.required' => 'O campo arquivo é obrigatório.',
         ]);
 
-        if (Excel::import(new UsuariosImportar, $request->file("arquivo"))) {
+        if (Excel::import(new UsuariosImportar, $request->file('arquivo'))) {
 
-            $cor = "info";
+            $cor = 'info';
 
-            if (session("tema") == "escuro") {
+            if (session('tema') == 'escuro') {
 
-                $cor = "secondary";
+                $cor = 'secondary';
 
             }
 
-            session()->flash("dadosImportados", Excel::toCollection(new UsuariosImportar, $request->file("arquivo"))[0]);
+            session()->flash('dadosImportados', Excel::toCollection(new UsuariosImportar, $request->file('arquivo'))[0]);
 
-            return redirect()->back()->withInput()->with("alerta", [
-                "icon" => "success",
-                "title" => "Sucesso!",
-                "text" => "Arquivo importado com sucesso!",
-                "cor" => "$cor"
+            return redirect()->back()->withInput()->with('alerta', [
+                'icon' => 'success',
+                'title' => 'Sucesso!',
+                'text' => 'Arquivo importado com sucesso!',
+                'cor' => "$cor"
             ]);
         }
 
-        $cor = "danger";
+        $cor = 'danger';
 
-        if (session("tema") == "escuro") {
+        if (session('tema') == 'escuro') {
 
-            $cor = "dark";
+            $cor = 'dark';
 
         }
 
-        return redirect()->back()->withInput()->with("alerta", [
-            "icon" => "error",
-            "title" => "Erro!",
-            "text" => "Falha ao tentar importar o arquivo! Tente novamente.",
-            "cor" => "$cor"
+        return redirect()->back()->withInput()->with('alerta', [
+            'icon' => 'error',
+            'title' => 'Erro!',
+            'text' => 'Falha ao tentar importar o arquivo! Tente novamente.',
+            'cor' => "$cor"
         ]);        
     }
 
     public function exportar(Request $request): RedirectResponse {
         $request->validate([
-            "formato" => "required"
+            'formato' => 'required'
         ],
     
         [
-            "formato.required" => "O campo formato é obrigatório.",
+            'formato.required' => 'O campo formato é obrigatório.',
         ]);
 
-        if ($request->input("formato") == "Excel") {
+        if ($request->input('formato') == 'Excel') {
 
-            $exportar = Excel::store(new UsuariosExportar, "excels/usuarios.xlsx", "public");
+            $exportar = Excel::store(new UsuariosExportar, 'excels/usuarios.xlsx', 'public');
 
         } else {
 
-            $pdf = app("dompdf.wrapper");
+            $pdf = app('dompdf.wrapper');
 
-            $pdf->loadView("tabela", compact(Usuario::all()));
+            $pdf->loadView('tabela', compact(Usuario::all()));
 
-            Storage::disk("public")->makeDirectory("pdfs");
+            Storage::disk('public')->makeDirectory('pdfs');
 
-            $caminho = storage_path("app/public/pdfs/usuarios.pdf");
+            $caminho = storage_path('app/public/pdfs/usuarios.pdf');
             
             $pdf->save($caminho);
             
@@ -87,37 +87,37 @@ class ImportarExportar
 
         if ($exportar) {
 
-            $cor = "info";
+            $cor = 'info';
 
-            if (session("tema") == "escuro") {
+            if (session('tema') == 'escuro') {
 
-                $cor = "secondary";
+                $cor = 'secondary';
 
             }
 
-            session()->flash("dadosExportados", Usuario::select("nome_completo", "usuario", "email", "cpf", "data_nascimento", "celular", "genero", "permissao")->get());
+            session()->flash('dadosExportados', Usuario::select('nome_completo', 'usuario', 'email', 'cpf', 'data_nascimento', 'celular', 'genero', 'permissao')->get());
 
-            return redirect()->back()->withInput()->with("alerta", [
-                "icon" => "success",
-                "title" => "Sucesso!",
-                "text" => "Arquivo exportado com sucesso!",
-                "cor" => "$cor"
+            return redirect()->back()->withInput()->with('alerta', [
+                'icon' => 'success',
+                'title' => 'Sucesso!',
+                'text' => 'Arquivo exportado com sucesso!',
+                'cor' => "$cor"
             ]);
         }
 
-        $cor = "danger";
+        $cor = 'danger';
 
-        if (session("tema") == "escuro") {
+        if (session('tema') == 'escuro') {
 
-            $cor = "dark";
+            $cor = 'dark';
 
         }
 
-        return redirect()->back()->withInput()->with("alerta", [
-            "icon" => "error",
-            "title" => "Erro!",
-            "text" => "Falha ao tentar exportar o arquivo! Tente novamente.",
-            "cor" => "$cor"
+        return redirect()->back()->withInput()->with('alerta', [
+            'icon' => 'error',
+            'title' => 'Erro!',
+            'text' => 'Falha ao tentar exportar o arquivo! Tente novamente.',
+            'cor' => "$cor"
         ]);
     }
 }

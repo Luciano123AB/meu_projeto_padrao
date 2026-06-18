@@ -17,7 +17,7 @@ class VerificarDeslogado
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::user()) {
-            return redirect()->route("login");
+            return redirect()->route('login');
         }
 
         return $next($request);

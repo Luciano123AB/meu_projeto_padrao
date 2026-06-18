@@ -60,6 +60,11 @@ return [
             'report' => false,
         ],
 
+        'arquivos' => [
+            'driver' => 'local',
+            'root' => public_path('assets/arquivos'),
+            'throw' => false,
+        ]
     ],
 
     /*

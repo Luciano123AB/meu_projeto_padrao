@@ -7,22 +7,20 @@ use Illuminate\Http\RedirectResponse;
 class Tema
 {
     public function trocarTema(): RedirectResponse {
-        if (!session()->has("tema")) {
-            session(["tema" => "escuro"]);
+        if (!session()->has('tema')) {
+            session(['tema' => 'escuro']);
 
             return redirect()->back();
         } else {
-            if (session("tema") == "claro") {
-                session(["tema" => "escuro"]);
+            if (session('tema') == 'claro') {
+                session(['tema' => 'escuro']);
 
                 return redirect()->back();
             }
+            
+            session(['tema' => 'claro']);
 
-            if (session("tema") == "escuro") {
-                session(["tema" => "claro"]);
-
-                return redirect()->back();
-            }
+            return redirect()->back();
         }
     }
 }

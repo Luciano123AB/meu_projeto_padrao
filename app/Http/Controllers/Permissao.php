@@ -12,25 +12,25 @@ class Permissao
         
         $usuario = Usuario::find(Operacoes::decryptId($id));
 
-        session(["id" => $usuario->id]);
+        session(['id' => $usuario->id]);
 
-        $cor01 = "success";
-        $cor02 = "danger";
+        $cor01 = 'success';
+        $cor02 = 'danger';
 
-        if (session("tema") == "escuro") {
+        if (session('tema') == 'escuro') {
 
-            $cor01 = "secondary";
-            $cor02 = "dark";
+            $cor01 = 'secondary';
+            $cor02 = 'dark';
 
         }
 
-        return redirect()->back()->withInput()->with("alertaConfirmacao", [
-            "icon" => "warning",
-            "title" => "Atenção!",
-            "text" => "Tem certeza que deseja alterar a permissão deste usuário?",
-            "rota" => "permissaoConfirmar",
-            "cor01" => "$cor01",
-            "cor02" => "$cor02"
+        return redirect()->back()->withInput()->with('alertaConfirmacao', [
+            'icon' => 'warning',
+            'title' => 'Atenção!',
+            'text' => 'Tem certeza que deseja alterar a permissão deste usuário?',
+            'rota' => 'permissaoConfirmar',
+            'cor01' => "$cor01",
+            'cor02' => "$cor02"
         ]);
     }
 
@@ -50,39 +50,39 @@ class Permissao
             $usuario->save();            
         }
         
-        session()->forget("id");
+        session()->forget('id');
 
         if ($usuario) {
 
-            $cor = "info";
+            $cor = 'info';
 
-            if (session("tema") == "escuro") {
+            if (session('tema') == 'escuro') {
 
-                $cor = "secondary";
+                $cor = 'secondary';
 
             }
 
-            return redirect()->back()->withInput()->with("alerta", [
-                "icon" => "success",
-                "title" => "Sucesso!",
-                "text" => "Permissão do usuário alterada com êxito!",
-                "cor" => "$cor"
+            return redirect()->back()->withInput()->with('alerta', [
+                'icon' => 'success',
+                'title' => 'Sucesso!',
+                'text' => 'Permissão do usuário alterada com êxito!',
+                'cor' => "$cor"
             ]);
         }
 
-        $cor = "danger";
+        $cor = 'danger';
 
-        if (session("tema") == "escuro") {
+        if (session('tema') == 'escuro') {
 
-            $cor = "dark";
+            $cor = 'dark';
 
         }
 
-        return redirect()->back()->withInput()->with("alerta", [
-            "icon" => "error",
-            "title" => "Erro!",
-            "text" => "Falha ao alterar a permissão do usuário! Tente novamente.",
-            "cor" => "$cor"
+        return redirect()->back()->withInput()->with('alerta', [
+            'icon' => 'error',
+            'title' => 'Erro!',
+            'text' => 'Falha ao alterar a permissão do usuário! Tente novamente.',
+            'cor' => "$cor"
         ]);
     }
 }
