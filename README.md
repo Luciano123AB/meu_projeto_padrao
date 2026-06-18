@@ -29,7 +29,7 @@ Aplicação web padrão com **Laravel**, com foco em:
 - **Backend:** PHP 8.3.30 + Laravel 12
 - **Frontend build:** Vite + CSS/JS
 - **Banco de dados:** MySQL 8
-- **Testes:** PestPHP
+- **Testes:** PestPHP (Feature tests)
 - **Containerização:** Docker
 
 ---
