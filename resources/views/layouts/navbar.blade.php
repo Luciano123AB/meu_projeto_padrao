@@ -51,8 +51,8 @@
         @auth
             <div class="btn-group d-flex flex-row align-items-start align-items-md-center me-5 mb-1">
                 <button type="button" class="btn {{ session('tema') == 'escuro' ? 'btn-secondary' : 'btn-info' }} border focus-ring focus-ring-light">
-                    <img class="rounded-pill border border-black me-2" width="40" height="40" src="data:image/png;base64,{{ Auth::user()->foto }}">                    
-                    {{ Auth::user()->usuario }}
+                    <img class="rounded-pill border border-black me-2" width="40" height="40" src="data:image/png;base64,{{ auth()->user()->foto }}">                    
+                    {{ auth()->user()->usuario }}
                 </button>
 
                 <button style="height: 54px;" type="button" class="btn {{ session('tema') == 'escuro' ? 'btn-secondary' : 'btn-info' }} dropdown-toggle dropdown-toggle-split border focus-ring focus-ring-light" data-bs-toggle="dropdown" aria-expanded="false">                    
@@ -60,17 +60,17 @@
                 </button>
 
                 <ul class="dropdown-menu dropdown-menu-end shadow">
-                    @if(Auth::user()->usuario != "Administrador")
+                    @if(auth()->user()->usuario != "Administrador")
                         <li>
-                            <a href="{{ route('update', ['id' => Crypt::encrypt(Auth::user()->id)]) }}" class="dropdown-item border-secondary-subtle border-top">
+                            <a href="{{ route('update', ['id' => Crypt::encrypt(auth()->user()->id)]) }}" class="dropdown-item border-secondary-subtle border-top">
                                 Editar
                             </a>
                         </li>
                     @endif
 
-                    @if(Auth::user()->usuario != "Administrador")
+                    @if(auth()->user()->usuario != "Administrador")
                         <li>
-                            <a href="{{ route('mudar_senha', ['id' => Crypt::encrypt(Auth::user()->id)]) }}" class="dropdown-item border-secondary-subtle border-top">
+                            <a href="{{ route('mudar.senha', ['id' => Crypt::encrypt(auth()->user()->id)]) }}" class="dropdown-item border-secondary-subtle border-top">
                                 Redefinir Senha
                             </a>
                         </li>
@@ -80,9 +80,9 @@
                         <a href="{{ route('logout') }}" class="dropdown-item border-top border-bottom">Sair</a>
                     </li>
 
-                    @if(Auth::user()->usuario != "Administrador")
+                    @if(auth()->user()->usuario != "Administrador")
                         <li>
-                            <a href="{{ route('deletar', ['id' => Crypt::encrypt(Auth::user()->id)]) }}" class="dropdown-item border-secondary-subtle border-bottom">
+                            <a href="{{ route('deletar', ['id' => Crypt::encrypt(auth()->user()->id)]) }}" class="dropdown-item border-secondary-subtle border-bottom">
                                 Excluir Conta
                             </a>
                         </li>

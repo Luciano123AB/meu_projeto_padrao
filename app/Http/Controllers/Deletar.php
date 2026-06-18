@@ -29,7 +29,7 @@ class Deletar
             'icon' => 'warning',
             'title' => 'Atenção!',
             'text' => 'Tem certeza que deseja deletar esse usuário!',
-            'rota' => 'deletarConfirmar',
+            'rota' => 'deletar.confirmar',
             'cor01' => "$cor01",
             'cor02' => "$cor02"
         ]);

@@ -2,7 +2,7 @@
 
 @section("content")
     <div class="container d-flex justify-content-center align-items-center text-center mb-5">
-        <form style="width: 1000px;" action="{{ route("mudar_senha_submit") }}" id="formulario" class="card border-black shadow" method="post" enctype="multipart/form-data" novalidate>
+        <form style="width: 1000px;" action="{{ route("mudar.senha.submit") }}" id="formulario" class="card border-black shadow" method="post" enctype="multipart/form-data" novalidate>
             @csrf
 
             <div class="card-header d-flex gap-1 align-items-center justify-content-center fs-5">

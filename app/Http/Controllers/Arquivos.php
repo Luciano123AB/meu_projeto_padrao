@@ -51,11 +51,18 @@ class Arquivos
     }
 
     public function downloadArquivo($arquivo) {
-        return Storage::download('arquivos/$arquivo');
+
+        $disk = Storage::disk('arquivos');
+        $path = $disk->path($arquivo);
+
+        return response()->download($path, $arquivo);
     }
 
     public function excluirArquivo($arquivo) {
-        Storage::disk('arquivos')->delete($arquivo);
+
+        $disk = Storage::disk('arquivos');
+
+        $disk->delete($arquivo);
 
         return redirect()->back();
     }

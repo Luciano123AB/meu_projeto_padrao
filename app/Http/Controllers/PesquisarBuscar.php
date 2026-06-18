@@ -154,13 +154,10 @@ class PesquisarBuscar
             'mes.required' => 'O campo mês é obrigatório.'
         ]);
 
-        $ultimo_ano = DB::table('usuarios')
-                       ->selectRaw('YEAR(created_at) as ano')
-                       ->orderByDesc('ano')
-                       ->limit(1)
-                       ->value('ano');
+        $ultimoUsuario = Usuario::latest('created_at')->first();
+        $ultimoAno = $ultimoUsuario?->created_at?->year;
         $mes = $request->input('mes');
-        $inicio = "$ultimo_ano-$mes-01";
+        $inicio = "$ultimoAno-$mes-01";
         $usuarios = Usuario::whereBetween(
                                 'created_at',
                                 [
@@ -199,7 +196,7 @@ class PesquisarBuscar
             'mes_final_cadastros.required' => 'O campo mês final é obrigatória.'
         ]);
 
-        $ultimo_ano = DB::table('usuarios')
+        $ultimoAno = DB::table('usuarios')
                        ->selectRaw('YEAR(created_at) as ano')
                        ->orderByDesc('ano')
                        ->limit(1)
@@ -209,8 +206,8 @@ class PesquisarBuscar
         $usuarios = Usuario::whereBetween(
                                 'created_at',
                                 [
-                                    "$ultimo_ano/$mesInicial/01",
-                                    "$ultimo_ano/$mesFinal/01"
+                                    "$ultimoAno/$mesInicial/01",
+                                    "$ultimoAno/$mesFinal/01"
                                 ])->get();
 
         if ($usuarios) {

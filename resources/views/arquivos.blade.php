@@ -10,7 +10,7 @@
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="col">
                             <div class="card border border-black p-3 shadow">
-                                <form action="{{ route('subirArquivo') }}" id="formulario" method="post" enctype="multipart/form-data" novalidate>
+                                <form action="{{ route('subir.arquivo') }}" id="formulario" method="post" enctype="multipart/form-data" novalidate>
                                     @csrf
 
                                     <div class="row row-cols-1 row-cols-md-2 g-3 mb-2">
@@ -38,7 +38,7 @@
                                     </div>
                                 </form>
 
-                                <form action="{{ route('criarArquivo') }}" id="formulario" method="post" enctype="multipart/form-data" novalidate>
+                                <form action="{{ route('criar.arquivo') }}" id="formulario" method="post" enctype="multipart/form-data" novalidate>
                                     @csrf
 
                                     <div class="row row-cols-1 row-cols-md-2 g-3">
@@ -52,7 +52,7 @@
                                             <button id="criar" class="btn btn-lg {{ session('tema') == "escuro" ? "btn-secondary" : "btn-info" }} w-100 w-md-auto fs-5 fs-md-1 p-2 p-md-4" type="submit" name="criar">
                                                 CRIAR
                                             </button>
-                                        </div>                                        
+                                        </div>
                                     </div>
     
                                     @error('texto')
@@ -94,8 +94,8 @@
                                                     <td class="border-end">{{ $arquivo["tipo"] }}</td>
                                                     <td class="border-end">{{ $arquivo["data"] }}</td>
                                                     <td>
-                                                        <a href="{{ route("downloadArquivo", ["arquivo" => $arquivo["arquivo"]]) }}" class="badge bg-success">Download</a>
-                                                        <a href="{{ route("excluirArquivo", ["arquivo" => $arquivo["arquivo"]]) }}" class="badge bg-danger">Excluir</a>
+                                                        <a href="{{ route("download.arquivo", ["arquivo" => $arquivo["nome"]]) }}" class="badge bg-success">Download</a>
+                                                        <a href="{{ route("excluir.arquivo", ["arquivo" => $arquivo["arquivo"]]) }}" class="badge bg-danger">Excluir</a>
                                                     </td>
                                                 </tr>
                                             @empty

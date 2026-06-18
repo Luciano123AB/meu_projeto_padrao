@@ -9,7 +9,7 @@
                 <div class="card border-black shadow mx-1 mx-md-3 mb-1">
                     <div class="card-body row row-cols-1 row-cols-md-2 g-3">
                         <div class="col">
-                            <form class="mb-3" action="{{ route('pesquisaUsuario') }}" method="post">
+                            <form class="mb-3" action="{{ route('pesquisa.usuario') }}" method="post">
                                 @csrf
 
                                 <div class="input-group flex-column flex-md-row">
@@ -33,7 +33,7 @@
                                 @enderror
                             </form>
 
-                            <form class="mb-3" action="{{ route('pesquisaStatus') }}" method="post">
+                            <form class="mb-3" action="{{ route('pesquisa.status') }}" method="post">
                                 @csrf
 
                                 <div class="input-group flex-column flex-md-row align-items-center">
@@ -68,7 +68,7 @@
                                 @enderror
                             </form>
 
-                            <form action="{{ route('pesquisaMes') }}" method="post">
+                            <form action="{{ route('pesquisa.mes') }}" method="post">
                                 @csrf
 
                                 <div class="input-group flex-column flex-md-row">
@@ -94,7 +94,7 @@
                         </div>
 
                         <div class="col">
-                            <form class="mb-3" action="{{ route('pesquisaDataNascimento') }}" method="post">
+                            <form class="mb-3" action="{{ route('pesquisa.data.nascimento') }}" method="post">
                                 @csrf
 
                                 <div class="input-group flex-column flex-md-row">
@@ -117,7 +117,7 @@
                                 @enderror
                             </form>
 
-                            <form class="mb-2" action="{{ route('pesquisaDataInicialFinal') }}" method="post">
+                            <form class="mb-2" action="{{ route('pesquisa.data.inicial.final') }}" method="post">
                                 @csrf
 
                                 <div class="input-group flex-column flex-md-row gap-1">
@@ -154,7 +154,7 @@
                                 </div>
                             </form>
 
-                            <form style="margin-top: 12px;" action="{{ route('pesquisaMesInicialFinal') }}" method="post">
+                            <form style="margin-top: 12px;" action="{{ route('pesquisa.mes.inicial.final') }}" method="post">
                                 @csrf
     
                                 <div class="input-group flex-column flex-md-row gap-1">

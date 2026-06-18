@@ -28,7 +28,7 @@ class Permissao
             'icon' => 'warning',
             'title' => 'Atenção!',
             'text' => 'Tem certeza que deseja alterar a permissão deste usuário?',
-            'rota' => 'permissaoConfirmar',
+            'rota' => 'permissao.confirmar',
             'cor01' => "$cor01",
             'cor02' => "$cor02"
         ]);

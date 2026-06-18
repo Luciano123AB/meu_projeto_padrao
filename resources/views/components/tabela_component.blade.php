@@ -1,6 +1,6 @@
 <tr>
     <td class="text-center border-end">
-        @if(Auth::user()->usuario == "Administrador" || Auth::user()->permissao == 1)
+        @if(auth()->user()->usuario == "Administrador" || auth()->user()->permissao == 1)
             <a href="{{ route("update", ["id" => Crypt::encrypt($usuario->id)]) }}" class="btn btn-sm {{ session('tema') == "escuro" ? "btn-secondary" : "btn-primary" }} m-1" data-bs-toggle="tooltip" title="Editar usuário">
                 <i class="bi bi-pencil-square"></i>
             </a>
@@ -16,7 +16,7 @@
     <td class="border-end">{{ $usuario->usuario }}</td>
     <td class="border-end">{{ $usuario->email }}</td>
     <td class="text-center border-end">
-        @if(Auth::user()->usuario == "Administrador")
+        @if(auth()->user()->usuario == "Administrador")
             {{ $usuario->cpf }}
         @else
             ***.***.***-**
@@ -26,7 +26,7 @@
     <td class="text-center border-end">{{ $usuario->celular }}</td>
     <td class="text-center border-end">{{ $usuario->genero }}</td>
     <td class="text-center">
-        @if(Auth::user()->usuario == "Administrador")
+        @if(auth()->user()->usuario == "Administrador")
             <a href="{{ route("permissao", ["id" => Crypt::encrypt($usuario->id)]) }}" 
             class="badge {{ $usuario->permissao ? 'bg-success' : 'bg-danger' }} p-2 text-decoration-none">
                 {{ $usuario->permissao ? 'SIM' : 'NÃO' }}

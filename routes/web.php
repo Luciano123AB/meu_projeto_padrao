@@ -16,15 +16,15 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/')->group(function () {
-    Route::get('trocarTema', [Tema::class, 'trocarTema'])->name('trocarTema');
+    Route::get('trocar-tema', [Tema::class, 'trocarTema'])->name('trocar.tema');
     
     Route::controller(MainController::class)->group(function() {
         Route::middleware([VerificarDeslogado::class])->group(function () {
-            Route::get('home', 'home')->name('home'); 
+            Route::get('home', 'home')->name('home');
 
             Route::get('update/{id}', 'update')->name('update');
 
-            Route::get('mudar_senha', 'mudarSenha')->name('mudar_senha');
+            Route::get('mudar-senha', 'mudarSenha')->name('mudar.senha');
 
             Route::get('tabela', 'tabela')->name('tabela');
 
@@ -38,17 +38,17 @@ Route::prefix('/')->group(function () {
 
             Route::get('logs/{id}', 'logs')->name('logs');
 
-            Route::get('importarExportar', 'importarExportar')->name('importarExportar');
+            Route::get('importar-exportar', 'importarExportar')->name('importarExportar');
 
             Route::get('arquivos', 'arquivos')->name('arquivos');
         });
 
         Route::middleware([VerificarLogado::class])->group(function () {
             Route::get('', 'login')->name('login');
-            Route::post('loginSubmit', [LoginLogout::class, 'loginSubmit'])->name('loginSubmit');
+            Route::post('login-submit', [LoginLogout::class, 'loginSubmit'])->name('loginSubmit');
 
             Route::get('cadastro', 'cadastro')->name('cadastro');
-            Route::post('cadastroSubmit', [CadastroUpdate::class, 'cadastroSubmit'])->name('cadastroSubmit');
+            Route::post('cadastro-submit', [CadastroUpdate::class, 'cadastroSubmit'])->name('cadastroSubmit');
         });
     });
 
@@ -56,36 +56,36 @@ Route::prefix('/')->group(function () {
         Route::get('logout', [LoginLogout::class, 'logout'])->name('logout');    
 
         Route::controller(CadastroUpdate::class)->group(function() {
-            Route::post('updateSubmit', 'updateSubmit')->name('updateSubmit');
+            Route::post('update-submit', 'updateSubmit')->name('updateSubmit');
 
-            Route::post('mudar_senha_submit', 'mudarSenhaSubmit')->name('mudar_senha_submit');
+            Route::post('mudar-senha-submit', 'mudarSenhaSubmit')->name('mudar.senha.submit');
         });
 
         Route::controller(Deletar::class)->group(function() {
             Route::get('deletar/{id}', 'deletar')->name('deletar');
-            Route::get('deletarConfirmar/{id}', 'deletarConfirmar')->name('deletarConfirmar');
+            Route::get('deletar-confirmar/{id}', 'deletarConfirmar')->name('deletar.confirmar');
         });
 
         Route::controller(Permissao::class)->group(function() {
             Route::get('permissao/{id}', 'permissao')->name('permissao');
-            Route::get('permissaoConfirmar/{id}', 'permissaoConfirmar')->name('permissaoConfirmar');
+            Route::get('permissao-confirmar/{id}', 'permissaoConfirmar')->name('permissao.confirmar');
         });
 
         Route::controller(PesquisarBuscar::class)->group(function() {
-            Route::post('pesquisaUsuario', 'pesquisaUsuario')->name('pesquisaUsuario');
-            Route::post('pesquisaStatus', 'pesquisaStatus')->name('pesquisaStatus');
-            Route::post('pesquisaDataNascimento', 'pesquisaDataNascimento')->name('pesquisaDataNascimento');
-            Route::post('pesquisaDataInicialFinal', 'pesquisaDataInicialFinal')->name('pesquisaDataInicialFinal');
-            Route::post('pesquisaMes', 'pesquisaMes')->name('pesquisaMes');
-            Route::post('pesquisaMesInicialFinal', 'pesquisaMesInicialFinal')->name('pesquisaMesInicialFinal');
+            Route::post('pesquisa-usuario', 'pesquisaUsuario')->name('pesquisa.usuario');
+            Route::post('pesquisa/data-nascimento', 'pesquisaDataNascimento')->name('pesquisa.data.nascimento');
+            Route::post('pesquisa-status', 'pesquisaStatus')->name('pesquisa.status');
+            Route::post('pesquisa/data-inicial-final', 'pesquisaDataInicialFinal')->name('pesquisa.data.inicial.final');
+            Route::post('pesquisa-mes', 'pesquisaMes')->name('pesquisa.mes');
+            Route::post('pesquisa/mes-inicial-final', 'pesquisaMesInicialFinal')->name('pesquisa.mes.inicial.final');
             
             Route::get('cep/{cep}', 'buscar')->name('buscar');
             Route::get('cnpj/{cnpj}', 'consultar')->name('consultar');
         });
 
         Route::controller(Logs::class)->group(function() {
-            Route::get('limparLogs/{id}', 'limparLogs')->name('limparLogs');
-            Route::get('limparLog/{id}', 'limparLog')->name('limparLog');
+            Route::get('limpar-logs/{id}', 'limparLogs')->name('limpar.logs');
+            Route::get('limpar-log/{id}', 'limparLog')->name('limpar.log');
         });
 
         Route::controller(ImportarExportar::class)->group(function() {
@@ -94,10 +94,10 @@ Route::prefix('/')->group(function () {
         });
 
         Route::controller(Arquivos::class)->group(function() {
-            Route::post('criarArquivo', 'criarArquivo')->name('criarArquivo');
-            Route::post('subirArquivo', 'subirArquivo')->name('subirArquivo');
-            Route::get('downloadArquivo/{arquivo}', 'downloadArquivo')->name('downloadArquivo');
-            Route::get('excluirArquivo/{arquivo}', 'excluirArquivo')->name('excluirArquivo');
+            Route::post('criar-arquivo', 'criarArquivo')->name('criar.arquivo');
+            Route::post('subir-arquivo', 'subirArquivo')->name('subir.arquivo');
+            Route::get('download-arquivo/{arquivo}', 'downloadArquivo')->name('download.arquivo');
+            Route::get('excluir-arquivo/{arquivo}', 'excluirArquivo')->name('excluir.arquivo');
         });
     });
 
