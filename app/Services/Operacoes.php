@@ -5,12 +5,13 @@ namespace App\Services;
 use App\Models\Log;
 use Carbon\Carbon;
 use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
 
 class Operacoes
 {
-    public static function validarCpf($cpf) {
+    public static function validarCpf($cpf): bool {
 
         $cpf = preg_replace('/\D/', '', $cpf);
 
@@ -47,7 +48,7 @@ class Operacoes
         }
     }
 
-    public static function decryptId($value) {
+    public static function decryptId($value): RedirectResponse | int {
         try {
             
             $value = Crypt::decrypt($value);
@@ -59,13 +60,12 @@ class Operacoes
         return $value;
     }
 
-    public static function salvarLog($id) {
+    public static function salvarLog($id, $pagina): void {
         
-        $pagina = Route::currentRouteName();
         $log = new Log();
         $log->usuario_id = $id;
         $log->pagina = "$pagina";
-        $log->data_hora = Carbon::now();        
+        $log->data_hora = Carbon::now();
 
         $log->save();
     }

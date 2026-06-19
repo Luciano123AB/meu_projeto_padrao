@@ -1,6 +1,6 @@
 <tr>
     <td class="text-center fw-bold border-end">{{ $loop + 1 }}</td>
-    <td class="text-start border-end">{{ $log["pagina"] }}</td>
+    <td class="text-start border-end">{{ mb_strtoupper($log["pagina"]) }}</td>
     <td class="text-center border-end">{{ date("d/m/Y", strtotime($log["data_hora"])) }}</td>
     <td class="text-center border-end">{{ date("H:i:s", strtotime($log["data_hora"])) }}</td>
     <td class="text-center">

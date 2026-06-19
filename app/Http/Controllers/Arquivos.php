@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class Arquivos
 {
-    public function criarArquivo(Request $request) {
+    public function criarArquivo(Request $request): RedirectResponse {
         $request->validate(
             [
                 'texto' => 'required'
@@ -30,7 +32,7 @@ class Arquivos
         return redirect()->back();
     }
 
-    public function subirArquivo(Request $request) {
+    public function subirArquivo(Request $request): RedirectResponse {
         $request->validate(
             [
                 'arquivo' => 'required|mimes:txt,jpg,png|max:1024'
@@ -50,7 +52,7 @@ class Arquivos
         return redirect()->back();
     }
 
-    public function downloadArquivo($arquivo) {
+    public function downloadArquivo($arquivo): BinaryFileResponse {
 
         $disk = Storage::disk('arquivos');
         $path = $disk->path($arquivo);
@@ -58,7 +60,7 @@ class Arquivos
         return response()->download($path, $arquivo);
     }
 
-    public function excluirArquivo($arquivo) {
+    public function excluirArquivo($arquivo): RedirectResponse {
 
         $disk = Storage::disk('arquivos');
 

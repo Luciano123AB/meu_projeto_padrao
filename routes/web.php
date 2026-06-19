@@ -38,7 +38,7 @@ Route::prefix('/')->group(function () {
 
             Route::get('logs/{id}', 'logs')->name('logs');
 
-            Route::get('importar-exportar', 'importarExportar')->name('importarExportar');
+            Route::get('importar-exportar', 'importarExportar')->name('importar.exportar');
 
             Route::get('arquivos', 'arquivos')->name('arquivos');
         });
@@ -99,9 +99,5 @@ Route::prefix('/')->group(function () {
             Route::get('download-arquivo/{arquivo}', 'downloadArquivo')->name('download.arquivo');
             Route::get('excluir-arquivo/{arquivo}', 'excluirArquivo')->name('excluir.arquivo');
         });
-    });
-
-    Route::fallback(function(): RedirectResponse {
-        return redirect()->route('home');
     });
 });

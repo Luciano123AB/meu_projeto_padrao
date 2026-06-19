@@ -28,46 +28,64 @@ class MainController
         return view('auth.cadastro')->with('pagina', 'Cadastro');
     }
 
+    public function home(): View {
+
+        $pagina = 'Home';
+
+        Operacoes::salvarLog(Auth::user()->id, $pagina);
+
+        return view('home')->with('pagina', $pagina);
+    }
+
     public function update($id): View {
-        Operacoes::salvarLog(Auth::user()->id);
+
+        $pagina = 'Atualização';
+
+        Operacoes::salvarLog(Auth::user()->id, $pagina);
 
         $usuario = Usuario::find(Operacoes::decryptId($id));
 
-        return view('auth.update', ['usuario' => $usuario])->with('pagina', 'Atualização');
+        return view('auth.update', ['usuario' => $usuario])->with('pagina', $pagina);
     }
 
     public function mudarSenha(): View {
-        Operacoes::salvarLog(Auth::user()->id);
 
-        return view('auth.mudar_senha')->with('pagina', 'Redefinir Senha');
-    }
+        $pagina = 'Redefinir Senha';
 
-    public function home(): View {
-        Operacoes::salvarLog(Auth::user()->id);
+        Operacoes::salvarLog(Auth::user()->id, $pagina);
 
-        return view('home')->with('pagina', 'Home');
+        return view('auth.mudar_senha')->with('pagina', $pagina);
     }
 
     public function tabela(): View {
-        Operacoes::salvarLog(Auth::user()->id);
+
+        $pagina = 'Tabela';
+
+        Operacoes::salvarLog(Auth::user()->id, $pagina);
 
         $usuarios = Usuario::all()->whereNull('deleted_at')
                                   ->whereNotInStrict('usuario', 'Administrador');
 
-        return view('tabela', ['usuarios' => $usuarios])->with('pagina', 'Tabela');
+        return view('tabela', ['usuarios' => $usuarios])->with('pagina', $pagina);
     }
 
     public function cards(): View {
-        Operacoes::salvarLog(Auth::user()->id);
+
+        $pagina = 'Cards';
+
+        Operacoes::salvarLog(Auth::user()->id, $pagina);
 
         $usuarios = Usuario::all()->whereNull('deleted_at')
                                   ->whereNotInStrict('usuario', 'Administrador');
 
-        return view('cards', ['usuarios' => $usuarios])->with('pagina', 'Cards');
+        return view('cards', ['usuarios' => $usuarios])->with('pagina', $pagina);
     }
 
     public function dashboard(): View {
-        Operacoes::salvarLog(Auth::user()->id);
+
+        $pagina = 'Dashboard';
+
+        Operacoes::salvarLog(Auth::user()->id, $pagina);
 
         $usuarios = Usuario::where('usuario', '!=', 'Administrador')->get();
         $permitidos = $usuarios->where('permissao', 1)->count();
@@ -80,7 +98,7 @@ class MainController
             'negados' => $negados,
             'porcentagemPermitidos' => $total > 0 ? round(($permitidos / $total) * 100) : 0,
             'porcentagemNegados' => $total > 0 ? round(($negados / $total) * 100) : 0
-        ])->with('pagina', 'Dashboard');
+        ])->with('pagina', $pagina);
     }
 
     public function logs($id): View {
@@ -91,25 +109,37 @@ class MainController
     }
 
     public function pesquisa(): View {
-        Operacoes::salvarLog(Auth::user()->id);
 
-        return view('pesquisa')->with('pagina', 'Pesquisas');
+        $pagina = 'Pesquisas';
+
+        Operacoes::salvarLog(Auth::user()->id, $pagina);
+
+        return view('pesquisa')->with('pagina', $pagina);
     }
 
     public function endereco(): View {
-        Operacoes::salvarLog(Auth::user()->id);
 
-        return view('endereco')->with('pagina', 'Localização');
+        $pagina = 'Localização';
+
+        Operacoes::salvarLog(Auth::user()->id, $pagina);
+
+        return view('endereco')->with('pagina', $pagina);
     }
 
     public function importarExportar(): View {
-        Operacoes::salvarLog(Auth::user()->id);
 
-        return view('importar_exportar')->with('pagina', 'Importar/Exportar');
+        $pagina = 'Importar / Exportar';
+
+        Operacoes::salvarLog(Auth::user()->id, $pagina);
+
+        return view('importar_exportar')->with('pagina', $pagina);
     }
 
     public function arquivos(): View {
-        Operacoes::salvarLog(Auth::user()->id);
+
+        $pagina = 'Arquivos';
+
+        Operacoes::salvarLog(Auth::user()->id, $pagina);
 
         $disco = Storage::disk('arquivos');
         $arquivos = $disco->allFiles();
@@ -125,6 +155,6 @@ class MainController
             ];
         }
 
-        return view('arquivos', compact('dados_arquivos'))->with('pagina', 'Arquivos');
+        return view('arquivos', compact('dados_arquivos'))->with('pagina', $pagina);
     }
 }
