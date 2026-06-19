@@ -67,7 +67,7 @@ tests/                    # Testes automatizados
 
 ## 📸 Demonstração
 
-![Login](docs/login.png)
+![Tela Login](docs/login.png)
 ![Tela Home](docs/home.png)
 
 ---
