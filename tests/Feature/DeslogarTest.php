@@ -2,7 +2,7 @@
 
 use App\Models\Usuario;
 
-describe('testes do deslogue', function () {
+describe('teste do deslogue', function () {
     it('testar deslogue do usuário', function () {
 
         $usuario = Usuario::factory()->create();
