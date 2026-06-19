@@ -19,14 +19,30 @@ class UsuarioFactory extends Factory
      */
     public function definition(): array
     {
+
+        $cpf = $this->faker->randomNumber(2);
+        $celular = $this->faker->randomNumber(4);
+
+        if ($cpf <= 9) {
+            $cpf = '0' . $cpf;
+        }
+
+        if ($celular <= 9) {
+            $celular = '999' . $celular;
+        } else if ($celular <= 99) {
+            $celular = '99' . $celular;
+        } else if ($celular <= 999) {
+            $celular = '9' . $celular;
+        }
+
         return [
             'nome_completo' => $this->faker->name(),
             'usuario' => $this->faker->userName(),
             'email' => $this->faker->email(),
             'senha' => Hash::make('@24032004ABcd123'),
-            'cpf' => '123.456.789-' . $this->faker->randomNumber(2),
+            'cpf' => '123.456.789-' . $cpf,
             'data_nascimento' => $this->faker->date(),
-            'celular' => '(55)99999-' . $this->faker->randomNumber(4),
+            'celular' => '(55)99999-' . $celular,
             'genero' => $this->faker->randomElement([
                 'Masculino',
                 'Feminino',
