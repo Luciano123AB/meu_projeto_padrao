@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Usuario;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
@@ -30,7 +29,5 @@ class DatabaseSeeder extends Seeder
                 'created_at' => Carbon::now()
             ]
         ]);
-
-        Usuario::factory(10)->create();
     }
 }

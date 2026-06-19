@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usuario;
-use App\Services\Boot;
 use App\Services\Operacoes;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -13,14 +12,6 @@ use Illuminate\View\View;
 class MainController
 {
     public function login(): View {
-        if (Boot::testarConexao() == false) {
-            Boot::criarPovoarBanco();
-        }
-
-        if (!is_dir(base_path('node_modules'))) {
-            Boot::dependencias();
-        }
-
         return view('auth.login')->with('pagina', 'Login');
     }
     
