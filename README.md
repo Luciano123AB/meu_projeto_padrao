@@ -38,17 +38,27 @@ Aplicação web padrão com **Laravel**, com foco em:
 
 ```text
 app/
-  Http/    
-    Controllers/          # Fluxos principais (cadastro, login, etc.)
+  Exports/                # Estrutura da tabela para exportação
+  Http/
+    Controllers/          # Fluxos principais (Cadastro, Login, etc.)
     Middleware/           # Regras de acesso
+  Imports/                # Estrutura da tabela para importação
   Models/                 # Entidades (Usuario, Log)
   Services/               # Regras de negócio auxiliares
+  View/
+    Components/           # Construtores dos componentes
+config/                   # Configurações gerais
 database/
+  factories/              # Dados gerados
   migrations/             # Estrutura do banco
   seeders/                # Dados iniciais
+docs/                     # Imagens usadas pelo site (Documentação do projeto)
 public/
-  assets/                 # Imagens usadas pelo site (Fundos)
+  assets/
+    images/               # Imagens usadas pelo site (Fundos)
+    js/                   # Interatividade do frontend
 resources/
+  css/                    # Estilos personalizados
   views/                  # Telas Blade
 routes/
   web.php                 # Rotas da aplicação
