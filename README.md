@@ -55,7 +55,7 @@ database/
 docs/                     # Imagens usadas pelo site (Documentação do projeto)
 public/
   assets/
-    audios/               # Sons usados pelo site (Tema)
+    audios/               # Som usado pelo site (Tema)
     images/               # Imagens usadas pelo site (Fundos)
     js/                   # Interatividade do frontend
 resources/
