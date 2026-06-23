@@ -38,32 +38,32 @@ Aplicação web padrão com **Laravel**, com foco em:
 
 ```text
 app/
-  Exports/                # Estrutura da tabela para exportação
+  Exports/                # Classes de exportação. (Excel, PDF)
   Http/
-    Controllers/          # Fluxos principais (Cadastro, Login, etc.)
-    Middleware/           # Regras de acesso
-  Imports/                # Estrutura da tabela para importação
-  Models/                 # Entidades (Usuario, Log)
+    Controllers/          # Controladores da aplicação. (MainController, CadastroUpdate, etc.)
+    Middleware/           # Regras de acesso.
+  Imports/                # Classes de importação. (Excel, PDF)
+  Models/                 # Modelos Eloquent. (Usuario, Log)
   Services/               # Regras de negócio auxiliares
   View/
-    Components/           # Construtores dos componentes
-config/                   # Configurações gerais
+    Components/           # Classes de componentes Blade.
+config/                   # Configurações gerais.
 database/
-  factories/              # Dados gerados
-  migrations/             # Estrutura do banco
-  seeders/                # Dados iniciais
-docs/                     # Imagens usadas pelo site (Documentação do projeto)
+  factories/              # Geração de dados fictícios para testes e seeders. (UsuarioFactory, LogFactory)
+  migrations/             # Estrutura do banco.
+  seeders/                # População inicial do banco de dados. (DatabaseSeeder)
+docs/                     # Imagens usadas pelo site. (Documentação do projeto)
 public/
   assets/
-    audios/               # Som usado pelo site (Tema)
+    audios/               # Som usado pelo site. (Tema)
     images/               # Imagens usadas pelo site (Fundos)
-    js/                   # Interatividade do frontend
+    js/                   # Scripts carregados diretamente.
 resources/
-  css/                    # Estilos personalizados
-  views/                  # Telas Blade
+  css/                    # Estilos personalizados.
+  views/                  # Telas Blade.
 routes/
-  web.php                 # Rotas da aplicação
-tests/                    # Testes automatizados
+  web.php                 # Rotas da aplicação.
+tests/                    # Testes automatizados.
 ```
 
 ## 📸 Demonstração
