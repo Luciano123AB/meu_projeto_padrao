@@ -75,7 +75,7 @@
 
                 <div class="col">
                     <div class="mb-3">
-                        <img id="img_preview" class="rounded" alt="Image Preview" src="data:image/png;base64,{{ old("foto", $usuario->foto) }}">
+                        <img id="img_preview" class="rounded" alt="Image Preview" src="data:image/png;base64,{{ old("foto", base64_encode(Storage::disk("fotos")->get($usuario->foto))) }}">
                     </div>
 
                     <label>Apenas fotos em ".png" são permitidos.</label>

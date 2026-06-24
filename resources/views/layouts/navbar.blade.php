@@ -51,7 +51,7 @@
         @auth
             <div class="btn-group d-flex flex-row align-items-start align-items-md-center me-5 mb-1">
                 <button type="button" class="btn {{ session('tema') == 'escuro' ? 'btn-secondary' : 'btn-info' }} border focus-ring focus-ring-light">
-                    <img class="rounded-pill border border-black me-2" width="40" height="40" src="data:image/png;base64,{{ auth()->user()->foto }}">                    
+                    <img class="rounded-pill border border-black me-2" width="40" height="40" src="{{ asset('assets/fotos/' . auth()->user()->foto) }}">                    
                     {{ auth()->user()->usuario }}
                 </button>
 

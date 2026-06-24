@@ -6,6 +6,7 @@ use App\Models\Usuario;
 use App\Services\Operacoes;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class Deletar
 {
@@ -44,6 +45,10 @@ class Deletar
         session()->forget('id');
 
         if ($usuario) {
+            if ($usuario->foto !== 'vazio.png') {
+                Storage::disk('fotos')->delete($usuario->foto);
+            }
+
             if (Auth::user()->usuario == $usuario->usuario) {
                 return redirect()->route('logout');
             } else {
