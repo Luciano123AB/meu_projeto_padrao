@@ -64,6 +64,12 @@ return [
             'driver' => 'local',
             'root' => public_path('assets/arquivos'),
             'throw' => false,
+        ],
+
+        'fotos' => [
+            'driver' => 'local',
+            'root' => public_path('assets/fotos'),
+            'throw' => false,
         ]
     ],
 
