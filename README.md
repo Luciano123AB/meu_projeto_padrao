@@ -77,7 +77,7 @@ database/
 └── seeders/              # População inicial do banco de dados. (DatabaseSeeder)
 docs/                     # Imagens usadas pelo site. (Documentação do projeto)
 public/
-├── assets/
+└── assets/
     ├── audios/           # Som usado pelo site. (Tema)
     ├── images/           # Imagens usadas pelo site (Fundos)
     └── js/               # Scripts carregados diretamente.
@@ -221,9 +221,11 @@ Checklist recomendado:
  
 ---
 
+```md
 ## 🗺️ Roadmap Técnico Sugerido (Melhorias)
 
 - [ ] Nenhum.
+```
 
 ---
 
