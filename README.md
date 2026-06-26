@@ -223,7 +223,7 @@ Checklist recomendado:
 
 ## 🗺️ Roadmap Técnico Sugerido (Melhorias)
 
-- [] Nenhum.
+- [ ] Nenhum.
 
 ---
 
