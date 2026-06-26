@@ -229,7 +229,6 @@ Checklist recomendado:
 
 ## 📄 Licença
 
-Ex:
 Este projeto está licenciado sob a licença MIT.
 
 ---
