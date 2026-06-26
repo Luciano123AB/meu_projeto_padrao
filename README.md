@@ -1,7 +1,30 @@
 ![Laravel](https://img.shields.io/badge/Laravel-12-red)
 ![PHP](https://img.shields.io/badge/PHP-8.3-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Tests](https://img.shields.io/badge/tests-Passing-success)
 
 # 🌐 Meu Projeto Padrão
+- Status: 🟢 Concluído
+
+---
+
+## 📑 Índice
+
+- Sobre
+- Funcionalidades
+- Stack
+- Estrutura
+- Demonstração
+- Pré-Requisitos
+- Instalação
+- Variáveis
+- Docker
+- Deploy
+- Roadmap
+- Licença
+- Autor
+
+---
 
 ## 📜 Sobre
 
@@ -38,38 +61,38 @@ Aplicação web padrão com **Laravel**, com foco em:
 
 ```text
 app/
-  Exports/                # Classes de exportação. (Excel, PDF)
-  Http/
-    Controllers/          # Controladores da aplicação. (MainController, CadastroUpdate, etc.)
-    Middleware/           # Regras de acesso.
-  Imports/                # Classes de importação. (Excel, PDF)
-  Models/                 # Modelos Eloquent. (Usuario, Log)
-  Services/               # Regras de negócio auxiliares
-  View/
-    Components/           # Classes de componentes Blade.
+├── Exports/              # Classes de exportação. (Excel, PDF)
+├── Http/
+    ├── Controllers/      # Controladores da aplicação. (MainController, CadastroUpdate, etc.)
+    └── Middleware/       # Regras de acesso.
+├── Imports/              # Classes de importação. (Excel, PDF)
+├── Models/               # Modelos Eloquent. (Usuario, Log)
+├── Services/             # Regras de negócio auxiliares
+└── View/
+    └── Components/       # Classes de componentes Blade.
 config/                   # Configurações gerais.
 database/
-  factories/              # Geração de dados fictícios para testes e seeders. (UsuarioFactory, LogFactory)
-  migrations/             # Estrutura do banco.
-  seeders/                # População inicial do banco de dados. (DatabaseSeeder)
+├── factories/            # Geração de dados fictícios para testes e seeders. (UsuarioFactory, LogFactory)
+├── migrations/           # Estrutura do banco.
+└── seeders/              # População inicial do banco de dados. (DatabaseSeeder)
 docs/                     # Imagens usadas pelo site. (Documentação do projeto)
 public/
-  assets/
-    audios/               # Som usado pelo site. (Tema)
-    images/               # Imagens usadas pelo site (Fundos)
-    js/                   # Scripts carregados diretamente.
+├── assets/
+    ├── audios/           # Som usado pelo site. (Tema)
+    ├── images/           # Imagens usadas pelo site (Fundos)
+    └── js/               # Scripts carregados diretamente.
 resources/
-  css/                    # Estilos personalizados.
-  views/                  # Telas Blade.
+├── css/                  # Estilos personalizados.
+└── views/                # Telas Blade.
 routes/
-  web.php                 # Rotas da aplicação.
+└── web.php               # Rotas da aplicação.
 tests/                    # Testes automatizados.
 ```
 
 ## 📸 Demonstração
-
-![Tela Login](docs/login.png)
-![Tela Home](docs/home.png)
+| Tela Login | Tela Home |
+|-------------|-----------|
+| ![](docs/login.png) | ![](docs/home.png) |
 
 ---
 
@@ -200,7 +223,14 @@ Checklist recomendado:
 
 ## 🗺️ Roadmap Técnico Sugerido (Melhorias)
 
-- Nenhum.
+- [] Nenhum.
+
+---
+
+## 📄 Licença
+
+Ex:
+Este projeto está licenciado sob a licença MIT.
 
 ---
 
