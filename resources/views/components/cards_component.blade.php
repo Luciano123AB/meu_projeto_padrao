@@ -2,7 +2,7 @@
     <div class="card h-100 border-2 border-black shadow">
         <div class="row g-0">
             <div class="col-md-4 bg-light d-flex justify-content-center align-items-center p-2 border-end rounded-1">
-                <img src="data:image/png;base64,{{ $usuario->foto }}" alt="Foto de {{ $usuario->nome_completo }}" class="usuarios_fotos img-fluid rounded-circle border border-black">
+                <img src="{{ asset('assets/fotos/' . $usuario->foto) }}" alt="Foto de {{ $usuario->nome_completo }}" class="usuarios_fotos img-fluid rounded-circle border border-black">
             </div>
 
             <div class="col-md-8">

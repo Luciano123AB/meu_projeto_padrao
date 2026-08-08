@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
@@ -108,7 +109,7 @@ class CadastroUpdate
 
             $cor = 'info';
 
-            if (session('tema') == 'escuro') {
+            if (Cache::get('tema') === 'escuro') {
 
                 $cor = 'secondary';
 
@@ -124,7 +125,7 @@ class CadastroUpdate
 
         $cor = 'danger';
 
-        if (session('tema') == 'escuro') {
+        if (Cache::get('tema') === 'escuro') {
 
             $cor = 'dark';
 
@@ -216,7 +217,7 @@ class CadastroUpdate
 
             $cor = 'info';
 
-            if (session('tema') == 'escuro') {
+            if (Cache::get('tema') === 'escuro') {
 
                 $cor = 'secondary';
 
@@ -232,7 +233,7 @@ class CadastroUpdate
 
         $cor = 'danger';
 
-        if (session('tema') == 'escuro') {
+        if (Cache::get('tema') === 'escuro') {
 
             $cor = 'dark';
 
@@ -283,7 +284,7 @@ class CadastroUpdate
 
             $cor = 'info';
 
-            if (session('tema') == 'escuro') {
+            if (Cache::get('tema') === 'escuro') {
 
                 $cor = 'secondary';
 
@@ -299,7 +300,7 @@ class CadastroUpdate
 
         $cor = 'danger';
 
-        if (session('tema') == 'escuro') {
+        if (Cache::get('tema') === 'escuro') {
 
             $cor = 'dark';
 

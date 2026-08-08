@@ -3,22 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Cache;
 
 class Tema
 {
     public function trocarTema(): RedirectResponse {
-        if (!session()->has('tema')) {
-            session(['tema' => 'escuro']);
+        if (!Cache::has('tema')) {
+            Cache::put('tema', 'escuro');
 
             return redirect()->back();
         } else {
-            if (session('tema') == 'claro') {
-                session(['tema' => 'escuro']);
+            if (Cache::get('tema') === 'claro') {
+                Cache::put('tema', 'escuro');
 
                 return redirect()->back();
             }
             
-            session(['tema' => 'claro']);
+            Cache::put('tema', 'claro');
 
             return redirect()->back();
         }

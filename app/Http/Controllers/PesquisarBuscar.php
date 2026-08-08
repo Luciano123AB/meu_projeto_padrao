@@ -6,6 +6,7 @@ use App\Models\Usuario;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\View\View;
@@ -31,7 +32,7 @@ class PesquisarBuscar
 
         $cor = 'danger';
 
-        if (session('tema') == 'escuro') {
+        if (Cache::get('tema') === 'escuro') {
 
             $cor = 'dark';
 
@@ -64,7 +65,7 @@ class PesquisarBuscar
 
         $cor = 'danger';
 
-        if (session('tema') == 'escuro') {
+        if (Cache::get('tema') === 'escuro') {
 
             $cor = 'dark';
 
@@ -95,7 +96,7 @@ class PesquisarBuscar
 
         $cor = 'danger';
 
-        if (session('tema') == 'escuro') {
+        if (Cache::get('tema') === 'escuro') {
 
             $cor = 'dark';
 
@@ -133,7 +134,7 @@ class PesquisarBuscar
 
         $cor = 'danger';
 
-        if (session('tema') == 'escuro') {
+        if (Cache::get('tema') === 'escuro') {
 
             $cor = 'dark';
 
@@ -173,7 +174,7 @@ class PesquisarBuscar
             
         $cor = 'danger';
 
-        if (session('tema') == 'escuro') {
+        if (Cache::get('tema') === 'escuro') {
 
             $cor = 'dark';
 
@@ -218,7 +219,7 @@ class PesquisarBuscar
 
         $cor = 'danger';
 
-        if (session('tema') == 'escuro') {
+        if (Cache::get('tema') === 'escuro') {
 
             $cor = 'dark';
 

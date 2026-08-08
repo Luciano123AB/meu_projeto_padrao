@@ -6,6 +6,7 @@ use App\Models\Usuario;
 use App\Services\Operacoes;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class Deletar
@@ -19,7 +20,7 @@ class Deletar
         $cor01 = 'success';
         $cor02 = 'danger';
 
-        if (session('tema') == 'escuro') {
+        if (Cache::get('tema') === 'escuro') {
 
             $cor01 = 'secondary';
             $cor02 = 'dark';
@@ -55,7 +56,7 @@ class Deletar
 
                 $cor = 'info';
 
-                if (session('tema') == 'escuro') {
+                if (Cache::get('tema') === 'escuro') {
 
                     $cor = 'secondary';
 
@@ -72,7 +73,7 @@ class Deletar
 
         $cor = 'danger';
 
-        if (session('tema') == 'escuro') {
+        if (Cache::get('tema') === 'escuro') {
 
             $cor = 'dark';
 

@@ -31,7 +31,7 @@
                                         </div>
     
                                         <div class="col mb-1 d-flex justify-content-center align-items-center">
-                                            <button id="subir" class="btn btn-lg {{ session('tema') == "escuro" ? "btn-secondary" : "btn-info" }} w-100 w-md-auto fs-5 fs-md-1 p-2 p-md-4" type="submit" name="subir">
+                                            <button id="subir" class="btn btn-lg {{ Cache::get('tema') === 'escuro' ? "btn-secondary" : "btn-info" }} w-100 w-md-auto fs-5 fs-md-1 p-2 p-md-4" type="submit" name="subir">
                                                 SUBIR
                                             </button>
                                         </div>
@@ -49,7 +49,7 @@
                                         </div>
     
                                         <div class="col mb-1 d-flex justify-content-center align-items-center">
-                                            <button id="criar" class="btn btn-lg {{ session('tema') == "escuro" ? "btn-secondary" : "btn-info" }} w-100 w-md-auto fs-5 fs-md-1 p-2 p-md-4" type="submit" name="criar">
+                                            <button id="criar" class="btn btn-lg {{ Cache::get('tema') === 'escuro' ? "btn-secondary" : "btn-info" }} w-100 w-md-auto fs-5 fs-md-1 p-2 p-md-4" type="submit" name="criar">
                                                 CRIAR
                                             </button>
                                         </div>
@@ -63,7 +63,7 @@
                                             </svg>
                                         </div>
                                     @enderror
-                                    <div class="rounded-2 {{ session('tema') == "escuro" ? "bg-dark" : "bg-secondary" }} border overflow-auto">
+                                    <div class="rounded-2 {{ Cache::get('tema') === 'escuro' ? "bg-dark" : "bg-secondary" }} border overflow-auto">
                                         <textarea id="texto" class="form-control" name="texto" cols="30" rows="15" placeholder="..." required value="{{ old("texto") }}"></textarea>
                                     </div>
                                 </form>
@@ -72,8 +72,8 @@
     
                         <div class="col">
                             <div class="card border border-black p-3 shadow">
-                                <div id="arquivos" class="table-responsive rounded-2 {{ session('tema') == "escuro" ? "bg-dark" : "bg-secondary" }} border overflow-auto">
-                                    <table class="table table-hover {{ session('tema') == "escuro" ? "table-dark" : "table-secondary" }} align-middle mb-0">
+                                <div id="arquivos" class="table-responsive rounded-2 {{ Cache::get('tema') === 'escuro' ? "bg-dark" : "bg-secondary" }} border overflow-auto">
+                                    <table class="table table-hover {{ Cache::get('tema') === 'escuro' ? "table-dark" : "table-secondary" }} align-middle mb-0">
                                         <thead class="text-center">
                                             <tr>
                                                 <th class="border-end align-middle">N°</th>
@@ -100,7 +100,7 @@
                                                 </tr>
                                             @empty
                                                 <tr class="text-center fw-bold">
-                                                    <td colspan="6" class="{{ session('tema') == "escuro" ? "bg-dark" : "bg-secondary" }}">NENHUM ARQUIVO ENCONTRADO</td>
+                                                    <td colspan="6" class="{{ Cache::get('tema') === 'escuro' ? "bg-dark" : "bg-secondary" }}">NENHUM ARQUIVO ENCONTRADO</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>

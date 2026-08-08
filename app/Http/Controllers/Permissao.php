@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Usuario;
 use App\Services\Operacoes;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Cache;
 
 class Permissao
 {
@@ -17,7 +18,7 @@ class Permissao
         $cor01 = 'success';
         $cor02 = 'danger';
 
-        if (session('tema') == 'escuro') {
+        if (Cache::get('tema') === 'escuro') {
 
             $cor01 = 'secondary';
             $cor02 = 'dark';
@@ -56,7 +57,7 @@ class Permissao
 
             $cor = 'info';
 
-            if (session('tema') == 'escuro') {
+            if (Cache::get('tema') === 'escuro') {
 
                 $cor = 'secondary';
 
@@ -72,7 +73,7 @@ class Permissao
 
         $cor = 'danger';
 
-        if (session('tema') == 'escuro') {
+        if (Cache::get('tema') === 'escuro') {
 
             $cor = 'dark';
 
