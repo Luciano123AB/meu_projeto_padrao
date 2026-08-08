@@ -6,6 +6,7 @@ use App\Models\Log;
 use App\Models\Usuario;
 use App\Services\Operacoes;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Cache;
 
 class Logs
 {
@@ -19,7 +20,7 @@ class Logs
 
             $cor = 'info';
 
-            if (session('tema') == 'escuro') {
+            if (Cache::get('tema') === 'escuro') {
 
                 $cor = 'secondary';
 
@@ -35,7 +36,7 @@ class Logs
 
         $cor = 'danger';
 
-        if (session('tema') == 'escuro') {
+        if (Cache::get('tema') === 'escuro') {
 
             $cor = 'dark';
 
@@ -59,7 +60,7 @@ class Logs
 
             $cor = 'info';
 
-            if (session('tema') == 'escuro') {
+            if (Cache::get('tema') === 'escuro') {
 
                 $cor = 'secondary';
 
@@ -70,7 +71,7 @@ class Logs
 
         $cor = 'danger';
 
-        if (session('tema') == 'escuro') {
+        if (Cache::get('tema') === 'escuro') {
 
             $cor = 'dark';
 

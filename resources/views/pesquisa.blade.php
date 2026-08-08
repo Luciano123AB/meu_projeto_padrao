@@ -17,7 +17,7 @@
 
                                     <input id="usuario" class="form-control w-50" type="text" name="usuario" placeholder="...">
                                     
-                                    <button class="botoes_pesquisar btn {{ session('tema') == "escuro" ? "btn-secondary" : "btn-info" }} mt-2 mt-md-0" type="submit" name="pesquisar">
+                                    <button class="botoes_pesquisar btn {{ Cache::get('tema') === 'escuro' ? "btn-secondary" : "btn-info" }} mt-2 mt-md-0" type="submit" name="pesquisar">
                                         <i class="bi bi-search"></i>
                                         Pesquisar
                                     </button>
@@ -53,7 +53,7 @@
                                         </div>
                                     </div>
 
-                                    <button class="botoes_pesquisar btn {{ session('tema') == "escuro" ? "btn-secondary" : "btn-info" }}" type="submit" name="pesquisar">
+                                    <button class="botoes_pesquisar btn {{ Cache::get('tema') === 'escuro' ? "btn-secondary" : "btn-info" }}" type="submit" name="pesquisar">
                                         <i class="bi bi-search"></i> Pesquisar
                                     </button>
                                 </div>
@@ -76,7 +76,7 @@
 
                                     <input id="mes" class="form-control w-50" type="number" name="mes" placeholder="00">
 
-                                    <button class="botoes_pesquisar btn {{ session('tema') == "escuro" ? "btn-secondary" : "btn-info" }} mt-2 mt-md-0" type="submit">
+                                    <button class="botoes_pesquisar btn {{ Cache::get('tema') === 'escuro' ? "btn-secondary" : "btn-info" }} mt-2 mt-md-0" type="submit">
                                         <i class="bi bi-search"></i>
                                         Pesquisar
                                     </button>
@@ -102,7 +102,7 @@
 
                                     <input id="data" class="form-control w-50" type="text" name="data" placeholder="DIA/MÊS/ANO">
 
-                                    <button class="botoes_pesquisar btn {{ session('tema') == "escuro" ? "btn-secondary" : "btn-info" }} mt-2 mt-md-0" type="submit">
+                                    <button class="botoes_pesquisar btn {{ Cache::get('tema') === 'escuro' ? "btn-secondary" : "btn-info" }} mt-2 mt-md-0" type="submit">
                                         <i class="bi bi-search"></i> Pesquisar
                                     </button>
                                 </div>
@@ -127,7 +127,7 @@
 
                                     <input style="width: 21%;" id="data_final" class="form-control" type="text" name="data_final" placeholder="DIA/MÊS/ANO" value="{{ old("data_final") }}">
 
-                                    <button class="botoes_pesquisar btn {{ session('tema') == "escuro" ? "btn-secondary" : "btn-info" }} mt-2 mt-md-0" type="submit">
+                                    <button class="botoes_pesquisar btn {{ Cache::get('tema') === 'escuro' ? "btn-secondary" : "btn-info" }} mt-2 mt-md-0" type="submit">
                                         <i class="bi bi-search"></i>
                                         Pesquisar
                                     </button>
@@ -164,7 +164,7 @@
     
                                     <input style="width: 15%;" id="mes_final_cadastros" class="form-control" type="number" name="mes_final_cadastros" placeholder="00" value="{{ old("mes_final_cadastros") }}">
     
-                                    <button class="botoes_pesquisar btn {{ session('tema') == "escuro" ? "btn-secondary" : "btn-info" }} mt-2 mt-md-0" type="submit">
+                                    <button class="botoes_pesquisar btn {{ Cache::get('tema') === 'escuro' ? "btn-secondary" : "btn-info" }} mt-2 mt-md-0" type="submit">
                                         <i class="bi bi-search"></i>
                                         Pesquisar
                                     </button>
@@ -194,9 +194,9 @@
                     </div>
                 </div>
 
-                <div id="pesquisa_tabela" class="rounded-2 {{ session('tema') == "escuro" ? "bg-dark" : "bg-secondary" }} border mx-1 mx-md-3 shadow overflow-auto">
+                <div id="pesquisa_tabela" class="rounded-2 {{ Cache::get('tema') === 'escuro' ? "bg-dark" : "bg-secondary" }} border mx-1 mx-md-3 shadow overflow-auto">
                     <div class="table-responsive">
-                        <table class="table table-hover {{ session('tema') == "escuro" ? "table-dark" : "table-secondary" }} align-middle mb-0">
+                        <table class="table table-hover {{ Cache::get('tema') === 'escuro' ? "table-dark" : "table-secondary" }} align-middle mb-0">
                             <thead class="text-center">
                                 <tr>
                                     <th class="border-end">N°</th>
@@ -216,14 +216,14 @@
                                     <x-pesquisa_component :usuario="$usuario" :loop="$loop->index" />
                                 @empty
                                     <tr class="text-center">
-                                        <td colspan="9" class="{{ session('tema') == "escuro" ? "bg-dark" : "bg-secondary" }}">NENHUM USUÁRIO ENCONTRADO</td>
+                                        <td colspan="9" class="{{ Cache::get('tema') === 'escuro' ? "bg-dark" : "bg-secondary" }}">NENHUM USUÁRIO ENCONTRADO</td>
                                     </tr>
                                 @endforelse
 
                                 {{ session()->forget("resultado") }}
                             @else
                                 <tr class="text-center">
-                                    <td colspan="9" class="{{ session('tema') == "escuro" ? "bg-dark" : "bg-secondary" }}">REALIZE SUA PESQUISA</td>
+                                    <td colspan="9" class="{{ Cache::get('tema') === 'escuro' ? "bg-dark" : "bg-secondary" }}">REALIZE SUA PESQUISA</td>
                                 </tr>
                             @endif
                         </table>

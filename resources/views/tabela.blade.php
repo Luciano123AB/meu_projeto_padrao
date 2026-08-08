@@ -6,7 +6,7 @@
             @include("layouts.opcoes")
 
             <div class="col-12 col-md-10 py-3">
-                <div style="height: 750px;" class="{{ session('tema') == "escuro" ? "bg-dark" : "bg-secondary" }} border mx-3 shadow overflow-auto rounded">
+                <div style="height: 750px;" class="{{ Cache::get('tema') === 'escuro' ? "bg-dark" : "bg-secondary" }} border mx-3 shadow overflow-auto rounded">
                     <table class="table table-hover table-striped align-middle mb-0">
                         <thead class="text-center sticky-top bg-secondary text-white">
                             <tr>

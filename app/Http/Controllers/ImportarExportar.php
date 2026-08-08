@@ -7,6 +7,7 @@ use App\Imports\UsuariosImportar;
 use App\Models\Usuario;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -25,7 +26,7 @@ class ImportarExportar
 
             $cor = 'info';
 
-            if (session('tema') == 'escuro') {
+            if (Cache::get('tema') === 'escuro') {
 
                 $cor = 'secondary';
 
@@ -43,7 +44,7 @@ class ImportarExportar
 
         $cor = 'danger';
 
-        if (session('tema') == 'escuro') {
+        if (Cache::get('tema') === 'escuro') {
 
             $cor = 'dark';
 
@@ -89,7 +90,7 @@ class ImportarExportar
 
             $cor = 'info';
 
-            if (session('tema') == 'escuro') {
+            if (Cache::get('tema') === 'escuro') {
 
                 $cor = 'secondary';
 
@@ -107,7 +108,7 @@ class ImportarExportar
 
         $cor = 'danger';
 
-        if (session('tema') == 'escuro') {
+        if (Cache::get('tema') === 'escuro') {
 
             $cor = 'dark';
 

@@ -4,7 +4,7 @@
     <td class="text-center border-end">{{ date("d/m/Y", strtotime($log["data_hora"])) }}</td>
     <td class="text-center border-end">{{ date("H:i:s", strtotime($log["data_hora"])) }}</td>
     <td class="text-center">
-        <a href="{{ route("limpar.log", ["id" => Crypt::encrypt($log["id"])]) }}" class="btn btn-sm {{ session('tema') == "escuro" ? "btn-dark" : "btn-danger" }}" data-bs-toggle="tooltip" title="Excluir usuário">
+        <a href="{{ route("limpar.log", ["id" => Crypt::encrypt($log["id"])]) }}" class="btn btn-sm {{ Cache::get('tema') === 'escuro' ? "btn-dark" : "btn-danger" }}" data-bs-toggle="tooltip" title="Excluir usuário">
             <i class="bi bi-trash"></i>
         </a>
     </td>

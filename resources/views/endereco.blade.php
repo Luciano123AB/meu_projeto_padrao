@@ -20,7 +20,7 @@
     
                                     <input id="cep" class="form-control w-50" type="text" name="cep" placeholder="00000-000" value="{{ $cep ?? '' }}">
     
-                                    <button class="botoes_pesquisar btn {{ session('tema') == "escuro" ? "btn-secondary" : "btn-info" }} mt-2 mt-md-0" type="submit" id="buscar">
+                                    <button class="botoes_pesquisar btn {{ Cache::get('tema') === 'escuro' ? "btn-secondary" : "btn-info" }} mt-2 mt-md-0" type="submit" id="buscar">
                                         <i class="bi bi-search"></i> Buscar
                                     </button>
                                 </div>
@@ -108,7 +108,7 @@
     
                                 <input id="cnpj" class="form-control w-50" type="text" name="cnpj" placeholder="00.000.000/0000-00" maxlength="18" value="{{ $cnpj ?? '' }}">
     
-                                <button class="botoes_pesquisar btn {{ session('tema') == "escuro" ? "btn-secondary" : "btn-info" }} mt-2 mt-md-0" type="submit" id="consultar">
+                                <button class="botoes_pesquisar btn {{ Cache::get('tema') === 'escuro' ? "btn-secondary" : "btn-info" }} mt-2 mt-md-0" type="submit" id="consultar">
                                     <i class="bi bi-search"></i>
                                     Buscar
                                 </button>
